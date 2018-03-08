@@ -1,6 +1,11 @@
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+   /*padding-top: 50px;
+   padding-bottom: 20px;*/
+   background-image:url("../images/wooden-background-light-texture-672230-wallhere.com (1).jpg");
+   background-attachment:fixed;
+   background-position:100% 100%;
+   background-repeat: no-repeat;
+   background-size:cover
 }
 
 /* Wrapping element */
