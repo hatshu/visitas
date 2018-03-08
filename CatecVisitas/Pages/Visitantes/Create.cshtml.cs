@@ -16,6 +16,7 @@ namespace CatecVisitas.Pages.Visitantes
         public CreateModel(CatecVisitas.Models.PersonContext context)
         {
             _context = context;
+
         }
 
         public IActionResult OnGet()
@@ -26,13 +27,14 @@ namespace CatecVisitas.Pages.Visitantes
         [BindProperty]
         public Person Person { get; set; }
 
+        
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-
+         Person.FechaAlta = DateTime.Today.Date;
             _context.Person.Add(Person);
             await _context.SaveChangesAsync();
 
