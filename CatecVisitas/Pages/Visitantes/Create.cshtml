@@ -2,12 +2,12 @@
 @model CatecVisitas.Pages.Visitantes.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Alta";
 }
 
-<h2>Create</h2>
+<h2>Alta</h2>
 
-<h4>Person</h4>
+<h4>Nuevo Visitante</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -33,11 +33,11 @@
                 <input asp-for="Person.Empresa" class="form-control" />
                 <span asp-validation-for="Person.Empresa" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Person.FechaAlta" class="control-label"></label>
-                <input asp-for="Person.FechaAlta" class="form-control" />
+                <input asp-for="Person.FechaAlta" class="form-control"  readonly="readonly" />
                 <span asp-validation-for="Person.FechaAlta" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
@@ -46,7 +46,7 @@
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index">Volver a la lista</a>
 </div>
 
 @section Scripts {

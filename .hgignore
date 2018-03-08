@@ -1,3 +1,5 @@
 syntax: glob
 CatecVisitas/obj/*
 CatecVisitas/bin/Debug/*
+.vs/CatecVisitas/v15/Server/sqlite3/storage.ide-shm
+.vs/CatecVisitas/v15/Server/sqlite3/storage.ide-wal

@@ -2,59 +2,62 @@
 @model CatecVisitas.Pages.Visitantes.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+   ViewData["Title"] = "Listado de visitantes";
 }
 
-<h2>Index</h2>
+<h2>Listado de Visitantes</h2>
 
 <p>
-    <a asp-page="Create">Create New</a>
+   <div>
+      <a asp-page="Create">Alta Visitante Nuevo</a>
+   </div>  
 </p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Person[0].Nombre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Person[0].Apellidos)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Person[0].DNI)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Person[0].Empresa)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Person[0].FechaAlta)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Person) {
-        <tr>
+<table class="table table-striped">
+   <thead>
+      <tr>
+         <th>
+            @Html.DisplayNameFor(model => model.Person[0].Nombre)
+         </th>
+         <th>
+            @Html.DisplayNameFor(model => model.Person[0].Apellidos)
+         </th>
+         <th>
+            @Html.DisplayNameFor(model => model.Person[0].DNI)
+         </th>
+         <th>
+            @Html.DisplayNameFor(model => model.Person[0].Empresa)
+         </th>
+         <th>
+            @Html.DisplayNameFor(model => model.Person[0].FechaAlta)
+         </th>
+         <th></th>
+      </tr>
+   </thead>
+   <tbody>
+      @foreach (var item in Model.Person)
+      {
+         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
+               @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Apellidos)
+               @Html.DisplayFor(modelItem => item.Apellidos)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DNI)
+               @Html.DisplayFor(modelItem => item.DNI)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Empresa)
+               @Html.DisplayFor(modelItem => item.Empresa)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaAlta)
+               @Html.DisplayFor(modelItem => item.FechaAlta)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+               <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+               <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+               <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
             </td>
-        </tr>
-}
-    </tbody>
+         </tr>
+      }
+   </tbody>
 </table>
