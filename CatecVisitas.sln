@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatecVisitas", "CatecVisitas\CatecVisitas.csproj", "{3CC55863-0E44-474C-9B92-35541BF3E4B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CC55863-0E44-474C-9B92-35541BF3E4B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CC55863-0E44-474C-9B92-35541BF3E4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CC55863-0E44-474C-9B92-35541BF3E4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CC55863-0E44-474C-9B92-35541BF3E4B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D70845B1-A250-44D1-885E-18901BA7B21D}
+	EndGlobalSection
+EndGlobal
