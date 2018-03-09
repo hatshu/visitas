@@ -11,7 +11,7 @@
 <head>
    <meta charset="utf-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>@ViewData["Title"] - CatecVisitas</title>
+   <title>@ViewData["Title"] - Person</title>
 
    <environment include="Development">
       <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -50,9 +50,10 @@
    <div class="container body-content">
       @RenderBody()
       <hr />
-      <footer>
+      @*<footer>
          <p>&copy; 2017 - CatecVisitas</p>
-      </footer>
+      </footer>*@
+      <div class="panel-footer">&copy; 2017 - CatecVisitas</div>
    </div>
 
    <environment include="Development">

@@ -12,52 +12,57 @@
       <a asp-page="Create">Alta Visitante Nuevo</a>
    </div>  
 </p>
-<table class="table table-striped">
-   <thead>
-      <tr>
-         <th>
-            @Html.DisplayNameFor(model => model.Person[0].Nombre)
-         </th>
-         <th>
-            @Html.DisplayNameFor(model => model.Person[0].Apellidos)
-         </th>
-         <th>
-            @Html.DisplayNameFor(model => model.Person[0].DNI)
-         </th>
-         <th>
-            @Html.DisplayNameFor(model => model.Person[0].Empresa)
-         </th>
-         <th>
-            @Html.DisplayNameFor(model => model.Person[0].FechaAlta)
-         </th>
-         <th></th>
-      </tr>
-   </thead>
-   <tbody>
-      @foreach (var item in Model.Person)
-      {
+<div class="panel panel-default">
+
+   <table class="table table-striped">
+      <thead>
          <tr>
-            <td>
-               @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-               @Html.DisplayFor(modelItem => item.Apellidos)
-            </td>
-            <td>
-               @Html.DisplayFor(modelItem => item.DNI)
-            </td>
-            <td>
-               @Html.DisplayFor(modelItem => item.Empresa)
-            </td>
-            <td>
-               @Html.DisplayFor(modelItem => item.FechaAlta)
-            </td>
-            <td>
-               <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-               <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-               <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
+            <th>
+               @Html.DisplayNameFor(model => model.Person[0].Nombre)
+            </th>
+            <th>
+               @Html.DisplayNameFor(model => model.Person[0].Apellidos)
+            </th>
+            <th>
+               @Html.DisplayNameFor(model => model.Person[0].DNI)
+            </th>
+            <th>
+               @Html.DisplayNameFor(model => model.Person[0].Empresa)
+            </th>
+            <th>
+               @Html.DisplayNameFor(model => model.Person[0].FechaAlta)
+            </th>
+            <th></th>
          </tr>
-      }
-   </tbody>
-</table>
+      </thead>
+      <tbody>
+         @foreach (var item in Model.Person)
+         {
+            <tr>
+               <td>
+                  @Html.DisplayFor(modelItem => item.Nombre)
+               </td>
+               <td>
+                  @Html.DisplayFor(modelItem => item.Apellidos)
+               </td>
+               <td>
+                  @Html.DisplayFor(modelItem => item.DNI)
+               </td>
+               <td>
+                  @Html.DisplayFor(modelItem => item.Empresa)
+               </td>
+               <td>
+                  @Html.DisplayFor(modelItem => item.FechaAlta)
+               </td>
+               <td>
+                  <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                  <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                  <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+               </td>
+            </tr>
+         }
+
+
+      </tbody>
+   </table>
+</div>
