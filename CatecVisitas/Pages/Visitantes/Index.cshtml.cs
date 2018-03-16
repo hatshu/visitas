@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CatecVisitas.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CatecVisitas.Pages.Visitantes
 {
@@ -20,7 +21,7 @@ namespace CatecVisitas.Pages.Visitantes
 
         public IList<Person> Person { get;set; }
 
-       public async Task OnGetAsync(string searchString)
+      public async Task OnGetAsync(string searchString)
        {
           var persona = from p in _context.Person
              select p;
