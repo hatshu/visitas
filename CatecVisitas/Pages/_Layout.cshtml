@@ -1,8 +1,8 @@
-﻿@{
+﻿@using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging
+@{
    var usuario = @User.Identity.Name;
    if (!User.Identity.IsAuthenticated)
    {
-
 
    }
 }
@@ -11,7 +11,7 @@
 <head>
    <meta charset="utf-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>@ViewData["Title"] - Person</title>
+   <title>@ViewData["Title"] - CATEC</title>
 
    <environment include="Development">
       <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -34,7 +34,7 @@
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
             </button>
-            <a asp-page="/Index" class="navbar-brand">Visitas</a>
+            <a asp-page="/Index" class="navbar-brand">CATEC</a>
          </div>
          <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -50,11 +50,11 @@
    <div class="container body-content">
       @RenderBody()
       <hr />
-      @*<footer>
-         <p>&copy; 2017 - CatecVisitas</p>
-      </footer>*@
-      <div class="panel-footer">&copy; 2017 - CatecVisitas</div>
-   </div>
+      <footer>
+         <p>&copy; 2018 - CatecVisitas</p>
+      </footer>
+      @*<div class="panel-footer">&copy; 2018 - CatecVisitas</div>
+   </div>*@
 
    <environment include="Development">
       <script src="~/lib/jquery/dist/jquery.js"></script>

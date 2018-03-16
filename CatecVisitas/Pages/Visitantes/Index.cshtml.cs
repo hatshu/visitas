@@ -20,9 +20,17 @@ namespace CatecVisitas.Pages.Visitantes
 
         public IList<Person> Person { get;set; }
 
-        public async Task OnGetAsync()
-        {
-            Person = await _context.Person.ToListAsync();
-        }
-    }
+       public async Task OnGetAsync(string searchString)
+       {
+          var persona = from p in _context.Person
+             select p;
+
+          if (!String.IsNullOrEmpty(searchString))
+          {
+             persona = persona.Where(s =>  s.Empresa.Equals(searchString) || s.DNI.Equals(searchString));
+          }
+
+          Person = await persona.ToListAsync();
+       }
+   }
 }
