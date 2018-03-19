@@ -4,36 +4,39 @@
    ViewData["Title"] = "Home page";
 }
 
-<div class="jumbotron text-center">
+<div class="jumbotron text-center" style="background: transparent">
    <h1>Aplicación de control de Visitas</h1>
    <p></p>
 </div>
 
-<div class="container">
-   <div class="row">
-      <img src="~/images/catecLogo.png" style="width:100%" />
-   </div>
-   <div class="row">
-      <div class="col-sm-6">
-         <h4>Visitantes Externos Registrados</h4>
-         <p>Accede al listado de visitas</p>
-         <div class="thumbnail">
-            <img src="images/trabajo-en-equipo.svg" alt="..." class="img-thumbnail">
-         </div>
+
+<div class="row">
+   <div class="col-sm-6">
+
+      <div class="thumbnail" >
+         <h4 align="center">Visitantes Externos Registrados</h4>
+         <p align="center">Accede al listado de visitantes</p>
+         <a asp-page="/Visitantes/Index"> <img src="images/trabajo-en-equipo.svg" alt="..." class="img-thumbnail" style="width: 40%; background: transparent;border: transparent"></a>
       </div>
-      <div class="col-sm-6">
-         <h4>Trabajadores Externos Autorizados</h4>
-         <p>Accede al listado de autorizados</p>
-         <div class="thumbnail">
-            <img src="images/reunion.svg" alt="..." class="img-thumbnail">
-            
-         </div>
+   </div>
+   <div class="col-sm-6">
+
+      <div class="thumbnail">
+         <h4 align="center">Trabajadores Externos Autorizados</h4>
+         <p align="center">Accede al listado de autorizados</p>
+         <a asp-page="/Autorizados/Index"> <img src="images/la-busqueda-de-empleo.svg" alt="..." class="img-thumbnail" style="width: 40%; background: transparent;border: transparent"></a>
+
+      </div>
+   </div>
+   <div class="container">
+      <div class="row">
+         <img src="~/images/catecLogo.png" style="width:100%" />
       </div>
       @*<div class="col-sm-4">
-         <h3>Column 3 CATEC</h3>
-         <p>Lorem ipsum dolor..</p>
-         <p>Ut enim ad..</p>
-      </div>*@
+            <h3>Column 3 CATEC</h3>
+            <p>Lorem ipsum dolor..</p>
+            <p>Ut enim ad..</p>
+         </div>*@
    </div>
 </div>
 

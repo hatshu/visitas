@@ -1,10 +1,8 @@
 ﻿@using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging
 @{
    var usuario = @User.Identity.Name;
-   if (!User.Identity.IsAuthenticated)
-   {
+   var nombre =usuario.Split('\\');
 
-   }
 }
 <!DOCTYPE html>
 <html>
@@ -43,7 +41,7 @@
                <li><a asp-page="/About">Listado de Autorizados</a></li>
                <li><a asp-page="/Contact">Contacto</a></li>
             </ul>
-            <p class="nav navbar-text navbar-right">Hola, @usuario!</p>
+            <p class="nav navbar-text navbar-right">Hola, @nombre[1]!</p>
          </div>
       </div>
    </nav>
@@ -78,5 +76,6 @@
    </environment>
 
    @RenderSection("Scripts", required: false)
+      </div>
 </body>
 </html>
