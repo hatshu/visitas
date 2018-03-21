@@ -24,51 +24,57 @@
 
    <table class="table table-striped">
       <thead>
-         <tr>
-            <th>
-               @Html.DisplayNameFor(model => model.Person[0].Nombre)
-            </th>
-            <th>
-               @Html.DisplayNameFor(model => model.Person[0].Apellidos)
-            </th>
-            <th>
-               @Html.DisplayNameFor(model => model.Person[0].DNI)
-            </th>
-            <th>
-               @Html.DisplayNameFor(model => model.Person[0].Empresa)
-            </th>
-            <th>
-               @Html.DisplayNameFor(model => model.Person[0].FechaAlta)
-            </th>
-            <th></th>
-         </tr>
+          <tr>
+              <th>
+                  @Html.DisplayNameFor(model => model.Person[0].ID)
+              </th>
+              <th>
+                  @Html.DisplayNameFor(model => model.Person[0].Nombre)
+              </th>
+              <th>
+                  @Html.DisplayNameFor(model => model.Person[0].Apellidos)
+              </th>
+              <th>
+                  @Html.DisplayNameFor(model => model.Person[0].DNI)
+              </th>
+              <th>
+                  @Html.DisplayNameFor(model => model.Person[0].Empresa)
+              </th>
+              <th>
+                  @Html.DisplayNameFor(model => model.Person[0].FechaAlta)
+              </th>
+              <th></th>
+          </tr>
       </thead>
       <tbody>
          @foreach (var item in Model.Person)
          {
-            <tr>
-               <td>
+          <tr>
+              <td>
+                  @Html.DisplayFor(modelItem => item.ID)
+              </td>
+              <td>
                   @Html.DisplayFor(modelItem => item.Nombre)
-               </td>
-               <td>
+              </td>
+              <td>
                   @Html.DisplayFor(modelItem => item.Apellidos)
-               </td>
-               <td>
+              </td>
+              <td>
                   @Html.DisplayFor(modelItem => item.DNI)
-               </td>
-               <td>
+              </td>
+              <td>
                   @Html.DisplayFor(modelItem => item.Empresa)
-               </td>
-               <td>
+              </td>
+              <td>
                   @Html.DisplayFor(modelItem => item.FechaAlta)
-               </td>
-               <td>
+              </td>
+              <td>
                   <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                   <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
                   <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a> |
                   <a asp-page="../Visitas/Create" asp-route-id="@item.ID">+ Visita</a>
-               </td>
-            </tr>
+              </td>
+          </tr>
          }
 
 

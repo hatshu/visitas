@@ -16,8 +16,7 @@ namespace CatecVisitas.Pages.Visitas
         public CreateModel(CatecVisitas.Models.PersonContext context)
         {
             _context = context;
-      }
-
+        }
 
         public IActionResult OnGet()
         {
@@ -27,18 +26,18 @@ namespace CatecVisitas.Pages.Visitas
         [BindProperty]
         public Visita Visita { get; set; }
 
-
-        public async Task<IActionResult> OnPostAsync(int intID)
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-         
-         Visita.FechaVisita = DateTime.Today.Date;
-         _context.Visita.Add(Visita);
-           
             
+            var queryString = Request.QueryString.ToString();
+            var partOfQueryString = queryString.Split('=');
+            Visita.IdPerson = Convert.ToInt32(partOfQueryString[1]);
+            Visita.FechaVisita = DateTime.Today.Date;
+            _context.Visita.Add(Visita);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
