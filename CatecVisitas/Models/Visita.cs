@@ -10,8 +10,12 @@ namespace CatecVisitas.Models
     public class Visita
     {
         //[DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
+        //public int ID { get; set; }
+        
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        [Key]
+        public int IdVisita { get; set; }
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
         public int IdPerson { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime FechaVisita { get; set; }

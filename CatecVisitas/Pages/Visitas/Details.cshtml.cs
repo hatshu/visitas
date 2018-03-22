@@ -20,14 +20,14 @@ namespace CatecVisitas.Pages.Visitas
 
         public Visita Visita { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? IdVisita)
         {
-            if (id == null)
+            if (IdVisita == null)
             {
                 return NotFound();
             }
 
-            Visita = await _context.Visita.SingleOrDefaultAsync(m => m.ID == id);
+            Visita = await _context.Visita.SingleOrDefaultAsync(m => m.IdVisita == IdVisita);
 
             if (Visita == null)
             {
