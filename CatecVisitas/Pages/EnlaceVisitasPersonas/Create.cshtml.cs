@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CatecVisitas.Models;
 
-namespace CatecVisitas.Pages.Visitas
+namespace CatecVisitas.Pages.EnlaceVisitasPersonas
 {
     public class CreateModel : PageModel
     {
@@ -24,7 +24,7 @@ namespace CatecVisitas.Pages.Visitas
         }
 
         [BindProperty]
-        public Visita Visita { get; set; }
+        public EnlaceVisitaPersona EnlaceVisitaPersona { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -32,13 +32,8 @@ namespace CatecVisitas.Pages.Visitas
             {
                 return Page();
             }
-            
-            var queryString = Request.QueryString.ToString();
-            var partOfQueryString = queryString.Split('=');
-            Visita.IdPerson = Convert.ToInt32(partOfQueryString[1]);
-            Visita.FechaVisita = DateTime.Today.Date;
-            Visita.Hora = DateTime.Now.ToString("hh:mm:ss");
-            _context.Visita.Add(Visita);
+
+            _context.EnlaceVisitaPersona.Add(EnlaceVisitaPersona);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
