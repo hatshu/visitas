@@ -15,5 +15,6 @@ namespace CatecVisitas.Models
       }
       public DbSet<Person> Person { get; set; }
       public DbSet<Visita> Visita { get; set; }
+      public DbSet<EnlaceVisitaPersona> EnlaceVisitaPersona { get; set; }
    }
 }

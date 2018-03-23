@@ -13,16 +13,37 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-           @*<div class="form-group">
-                <label asp-for="Visita.IdPerson" class="control-label"></label>
-                <input asp-for="Visita.IdPerson" class="form-control" />
-                <span asp-validation-for="Visita.IdPerson" class="text-danger"></span>
-            </div>
+            @*<div class="form-group">
+            <label asp-for="Visita.IdPerson" class="control-label"></label>
+            <input asp-for="Visita.IdPerson" class="form-control" />
+            <span asp-validation-for="Visita.IdPerson" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Visita.FechaVisita" class="control-label"></label>
+            <input asp-for="Visita.FechaVisita" class="form-control" />
+            <span asp-validation-for="Visita.FechaVisita" class="text-danger"></span>
+        </div>*@
+
+
+
             <div class="form-group">
-                <label asp-for="Visita.FechaVisita" class="control-label"></label>
-                <input asp-for="Visita.FechaVisita" class="form-control" />
-                <span asp-validation-for="Visita.FechaVisita" class="text-danger"></span>
-            </div>*@
+                <label asp-for="Visita.Motivo" class="control-label"></label>
+                <input asp-for="Visita.Motivo" class="form-control" />
+                <span asp-validation-for="Visita.Motivo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Visita.Duracion" class="control-label"></label>
+                <input asp-for="Visita.Duracion" class="form-control" />
+                <span asp-validation-for="Visita.Duracion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Visita.ResponsableCatec" class="control-label"></label>
+                <input asp-for="Visita.ResponsableCatec" class="form-control" />
+                <span asp-validation-for="Visita.ResponsableCatec" class="text-danger"></span>
+            </div>
+
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
