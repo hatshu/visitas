@@ -7,7 +7,7 @@
 
 <h2>Create</h2>
 
-<h4>Visita</h4>
+<h4>  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Visita</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -26,34 +26,38 @@
 
 
 
-            <div class="form-group">
-                <label asp-for="Visita.Motivo" class="control-label"></label>
-                <input asp-for="Visita.Motivo" class="form-control" />
-                <span asp-validation-for="Visita.Motivo" class="text-danger"></span>
-            </div>
+            <div class="panel panel-default">
+                <div class="form-group">
+                    <label asp-for="Visita.Motivo" class="control-label"></label>
+                    <input asp-for="Visita.Motivo" class="form-control" />
+                    <span asp-validation-for="Visita.Motivo" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="Visita.Duracion" class="control-label"></label>
-                <input asp-for="Visita.Duracion" class="form-control" />
-                <span asp-validation-for="Visita.Duracion" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="Visita.Duracion" class="control-label"></label>
+                    <input asp-for="Visita.Duracion" class="form-control" />
+                    <span asp-validation-for="Visita.Duracion" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="Visita.ResponsableCatec" class="control-label"></label>
-                <input asp-for="Visita.ResponsableCatec" class="form-control" />
-                <span asp-validation-for="Visita.ResponsableCatec" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="Visita.ResponsableCatec" class="control-label"></label>
+                    <input asp-for="Visita.ResponsableCatec" class="form-control" />
+                    <span asp-validation-for="Visita.ResponsableCatec" class="text-danger"></span>
+                </div>
 
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index">Back to List</a> | 
+
+
 </div>
 
 @section Scripts {
