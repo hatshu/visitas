@@ -12,26 +12,39 @@ namespace CatecVisitas.Pages.Visitantes
 {
     public class IndexModel : PageModel
     {
+
+        public string Visitita;
+
+        public string[] VisitaArray;
+
         private readonly CatecVisitas.Models.PersonContext _context;
 
         public IndexModel(CatecVisitas.Models.PersonContext context)
         {
             _context = context;
+
         }
 
-        public IList<Person> Person { get;set; }
+        public IList<Person> Person { get; set; }
+        public IList<Visita> Visita { get; set; }
+        public async Task OnGetAsync(string searchString)
+        {
+            var persona = from p in _context.Person
+                          select p;
 
-      public async Task OnGetAsync(string searchString)
-       {
-          var persona = from p in _context.Person
-             select p;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                persona = persona.Where(s => s.Empresa.Equals(searchString) || s.DNI.Equals(searchString));
+            }
 
-          if (!String.IsNullOrEmpty(searchString))
-          {
-             persona = persona.Where(s =>  s.Empresa.Equals(searchString) || s.DNI.Equals(searchString));
-          }
+            Person = await persona.ToListAsync();
+            var visit = Request.QueryString.ToString();
+            VisitaArray = visit.Split('=');
+            Visitita = VisitaArray[1];
 
-          Person = await persona.ToListAsync();
-       }
-   }
+        }
+
+
+
+    }
 }
