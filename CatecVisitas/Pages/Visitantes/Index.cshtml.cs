@@ -17,17 +17,24 @@ namespace CatecVisitas.Pages.Visitantes
 
         public string[] VisitaArray;
 
+        public string SearchStream;
+
         private readonly CatecVisitas.Models.PersonContext _context;
 
         public IndexModel(CatecVisitas.Models.PersonContext context)
         {
             _context = context;
-
+           
         }
 
         public IList<Person> Person { get; set; }
         public IList<Visita> Visita { get; set; }
-        public async Task OnGetAsync(string searchString)
+
+
+      
+
+
+        public async Task OnGetAsync(string searchString, string id , string idVisita)
         {
             var persona = from p in _context.Person
                           select p;
@@ -35,12 +42,22 @@ namespace CatecVisitas.Pages.Visitantes
             if (!String.IsNullOrEmpty(searchString))
             {
                 persona = persona.Where(s => s.Empresa.Equals(searchString) || s.DNI.Equals(searchString));
+                Person = await persona.ToListAsync();
+                var visit = Request.QueryString.ToString();
+                VisitaArray = visit.Split('=');
+                Visitita = VisitaArray[1];
+                SearchStream = searchString;
+            }
+            else
+            {
+                Person = await persona.ToListAsync();
+                var visitSinBuscador = Request.QueryString.ToString();
+                VisitaArray = visitSinBuscador.Split('=');
+                Visitita = VisitaArray[1];
             }
 
-            Person = await persona.ToListAsync();
-            var visit = Request.QueryString.ToString();
-            VisitaArray = visit.Split('=');
-            Visitita = VisitaArray[1];
+
+           
 
         }
 
