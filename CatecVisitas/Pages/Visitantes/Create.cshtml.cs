@@ -11,6 +11,12 @@ namespace CatecVisitas.Pages.Visitantes
 {
     public class CreateModel : PageModel
     {
+        private const string PageName = "Index";
+
+        public string Query;
+
+        public string[] QueryArray;
+
         private readonly CatecVisitas.Models.PersonContext _context;
 
         public CreateModel(CatecVisitas.Models.PersonContext context)
@@ -35,10 +41,14 @@ namespace CatecVisitas.Pages.Visitantes
                 return Page();
             }
          Person.FechaAlta = DateTime.Today.Date;
+            Query = Request.QueryString.ToString();
+            QueryArray= Query.Split('=');
             _context.Person.Add(Person);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            //return RedirectToPage("./Index");
+            return this.RedirectToPage
+            (PageName, new { idVisita = QueryArray[1] });
         }
     }
 }

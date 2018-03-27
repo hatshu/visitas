@@ -35,7 +35,7 @@ namespace CatecVisitas.Pages.EnlaceVisitasPersonas
         public IList<Visita> Visita { get; set; }
 
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string save)
         {
            
             if (!ModelState.IsValid)
@@ -51,14 +51,16 @@ namespace CatecVisitas.Pages.EnlaceVisitasPersonas
 
             EnlaceVisitaPersona.PersonaID = Convert.ToInt32(arrayQuery[1]);
             EnlaceVisitaPersona.VisitaID = Convert.ToInt32(arrayQuery[3]);
-            PersonaID = arrayQuery[3];
+            PersonaID = arrayQuery[1];
 
-            _context.EnlaceVisitaPersona.Add(EnlaceVisitaPersona);
             
+                _context.EnlaceVisitaPersona.Add(EnlaceVisitaPersona);
+                
+
             await _context.SaveChangesAsync();
 
             //return RedirectToPage("./Index");
-            return Page();
+            return RedirectToPage("../Visitantes/Index2/");
         }
     }
 }
