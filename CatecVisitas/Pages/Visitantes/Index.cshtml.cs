@@ -44,8 +44,16 @@ namespace CatecVisitas.Pages.Visitantes
                 persona = persona.Where(s => s.Empresa.Equals(searchString) || s.DNI.Equals(searchString));
                 Person = await persona.ToListAsync();
                 var visit = Request.QueryString.ToString();
-                VisitaArray = visit.Split('=');
-                Visitita = VisitaArray[1];
+                if (visit!=null)
+                {
+                    VisitaArray = visit.Split('=');
+                }
+               
+                if (VisitaArray.Length > 0)
+                {
+                    Visitita = VisitaArray[2];
+
+                }
                 SearchStream = searchString;
             }
             else
@@ -53,7 +61,11 @@ namespace CatecVisitas.Pages.Visitantes
                 Person = await persona.ToListAsync();
                 var visitSinBuscador = Request.QueryString.ToString();
                 VisitaArray = visitSinBuscador.Split('=');
-                Visitita = VisitaArray[1];
+                if (VisitaArray.Length>0)
+                {
+                    Visitita = VisitaArray[1];
+
+                }
             }
 
 

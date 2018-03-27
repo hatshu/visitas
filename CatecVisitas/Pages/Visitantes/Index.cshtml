@@ -5,8 +5,7 @@
     ViewData["Title"] = "Listado de visitantes";
     string query = Request.QueryString.ToString();
     string[] queryPart = query.Split('=');
-    var queryStream = Convert.ToInt32(queryPart[1]);
-    var espacio = " ";
+    var queryStream = queryPart[1];
 }
 
 
@@ -27,9 +26,13 @@
     </form>*@
 <form>
     <p>
-        Buscar por DNI o Empresa: <input type="text" name="SearchString"  />
+        Buscar por DNI o Empresa: <input type="text" name="SearchString" />
+        <input type="hidden" name="idVisita" value="@queryStream"; />
+        <input type="submit" value="Buscar" />
+
     </p>
-    <a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>
+
+    @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
 </form>
 <div class="panel panel-default">
 
