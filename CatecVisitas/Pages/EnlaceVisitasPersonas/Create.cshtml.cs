@@ -11,6 +11,7 @@ namespace CatecVisitas.Pages.EnlaceVisitasPersonas
 {
     public class CreateModel : PageModel
     {
+        private const string PageName = "../Visitantes/Index";
         public string VisitaID;
 
         public string PersonaID;
@@ -52,15 +53,24 @@ namespace CatecVisitas.Pages.EnlaceVisitasPersonas
             EnlaceVisitaPersona.PersonaID = Convert.ToInt32(arrayQuery[1]);
             EnlaceVisitaPersona.VisitaID = Convert.ToInt32(arrayQuery[3]);
             PersonaID = arrayQuery[1];
+            VisitaID = arrayQuery[3];
 
-            
+
                 _context.EnlaceVisitaPersona.Add(EnlaceVisitaPersona);
                 
 
             await _context.SaveChangesAsync();
 
             //return RedirectToPage("./Index");
-            return RedirectToPage("../Visitantes/Index2/");
+            //return RedirectToPage("../Visitantes/Index2/");
+
+            
+
+            //return RedirectToPage("./Index");
+            return this.RedirectToPage
+            (PageName, new { idVisita = VisitaID });
+
+
         }
     }
 }

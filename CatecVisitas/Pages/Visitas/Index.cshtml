@@ -12,61 +12,64 @@
 <p>
     @*<a asp-page="Create">Create New</a>*@
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Visita[0].IdPerson)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Visita[0].IdVisita)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Visita[0].Motivo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Visita[0].Duracion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Visita[0].ResponsableCatec)
-            </th>
+<div class="panel panel-default">
 
-            <th>
-                @Html.DisplayNameFor(model => model.Visita[0].FechaVisita)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Visita)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdPerson)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdVisita)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Motivo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duracion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ResponsableCatec)
-            </td>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Visita[0].IdPerson)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Visita[0].IdVisita)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Visita[0].Motivo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Visita[0].Duracion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Visita[0].ResponsableCatec)
+                </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaVisita)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-idVisita="@item.IdVisita">Edit</a> |
-                <a asp-page="./Details" asp-route-idVisita="@item.IdVisita">Details</a> |
-                <a asp-page="./Delete" asp-route-idVisita="@item.IdVisita">Delete</a> |
-                <a asp-page="../Visitantes/Index" asp-route-idVisita="@item.IdVisita"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Visitante</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+                <th>
+                    @Html.DisplayNameFor(model => model.Visita[0].FechaVisita)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Visita)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdPerson)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdVisita)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Motivo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duracion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ResponsableCatec)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaVisita)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-idVisita="@item.IdVisita">Edit</a> |
+                        <a asp-page="./Details" asp-route-idVisita="@item.IdVisita">Details</a> |
+                        <a asp-page="./Delete" asp-route-idVisita="@item.IdVisita">Delete</a> |
+                        <a asp-page="../Visitantes/Index" asp-route-idVisita="@item.IdVisita"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Visitante</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>

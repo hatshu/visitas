@@ -63,7 +63,7 @@ namespace CatecVisitas.Pages.Visitantes
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index2");
         }
 
         private bool PersonExists(int id)
