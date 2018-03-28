@@ -7,6 +7,8 @@
     string[] queryPart = query.Split('=', '&');
     var queryStream = queryPart[1];
     int idPerson = Convert.ToInt32(queryStream);
+    var idVisitaString = queryPart[3];
+    var idVisitaInt = Convert.ToInt32(idVisitaString);
     var nombrePersona = "";
 }
 
@@ -64,7 +66,7 @@
                 <button class="btn-link" type="submit" style="height:auto">
                     <span class="glyphicon glyphicon-ok-circle"></span>
                 </button>
-                <a asp-page="../Visitantes/Index" asp-route-idVisita="@Model.VisitaID"> <span class="glyphicon glyphicon-remove-circle" style="font-stretch:extra-expanded"></span></a>
+                <a asp-page="../Visitantes/Index" asp-route-idVisita="@idVisitaInt"> <span class="glyphicon glyphicon-remove-circle" style="font-stretch:extra-expanded"></span></a>
             </div>
             @*</div>*@
 
