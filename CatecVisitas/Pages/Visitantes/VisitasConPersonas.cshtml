@@ -1,0 +1,88 @@
+﻿@page
+@model CatecVisitas.Pages.Visitantes.VisitasConPersonasModel
+@{
+    ViewData["Title"] = "VisitasConPersonas";
+    string query = Request.QueryString.ToString();
+    string[] queryPart = query.Split('=');
+    var queryStream = Convert.ToInt32(queryPart[1]);
+    var espacio = " ";
+}
+
+
+
+<h2>Personas que realizan la visita</h2>
+
+
+<div class="panel panel-default">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    <h4> Visita</h4>
+                </th>
+                <th>
+                    <h4>Persona</h4>
+                </th>
+                <th>
+                    <h4>Fecha</h4>
+                </th>
+                <th>
+                    <h4>Motivo</h4>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.EnlaceVisitasPersonas)
+            {
+
+
+
+                @if (@item.VisitaID == queryStream)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VisitaID)
+
+                        </td>
+                        <td>
+                            @foreach (var itemPersona in Model.Persona)
+                            {
+                                @*@Html.DisplayFor(modelItem => item.IdPerson)*@
+                                if (itemPersona.Id == item.PersonaID)
+                                {
+
+                                    @Html.DisplayFor(modelItem => itemPersona.Nombre)
+                                    @espacio
+                                    @Html.DisplayFor(modelItem => itemPersona.Apellidos)
+                                }
+                            }
+                        </td>
+                        <td>
+                            @foreach (var itemVisita in Model.Visita)
+                            {
+                                if (itemVisita.IdVisita == item.VisitaID)
+                                {
+                                    @Html.DisplayFor(modelItem => itemVisita.FechaVisita)
+                                    @espacio
+                                    @Html.DisplayFor(modelItem => itemVisita.Hora)
+
+                                }
+                            }
+                        </td>
+                        <td>
+                            @foreach (var itemVisita in Model.Visita)
+                            {
+                                if (itemVisita.IdVisita == item.VisitaID)
+                                {
+                                    @Html.DisplayFor(modelItem => itemVisita.Motivo)
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

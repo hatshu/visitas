@@ -13,12 +13,8 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="EnlaceVisitaPersona.Id" />
-            <div class="form-group">
-                <label asp-for="EnlaceVisitaPersona.IDEnlace" class="control-label"></label>
-                <input asp-for="EnlaceVisitaPersona.IDEnlace" class="form-control" />
-                <span asp-validation-for="EnlaceVisitaPersona.IDEnlace" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="EnlaceVisitaPersona.IDEnlace" />
+          
             <div class="form-group">
                 <label asp-for="EnlaceVisitaPersona.VisitaID" class="control-label"></label>
                 <input asp-for="EnlaceVisitaPersona.VisitaID" class="form-control" />

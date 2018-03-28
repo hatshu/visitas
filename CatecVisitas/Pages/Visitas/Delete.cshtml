@@ -7,16 +7,16 @@
 
 <h2>Delete</h2>
 
-<h3>¿Estás seguro de que quieres eliminar el registro?</h3>
+<h3>&iquest; Seguro que quieres eliminar el registro?</h3>
 <div>
     <h4>Visita</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Visita.IdPerson)
+            @Html.DisplayNameFor(model => model.Visita.IdVisita)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Visita.IdPerson)
+            @Html.DisplayFor(model => model.Visita.IdVisita)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Visita.FechaVisita)
@@ -24,11 +24,17 @@
         <dd>
             @Html.DisplayFor(model => model.Visita.FechaVisita)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Visita.Motivo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Visita.Motivo)
+        </dd>
     </dl>
     
     <form method="post">
         <input type="hidden" asp-for="Visita.IdVisita" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-page="./Index">Back to List</a>
+        <a asp-page="./Index">Volver a la lista</a>
     </form>
 </div>
