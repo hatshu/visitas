@@ -22,10 +22,14 @@ namespace CatecVisitas.Pages.Visitantes
 
         public IList<Person> Persona { get; set; }
 
+        public IList<EnlaceVisitaPersona> EnlaceVisitasPersonas { get; set; }
+
+
         public async Task OnGetAsync()
         {
             Visita = await _context.Visita.ToListAsync();
             Persona = await _context.Person.ToListAsync();
+            EnlaceVisitasPersonas = await _context.EnlaceVisitaPersona.ToListAsync();
         }
     }
 }

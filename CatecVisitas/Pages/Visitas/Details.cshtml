@@ -11,18 +11,45 @@
     <h4>Visita</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Visita.IdPerson)
+        <dt class="text-info">
+            @Html.DisplayNameFor(model => model.Visita.IdVisita)
+        </dt>
+        <dd >
+            @Html.DisplayFor(model => model.Visita.IdVisita)
+        </dd>
+
+        <dt class="text-info">
+            @Html.DisplayNameFor(model => model.Visita.Motivo)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Visita.IdPerson)
+            @Html.DisplayFor(model => model.Visita.Motivo)
         </dd>
-        <dt>
+
+        <dt class="text-info">
             @Html.DisplayNameFor(model => model.Visita.FechaVisita)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Visita.FechaVisita)
         </dd>
+        <dt class="text-info">
+            @Html.DisplayNameFor(model => model.Visita.Hora)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Visita.Hora)
+        </dd>
+        <dt class="text-info">
+            @Html.DisplayNameFor(model => model.Visita.Duracion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Visita.Duracion)
+        </dd>
+        <dt class="text-info">
+            @Html.DisplayNameFor(model => model.Visita.ResponsableCatec)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Visita.ResponsableCatec)
+        </dd>
+
     </dl>
 </div>
 <div>

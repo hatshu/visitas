@@ -29,7 +29,6 @@
         Buscar por DNI o Empresa: <input type="text" name="SearchString" />
         <input type="hidden" name="idVisita" value="@queryStream"; />
         <input type="submit" value="Buscar" />
-
     </p>
 
     @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
@@ -88,8 +87,6 @@
                         <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a> |
                         <a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.ID" asp-route-IdVisita="@Model.Visitita">+ Visita</a> |
                         @*<a asp-page="./VisitasPorPersona" asp-route-id="@item.ID"> Ver Visitas</a>*@
-
-
 
 
                     </td>

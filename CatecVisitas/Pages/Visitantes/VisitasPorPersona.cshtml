@@ -14,13 +14,16 @@
 <h2>VisitasPorPersona</h2>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    @*<a asp-page="Create">Create New</a>*@
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Visita[0].IdPerson)
+                @Html.DisplayNameFor(model => model.Persona[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Visita[0].IdVisita)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Visita[0].FechaVisita)
@@ -29,39 +32,44 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Visita)
+        @foreach (var item in Model.EnlaceVisitasPersonas)
         {
 
 
 
-            @if (@item.IdPerson == queryStream)
+            @if (@item.PersonaID == queryStream)
             {
                 <tr>
                     <td>
                         @foreach (var itemPersona in Model.Persona)
                         {
                             @*@Html.DisplayFor(modelItem => item.IdPerson)*@
-                            if (itemPersona.ID == item.IdPerson)
+                            if (itemPersona.ID == item.PersonaID)
                             {
-                               
-                                    @Html.DisplayFor(modelItem => itemPersona.Nombre)
-                                    @espacio
-                                    @Html.DisplayFor(modelItem => itemPersona.Apellidos)
-                                    }
-                               
-                            }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaVisita)
-                        </td>
-                        <td>
-                            <a asp-page="./Edit" asp-route-IdVisita="@item.IdVisita">Edit</a> |
-                            <a asp-page="./Details" asp-route-IdVisita="@item.IdVisita">Details</a> |
-                            <a asp-page="./Delete" asp-route-IdVisita="@item.IdVisita">Delete</a>
-                        </td>
-                    </tr>
-                }
 
+                                @Html.DisplayFor(modelItem => itemPersona.Nombre)
+                                @espacio
+                                @Html.DisplayFor(modelItem => itemPersona.Apellidos)
+                            }
                         }
-                    </tbody>
-                </table>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VisitaID)
+                    </td>
+                    <td>
+                        @foreach (var itemVisita in Model.Visita)
+                        {
+                            if (itemVisita.IdVisita == item.VisitaID)
+                            {
+                                @Html.DisplayFor(modelItem => itemVisita.FechaVisita)
+                                @espacio
+                                @Html.DisplayFor(modelItem => itemVisita.Hora)
+
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
