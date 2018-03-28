@@ -67,8 +67,10 @@
                     <a asp-page="./Edit" asp-route-idVisita="@item.IdVisita">Editar</a> |
                     <a asp-page="./Delete" asp-route-idVisita="@item.IdVisita">Borrar</a> |
                     <a asp-page="../Visitantes/Index" asp-route-idVisita="@item.IdVisita">
-                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> A&ntilde;adir Visitantes
+                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> A&ntilde;adir Visitantes |
                     </a>
+                    <a asp-page="../Visitantes/VisitasConPersonas" asp-route-idVisita="item.IdVisita"><span class="glyphicon glyphicon-eye-open"></span> Ver Visitas</a>
+
                 </td>
             </tr>
             }
