@@ -29,7 +29,7 @@ namespace CatecVisitas.Pages.EnlaceVisitasPersonas
                 return NotFound();
             }
 
-            EnlaceVisitaPersona = await _context.EnlaceVisitaPersona.SingleOrDefaultAsync(m => m.Id == id);
+            EnlaceVisitaPersona = await _context.EnlaceVisitaPersona.SingleOrDefaultAsync(m => m.IDEnlace == id);
 
             if (EnlaceVisitaPersona == null)
             {
@@ -53,7 +53,7 @@ namespace CatecVisitas.Pages.EnlaceVisitasPersonas
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EnlaceVisitaPersonaExists(EnlaceVisitaPersona.Id))
+                if (!EnlaceVisitaPersonaExists(EnlaceVisitaPersona.IDEnlace))
                 {
                     return NotFound();
                 }
@@ -68,7 +68,7 @@ namespace CatecVisitas.Pages.EnlaceVisitasPersonas
 
         private bool EnlaceVisitaPersonaExists(int id)
         {
-            return _context.EnlaceVisitaPersona.Any(e => e.Id == id);
+            return _context.EnlaceVisitaPersona.Any(e => e.IDEnlace == id);
         }
     }
 }
