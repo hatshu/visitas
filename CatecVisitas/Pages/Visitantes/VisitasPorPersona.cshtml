@@ -20,13 +20,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Persona[0].Nombre)
+                <h4> Persona</h4>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Visita[0].IdVisita)
+                <h4>Visita</h4>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Visita[0].FechaVisita)
+                <h4>Fecha</h4>
+            </th>
+            <th>
+                <h4>Motivo</h4>
             </th>
             <th></th>
         </tr>
@@ -65,6 +68,15 @@
                                 @espacio
                                 @Html.DisplayFor(modelItem => itemVisita.Hora)
 
+                            }
+                        }
+                    </td>
+                    <td>
+                        @foreach (var itemVisita in Model.Visita)
+                        {
+                            if (itemVisita.IdVisita == item.VisitaID)
+                            {
+                                @Html.DisplayFor(modelItem => itemVisita.Motivo)
                             }
                         }
                     </td>

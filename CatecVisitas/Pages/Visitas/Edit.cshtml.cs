@@ -12,6 +12,7 @@ namespace CatecVisitas.Pages.Visitas
 {
     public class EditModel : PageModel
     {
+        private const string PageName = "./Index";
         private readonly CatecVisitas.Models.PersonContext _context;
 
         public EditModel(CatecVisitas.Models.PersonContext context)
@@ -63,7 +64,7 @@ namespace CatecVisitas.Pages.Visitas
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage(PageName);
         }
 
         private bool VisitaExists(int IdVisita)

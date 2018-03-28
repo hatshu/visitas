@@ -3,66 +3,77 @@
 
 @{
     ViewData["Title"] = "Create";
+    string query = Request.QueryString.ToString();
+    string[] queryPart = query.Split('=', '&');
+    var queryStream = queryPart[1];
+    int idPerson = Convert.ToInt32(queryStream);
+    var nombrePersona = "";
 }
 
 <h2>Create</h2>
 
-<h4>EnlaceVisitaPersona</h4>
+
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-            <label asp-for="EnlaceVisitaPersona.IDEnlace" class="control-label"></label>
-            <input asp-for="EnlaceVisitaPersona.IDEnlace" class="form-control" />
-            <span asp-validation-for="EnlaceVisitaPersona.IDEnlace" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="EnlaceVisitaPersona.VisitaID" class="control-label"></label>
-            <input asp-for="EnlaceVisitaPersona.VisitaID" class="form-control" />
-            <span asp-validation-for="EnlaceVisitaPersona.VisitaID" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="EnlaceVisitaPersona.PersonaID" class="control-label"></label>
-            <input asp-for="EnlaceVisitaPersona.PersonaID" class="form-control" />
-            <span asp-validation-for="EnlaceVisitaPersona.PersonaID" class="text-danger"></span>
-        </div>*@
-
-            @*@foreach (var item in Model.Person)
-        {
-            if (item.ID == Model.EnlaceVisitaPersona.PersonaID)
-            {
-                <div class="text-center">
-                    <div class="alert-info"> &iquest; Desea incluir a @item.Nombre @item.Apellidos de la Empresa @item.Empresa en la visita ?</div>
-                </div>
-
-            }
-
-        }*@
-
-            <div class="container">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="alert alert-info">
-                            <strong>Info!</strong> Desea incluir a @Model.PersonaID en la visita ?
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <span class="glyphicon glyphicon-ok"></span> <input type="submit" value="Si" class="btn btn-default" />
-
-                    </div>
-                </div>
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @*<div class="form-group">
+                <label asp-for="EnlaceVisitaPersona.IDEnlace" class="control-label"></label>
+                <input asp-for="EnlaceVisitaPersona.IDEnlace" class="form-control" />
+                <span asp-validation-for="EnlaceVisitaPersona.IDEnlace" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="EnlaceVisitaPersona.VisitaID" class="control-label"></label>
+                <input asp-for="EnlaceVisitaPersona.VisitaID" class="form-control" />
+                <span asp-validation-for="EnlaceVisitaPersona.VisitaID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnlaceVisitaPersona.PersonaID" class="control-label"></label>
+                <input asp-for="EnlaceVisitaPersona.PersonaID" class="form-control" />
+                <span asp-validation-for="EnlaceVisitaPersona.PersonaID" class="text-danger"></span>
+            </div>*@
 
-        </form>
-    </div>
+        @*@foreach (var item in Model.Person)
+            {
+                if (item.ID == Model.EnlaceVisitaPersona.PersonaID)
+                {
+                    <div class="text-center">
+                        <div class="alert-info"> &iquest; Desea incluir a @item.Nombre @item.Apellidos de la Empresa @item.Empresa en la visita ?</div>
+                    </div>
+
+                }
+
+            }*@
+
+
+        @*<div class="panel-body">*@
+
+        @foreach (var item in Model.Person)
+        {
+            if (item.ID == idPerson)
+            {
+                nombrePersona = item.Nombre + " " + item.Apellidos + " de la empresa " + item.Empresa;
+            }
+        }
+        <div class="container">
+            <h4>
+                <strong>VISITANTE: @nombrePersona </strong>
+            </h4>
+            <div class="alert alert-info">
+                &iquest; Desea incluir a @nombrePersona en la visita ?
+                <button class="btn-link" type="submit" style="height:auto">
+                    <span class="glyphicon glyphicon-ok-circle"></span>
+                </button>
+                <a asp-page="../Visitantes/Index" asp-route-idVisita="@Model.VisitaID"> <span class="glyphicon glyphicon-remove-circle" style="font-stretch:extra-expanded"></span></a>
+            </div>
+            @*</div>*@
+
+        </div>
+    </form>
 </div>
 
 <div>
-    <a asp-page="Index" asp-route-idVisita="@Model.VisitaID">Volver</a>
+
 </div>
 
 @section Scripts {

@@ -11,10 +11,12 @@
 
 
 <h2>Listado de Visitantes</h2>
+<br />
+
 
 <p>
-    <div>
-        <a asp-page="Create" asp-route-idVisita="@Model.Visitita">Alta Visitante Nuevo</a>
+    <div class="alert alert-info"  >
+       <span class="glyphicon glyphicon-comment"></span>   Si el visitante no ha estado antes en Catec tenemos que dar de <a asp-page="Create" asp-route-idVisita="@Model.Visitita"> Alta de Nuevo Visitante</a>
     </div>
 </p>
 
@@ -25,13 +27,15 @@
        </p>
     </form>*@
 <form>
-    <p>
-        Buscar por DNI o Empresa: <input type="text" name="SearchString" />
-        <input type="hidden" name="idVisita" value="@queryStream"; />
-        <input type="submit" value="Buscar" />
-    </p>
-
-    @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
+    <br />
+    <div class="alert alert-info" style="text-emphasis:inherit">
+        <p>
+            <span class="glyphicon glyphicon-search"></span> Localizar Persona por DNI o Empresa:  <input type="text" name="SearchString" />
+            <input type="hidden" name="idVisita" value="@queryStream" ; />
+            <input type="submit" value="Buscar" />
+        </p>
+        </div>
+        @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
 </form>
 <div class="panel panel-default">
 
@@ -85,7 +89,7 @@
                         <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
                         @*<a asp-page="./Details" asp-route-id="@item.ID">Details</a> |*@
                         <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a> |
-                        <a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.ID" asp-route-IdVisita="@Model.Visitita">+ Visita</a> |
+                        <a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.ID" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a>
                         @*<a asp-page="./VisitasPorPersona" asp-route-id="@item.ID"> Ver Visitas</a>*@
 
 
