@@ -25,6 +25,9 @@
                     <h4>Persona</h4>
                 </th>
                 <th>
+                    <h4>Empresa</h4>
+                </th>
+                <th>
                     <h4>Fecha</h4>
                 </th>
                 <th>
@@ -56,6 +59,18 @@
                                     @Html.DisplayFor(modelItem => itemPersona.Nombre)
                                     @espacio
                                     @Html.DisplayFor(modelItem => itemPersona.Apellidos)
+                                }
+                            }
+                        </td>
+                        <td>
+                            @foreach (var itemPersona in Model.Persona)
+                            {
+                                @*@Html.DisplayFor(modelItem => item.IdPerson)*@
+                                if (itemPersona.Id == item.PersonaID)
+                                {
+
+                                    @Html.DisplayFor(modelItem => itemPersona.Empresa)
+
                                 }
                             }
                         </td>
