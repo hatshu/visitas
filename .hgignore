@@ -7,3 +7,4 @@ CatecVisitas/bin/Debug/*
 .vs/CatecVisitas/v15/Server/sqlite3/storage.ide
 .vs/CatecVisitas/v15/.suo.orig
 .vs/config/applicationhost.config
+CatecVisitas/bin/Release/*
