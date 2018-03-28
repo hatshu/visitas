@@ -11,6 +11,9 @@ namespace CatecVisitas.Pages.EnlaceVisitasPersonas
 {
     public class CreateModel : PageModel
     {
+
+        public IList<Person> Person { get; set; }
+        public IList<Visita> Visita { get; set; }
         private const string PageName = "../Visitantes/Index";
         public string VisitaID;
 
@@ -21,7 +24,8 @@ namespace CatecVisitas.Pages.EnlaceVisitasPersonas
         public CreateModel(CatecVisitas.Models.PersonContext context)
         {
             _context = context;
-           
+            Person =  _context.Person.ToList();
+
         }
 
         public IActionResult OnGet()
@@ -32,8 +36,7 @@ namespace CatecVisitas.Pages.EnlaceVisitasPersonas
         [BindProperty]
         public EnlaceVisitaPersona EnlaceVisitaPersona { get; set; }
         public IList<EnlaceVisitaPersona> EnlaceVisitaPersonaList { get; set; }
-        public IList<Person> Person { get; set; }
-        public IList<Visita> Visita { get; set; }
+
 
 
         public async Task<IActionResult> OnPostAsync(string save)

@@ -11,7 +11,8 @@ namespace CatecVisitas.Models
     {
         //[DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
         //public int ID { get; set; }
-        
+
+        public int ID;
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         [Key]
         public int IdVisita { get; set; }
