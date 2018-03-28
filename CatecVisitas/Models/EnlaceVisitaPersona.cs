@@ -8,8 +8,6 @@ namespace CatecVisitas.Models
 {
     public class EnlaceVisitaPersona
     {
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         [Key]
         public int IDEnlace { get; set; }

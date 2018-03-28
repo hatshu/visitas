@@ -27,7 +27,7 @@ namespace CatecVisitas.Pages.EnlaceVisitasPersonas
                 return NotFound();
             }
 
-            EnlaceVisitaPersona = await _context.EnlaceVisitaPersona.SingleOrDefaultAsync(m => m.Id == id);
+            EnlaceVisitaPersona = await _context.EnlaceVisitaPersona.SingleOrDefaultAsync(m => m.IDEnlace == id);
 
             if (EnlaceVisitaPersona == null)
             {

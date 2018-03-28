@@ -29,7 +29,7 @@ namespace CatecVisitas.Pages.Visitantes
                 return NotFound();
             }
 
-            Person = await _context.Person.SingleOrDefaultAsync(m => m.ID == id);
+            Person = await _context.Person.SingleOrDefaultAsync(m => m.Id == id);
 
             if (Person == null)
             {
@@ -53,7 +53,7 @@ namespace CatecVisitas.Pages.Visitantes
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PersonExists(Person.ID))
+                if (!PersonExists(Person.Id))
                 {
                     return NotFound();
                 }
@@ -68,7 +68,7 @@ namespace CatecVisitas.Pages.Visitantes
 
         private bool PersonExists(int id)
         {
-            return _context.Person.Any(e => e.ID == id);
+            return _context.Person.Any(e => e.Id == id);
         }
     }
 }

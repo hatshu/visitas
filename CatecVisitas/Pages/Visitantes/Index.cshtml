@@ -43,7 +43,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Person[0].ID)
+                    @Html.DisplayNameFor(model => model.Person[0].Id)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Person[0].Nombre)
@@ -68,7 +68,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ID)
+                        @Html.DisplayFor(modelItem => item.Id)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Nombre)
@@ -86,10 +86,10 @@
                         @Html.DisplayFor(modelItem => item.FechaAlta)
                     </td>
                     <td>
-                        <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
-                        @*<a asp-page="./Details" asp-route-id="@item.ID">Details</a> |*@
-                        <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a> |
-                        <a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.ID" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                        @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |
+                        <a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.Id" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a>
                         @*<a asp-page="./VisitasPorPersona" asp-route-id="@item.ID"> Ver Visitas</a>*@
 
 

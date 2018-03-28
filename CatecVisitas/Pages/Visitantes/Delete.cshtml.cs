@@ -28,7 +28,7 @@ namespace CatecVisitas.Pages.Visitantes
                 return NotFound();
             }
 
-            Person = await _context.Person.SingleOrDefaultAsync(m => m.ID == id);
+            Person = await _context.Person.SingleOrDefaultAsync(m => m.Id == id);
 
             if (Person == null)
             {
