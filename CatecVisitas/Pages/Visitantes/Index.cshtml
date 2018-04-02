@@ -6,17 +6,20 @@
     string query = Request.QueryString.ToString();
     string[] queryPart = query.Split('=');
     var queryStream = queryPart[1];
+    var idAux = 0;
 }
 
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <h2>Listado de Visitantes</h2>
 <br />
 
 
 <p>
-    <div class="alert alert-info"  >
-       <span class="glyphicon glyphicon-comment"></span>   Si el visitante no ha estado antes en Catec tenemos que dar de <a asp-page="Create" asp-route-idVisita="@Model.Visitita"> Alta de Nuevo Visitante</a>
+    <div class="alert alert-info">
+        <span class="glyphicon glyphicon-comment"></span>   Si el visitante no ha estado antes en Catec tenemos que dar de <a asp-page="Create" asp-route-idVisita="@Model.Visitita"> Alta de Nuevo Visitante</a>
     </div>
 </p>
 
@@ -34,8 +37,8 @@
             <input type="hidden" name="idVisita" value="@queryStream" ; />
             <input type="submit" value="Buscar" />
         </p>
-        </div>
-        @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
+    </div>
+    @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
 </form>
 <div class="panel panel-default">
 
@@ -90,13 +93,33 @@
                         @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
                         <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |
                         <a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.Id" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a> |
-
-
+                        <a href="#" data-toggle="modal" data-target="#miModal">
+                            Abrir modal
+                        </a>
+                        @{idAux = @item.Id;}
                     </td>
                 </tr>
-            }
+                            }
 
 
         </tbody>
     </table>
+
+    <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Esto es un modal</h4>
+                </div>
+                <div class="modal-body">
+                    Visita : @Model.Visitita
+                    Persona: @idAux
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
