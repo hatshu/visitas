@@ -8,3 +8,4 @@ CatecVisitas/bin/Debug/*
 .vs/CatecVisitas/v15/.suo.orig
 .vs/config/applicationhost.config
 CatecVisitas/bin/Release/*
+CatecVisitas/Pages/Visitantes/Index.cshtml.orig

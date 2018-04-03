@@ -111,7 +111,8 @@
                         @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
                         <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |
                         <a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.Id" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a> |
-                        <a href="#my_modal" data-toggle="modal" data-book-id="@item.Id">
+                     
+                        <a href="#my_modal" data-toggle="modal" data-book-id="@item.Id" data-person-id="@item.Nombre" data-apellidos-id="@item.Apellidos">
                             Add
                         </a>
                     </td>
@@ -131,8 +132,15 @@
                 var bookId = $(e.relatedTarget).data('book-id');
                 $(e.currentTarget).find('input[name="bookId"]').val(bookId);
                 active = document.getElementById("bookId").value;
-                alert(active);
-
+                //alert(active);
+                var personId = $(e.relatedTarget).data('person-id');
+                $(e.currentTarget).find('input[name="personId"]').val(personId);
+                active2 = document.getElementById("personId").value;
+                //alert(active2);
+                var apellidosId = $(e.relatedTarget).data('apellidos-id');
+                $(e.currentTarget).find('input[name="apellidosId"]').val(apellidosId);
+                active3 = document.getElementById("apellidosId").value;
+                //alert(active3);
             });
         </script>
     }
@@ -150,13 +158,14 @@
                 <div class="modal-body">
                     <form method="post">
                         @*<input type="hidden" id="bookId" name="bookId" value="" readonly="readonly" />*@
-                        <h4>  Visita : @Model.Visitita </h4>
-
-                        <h4> Persona:  <input type="text" id="bookId" name="bookId" value="" readonly="readonly" /> </h4>
+                        @*<h4>  Visita : @Model.Visitita </h4>*@
+                        @*<h4> ID:*@  <input type="hidden" id="bookId" name="bookId" value="" readonly="readonly" /> </h4>
+                        <h4> Nombre  &nbsp;  :  <input type="text" id="personId" name="personId" value="" readonly="readonly" /> </h4>
+                        <h4> Apellidos:  <input type="text" id="apellidosId" name="apellidosId" value="" readonly="readonly" /> </h4>
 
                         @*<button class="btn-link" type="submit" style="height:auto">
-                                <span class="glyphicon glyphicon-ok-circle"></span>
-                            </button>*@
+            <span class="glyphicon glyphicon-ok-circle"></span>
+        </button>*@
 
                         @*<a asp-page="../Visitantes/Index" asp-route-idVisita="@Model.Visitita"> <span class="glyphicon glyphicon-remove-circle" style="font-stretch:extra-expanded"></span></a>*@
                         <br />
