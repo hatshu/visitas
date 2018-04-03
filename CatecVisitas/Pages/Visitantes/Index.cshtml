@@ -12,10 +12,10 @@
         queryStream = queryPart[1];
 
     }
-    var idPersona = 0;
-    var nombredePersona = "";
-    var active = "";
-    var Prueba = "";
+    //var idPersona = 0;
+    //var nombredePersona = "";
+    //var active = "";
+    //var Prueba = "";
 }
 @*<script type="text/javascript">
         $(function () {
@@ -111,7 +111,7 @@
                         @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
                         <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |
                         <a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.Id" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a> |
-                     
+
                         <a href="#my_modal" data-toggle="modal" data-book-id="@item.Id" data-person-id="@item.Nombre" data-apellidos-id="@item.Apellidos">
                             Add
                         </a>
@@ -155,30 +155,47 @@
                     </button>
                     <h4 class="modal-title" id="myModalLabel">&iquest; Desea incluir esta persona a la visita @Model.Visitita ?</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="background-color:lightgray">
                     <form method="post">
                         @*<input type="hidden" id="bookId" name="bookId" value="" readonly="readonly" />*@
                         @*<h4>  Visita : @Model.Visitita </h4>*@
                         @*<h4> ID:*@  <input type="hidden" id="bookId" name="bookId" value="" readonly="readonly" /> </h4>
-                        <h4> Nombre  &nbsp;  :  <input type="text" id="personId" name="personId" value="" readonly="readonly" /> </h4>
-                        <h4> Apellidos:  <input type="text" id="apellidosId" name="apellidosId" value="" readonly="readonly" /> </h4>
-
+                        <div class="row">
+                            <div class="col-sm-4" style="text-align:right">
+                                <h3> Nombre:</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <h3> <input type="text" id="personId" name="personId" value="" readonly="readonly" /></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4" style="text-align:right">
+                                <h3> Apellidos:</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <h3> <input type="text" id="apellidosId" name="apellidosId" value="" readonly="readonly" /></h3>
+                                </div>
+                            </div>
+                        </div>
                         @*<button class="btn-link" type="submit" style="height:auto">
-            <span class="glyphicon glyphicon-ok-circle"></span>
-        </button>*@
+                                <span class="glyphicon glyphicon-ok-circle"></span>
+                            </button>*@
 
                         @*<a asp-page="../Visitantes/Index" asp-route-idVisita="@Model.Visitita"> <span class="glyphicon glyphicon-remove-circle" style="font-stretch:extra-expanded"></span></a>*@
                         <br />
 
 
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-info">Guardar</button>
+
+
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-info">Guardar</button>
+                        </div>
                     </form>
-
-                </div>
-                <div class="modal-footer">
-
-
                 </div>
             </div>
         </div>
