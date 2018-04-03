@@ -78,6 +78,7 @@ namespace CatecVisitas.Pages.Visitantes
 
             Console.Write("Estamos aqui VISITITA: " + Visitita);
             VisitaID = Visitita;
+           
 
         }
 
@@ -89,7 +90,6 @@ namespace CatecVisitas.Pages.Visitantes
                 return Page();
             }
 
-        //TODO: cambiar para cuando se usa el buscador
                 var visitSinBuscador = Request.QueryString.ToString();
                 VisitaArray = visitSinBuscador.Split('=','&');
                 if (VisitaArray.Length > 0 && !visitSinBuscador.Equals(""))
@@ -109,30 +109,16 @@ namespace CatecVisitas.Pages.Visitantes
                     if (item.Key.Equals("bookId"))
                     {
                         EnlaceVisitaPersona.PersonaID = Convert.ToInt32(item.Value);
+                        //PersonaID = EnlaceVisitaPersona.PersonaID.ToString();
                         break;
                     }
                 }
             }
 
-
-
-            //TODO: POR AQUI NO FUNCIONA NO PASAMOS LA ID VISITA
-
-            //EnlaceVisitaPersona.VisitaID = Convert.ToInt32(VisitaID);
-
-
-
-
             _context.EnlaceVisitaPersona.Add(EnlaceVisitaPersona);
 
 
             await _context.SaveChangesAsync();
-
-            //return RedirectToPage("./Index");
-            //return RedirectToPage("../Visitantes/Index2/");
-
-
-
             //return RedirectToPage("./Index");
             return this.RedirectToPage
             (PageName, new { idVisita = Visitita });

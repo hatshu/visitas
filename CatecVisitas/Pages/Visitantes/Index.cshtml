@@ -14,6 +14,8 @@
     }
     var idPersona = 0;
     var nombredePersona = "";
+    var active = "";
+    var Prueba = "";
 }
 @*<script type="text/javascript">
         $(function () {
@@ -128,6 +130,9 @@
                 //alert('hola');
                 var bookId = $(e.relatedTarget).data('book-id');
                 $(e.currentTarget).find('input[name="bookId"]').val(bookId);
+                active = document.getElementById("bookId").value;
+                alert(active);
+
             });
         </script>
     }
@@ -144,22 +149,10 @@
                 </div>
                 <div class="modal-body">
                     <form method="post">
-
-
-
-
                         @*<input type="hidden" id="bookId" name="bookId" value="" readonly="readonly" />*@
                         <h4>  Visita : @Model.Visitita </h4>
-                        @*@foreach (var itemperson in Model.Person)
-                        {
-                            if (itemperson.Id==Model.EnlaceVisitaPersona.PersonaID)
-                            {
-                                nombredePersona = itemperson.Nombre + " " + itemperson.Apellidos + " de la empresa " + itemperson.Empresa;
-                            }
-                        }*@
+
                         <h4> Persona:  <input type="text" id="bookId" name="bookId" value="" readonly="readonly" /> </h4>
-
-
 
                         @*<button class="btn-link" type="submit" style="height:auto">
                                 <span class="glyphicon glyphicon-ok-circle"></span>
@@ -167,6 +160,8 @@
 
                         @*<a asp-page="../Visitantes/Index" asp-route-idVisita="@Model.Visitita"> <span class="glyphicon glyphicon-remove-circle" style="font-stretch:extra-expanded"></span></a>*@
                         <br />
+
+
                         <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-info">Guardar</button>
                     </form>
