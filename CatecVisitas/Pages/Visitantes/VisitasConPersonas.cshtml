@@ -8,21 +8,21 @@
     var espacio = " ";
 }
 
-
-
-<h2>Personas que realizan la visita</h2>
-
-
+<br />
+<br />
+<br />
+<div class="table-bordered">
+    <h3> &emsp;  Personas que realizan la visita @queryStream:</h3>
+</div>
+<br />
 <div class="panel panel-default">
 
     <table class="table table-striped">
         <thead>
             <tr>
+
                 <th>
-                    <h4> Visita</h4>
-                </th>
-                <th>
-                    <h4>Persona</h4>
+                    <h4>Visitante</h4>
                 </th>
                 <th>
                     <h4>Empresa</h4>
@@ -45,10 +45,7 @@
                 @if (@item.VisitaID == queryStream)
                 {
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.VisitaID)
 
-                        </td>
                         <td>
                             @foreach (var itemPersona in Model.Persona)
                             {
@@ -56,7 +53,7 @@
                                 if (itemPersona.Id == item.PersonaID)
                                 {
 
-                                    @Html.DisplayFor(modelItem => itemPersona.Nombre)
+                                    <span class="glyphicon glyphicon-hand-right"></span>@espacio @Html.DisplayFor(modelItem => itemPersona.Nombre)
                                     @espacio
                                     @Html.DisplayFor(modelItem => itemPersona.Apellidos)
                                 }
@@ -100,4 +97,9 @@
             }
         </tbody>
     </table>
+
+</div>
+
+<div class="row">
+    <a href="../Visitas/Index" class="btn btn-info">Volver a listado de Visitas</a>
 </div>
