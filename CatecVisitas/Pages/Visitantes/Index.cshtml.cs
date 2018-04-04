@@ -17,6 +17,10 @@ namespace CatecVisitas.Pages.Visitantes
 
         public string[] VisitaArray;
 
+        public string Visitita2;
+
+        public string[] VisitaArray2;
+
         public string SearchStream;
 
         public string PersonaID;
@@ -24,7 +28,6 @@ namespace CatecVisitas.Pages.Visitantes
         public string VisitaID;
 
         private const string PageName = "../Visitantes/Index";
-
 
         private readonly CatecVisitas.Models.PersonContext _context;
 
@@ -37,30 +40,33 @@ namespace CatecVisitas.Pages.Visitantes
         {
             _context = context;
             Person = _context.Person.ToList();
+            Visita = _context.Visita.ToList();
+
         }
 
         [BindProperty]
         public EnlaceVisitaPersona EnlaceVisitaPersona { get; set; }
         public IList<EnlaceVisitaPersona> EnlaceVisitaPersonaList { get; set; }
 
-        public async Task OnGetAsync(string searchString, string id , string idVisita)
+        public async Task OnGetAsync(string searchString, string idVisita)
         {
             var persona = from p in _context.Person
                           select p;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                persona = persona.Where(s => s.Empresa.Equals(searchString) || s.DNI.Equals(searchString));
+                persona = persona.Where(s => s.Empresa.Contains(searchString) || s.DNI.Equals(searchString));
                 Person = await persona.ToListAsync();
                 var visit = Request.QueryString.ToString();
+                //TODO: trabajar con visit para sacar todas las variables
                 if (visit != null)
                 {
-                    VisitaArray = visit.Split('=');
+                    VisitaArray = visit.Split('=', '&');
                 }
 
-                if (VisitaArray.Length > 0)
+                if (VisitaArray.Length > 0 || VisitaArray.Length <=4)
                 {
-                    Visitita = VisitaArray[2];
+                    Visitita = VisitaArray[3];
 
                 }
                 SearchStream = searchString;
@@ -76,7 +82,6 @@ namespace CatecVisitas.Pages.Visitantes
                 }
             }
 
-            Console.Write("Estamos aqui VISITITA: " + Visitita);
             VisitaID = Visitita;
            
 

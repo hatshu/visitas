@@ -4,36 +4,48 @@
 @{
     ViewData["Title"] = "Listado de visitantes";
     string query = Request.QueryString.ToString();
-    string[] queryPart = query.Split('=');
+    string[] queryPart = query.Split('=','&');
     var queryStream = "";
-    if (!query.Equals(""))
+    if (queryPart.Length <= 2)
     {
 
         queryStream = queryPart[1];
 
     }
+    if (queryPart.Length > 2)
+    {
+        queryStream = queryPart[3];
+
+    }
+    var Motivo = "";
     //var idPersona = 0;
     //var nombredePersona = "";
     //var active = "";
     //var Prueba = "";
 }
-@*<script type="text/javascript">
-        $(function () {
-            $(".identifyingClass").click(function () {
-                var my_id_value = $(this).data('id');
-                $(".modal-body #hiddenValue").val(my_id_value);
-            })
-        });
-    </script>*@
+
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-<h2>Listado de Visitantes</h2>
 <br />
+<br />
+<h2>Listado de Visitantes</h2>
 
+
+
+
+@foreach (var item in Model.Visita)
+{
+    if (item.IdVisita == Convert.ToInt32(Model.Visitita))
+    {
+        Motivo = item.Motivo;
+    }
+
+}
+
+<h3> Visita: @queryStream | Motivo: @Motivo</h3>
 
 <p>
     <div class="alert alert-info">
@@ -53,7 +65,7 @@
         <p>
             <span class="glyphicon glyphicon-search"></span> Localizar Persona por DNI o Empresa:  <input type="text" name="SearchString" />
             <input type="hidden" name="idVisita" value="@queryStream" ; />
-            <input type="submit" value="Buscar" />
+            <input type="submit" value="Buscar"/>
         </p>
     </div>
     @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
@@ -107,13 +119,13 @@
                         @Html.DisplayFor(modelItem => item.FechaAlta)
                     </td>
                     <td>
-                        <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                        @*<a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |*@
                         @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
-                        <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |
-                        <a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.Id" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a> |
+                        @*<a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |*@
+                        @*<a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.Id" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a> |*@
 
                         <a href="#my_modal" data-toggle="modal" data-book-id="@item.Id" data-person-id="@item.Nombre" data-apellidos-id="@item.Apellidos">
-                            Add
+                            A&ntilde;adir
                         </a>
                     </td>
                 </tr>
@@ -146,59 +158,61 @@
     }
 
 
-    <div class="modal fade" id="my_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">&iquest; Desea incluir esta persona a la visita @Model.Visitita ?</h4>
-                </div>
-                <div class="modal-body" style="background-color:lightgray">
-                    <form method="post">
-                        @*<input type="hidden" id="bookId" name="bookId" value="" readonly="readonly" />*@
-                        @*<h4>  Visita : @Model.Visitita </h4>*@
-                        @*<h4> ID:*@  <input type="hidden" id="bookId" name="bookId" value="" readonly="readonly" /> </h4>
-                        <div class="row">
-                            <div class="col-sm-4" style="text-align:right">
-                                <h3> Nombre:</h3>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <h3> <input type="text" id="personId" name="personId" value="" readonly="readonly" /></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4" style="text-align:right">
-                                <h3> Apellidos:</h3>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <h3> <input type="text" id="apellidosId" name="apellidosId" value="" readonly="readonly" /></h3>
-                                </div>
-                            </div>
-                        </div>
-                        @*<button class="btn-link" type="submit" style="height:auto">
-                                <span class="glyphicon glyphicon-ok-circle"></span>
-                            </button>*@
 
-                        @*<a asp-page="../Visitantes/Index" asp-route-idVisita="@Model.Visitita"> <span class="glyphicon glyphicon-remove-circle" style="font-stretch:extra-expanded"></span></a>*@
-                        <br />
+</div>
 
+<div class="row">
+    <a href="../Visitas/Index" class="btn btn-info">  Terminar</a>
+</div>
 
-
-
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-info">Guardar</button>
-                        </div>
-                    </form>
-                </div>
+<div class="modal fade" id="my_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">&iquest; Desea incluir esta persona a la visita @Model.Visitita ?</h4>
             </div>
+            <div class="modal-body">
+                <form method="post">
+                    @*<input type="hidden" id="bookId" name="bookId" value="" readonly="readonly" />*@
+                    @*<h4>  Visita : @Model.Visitita </h4>*@
+                    @* ID:*@  <input type="hidden" id="bookId" name="bookId" value="" readonly="readonly" />
+                    <div class="row">
+                        <div class="col-sm-4" style="text-align:right">
+                            <h4> Nombre:</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <h4> <input type="text" id="personId" name="personId" value="" readonly="readonly" /></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4" style="text-align:right">
+                            <h4> Apellidos:</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <h4> <input type="text" id="apellidosId" name="apellidosId" value="" readonly="readonly" /></h4>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    @*<button class="btn-link" type="submit" style="height:auto">
+                            <span class="glyphicon glyphicon-ok-circle"></span>
+                        </button>*@
+
+                    @*<a asp-page="../Visitantes/Index" asp-route-idVisita="@Model.Visitita"> <span class="glyphicon glyphicon-remove-circle" style="font-stretch:extra-expanded"></span></a>*@
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-info">A&ntilde;adir</button>
+            </div>
+            </form>
         </div>
     </div>
 </div>
-
