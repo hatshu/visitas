@@ -34,12 +34,17 @@
                 <span asp-validation-for="Person.Empresa" class="text-danger"></span>
             </div>
             @*<div class="form-group">
-                <label asp-for="Person.FechaAlta" class="control-label"></label>
-                <input asp-for="Person.FechaAlta" class="form-control"  readonly="readonly" />
-                <span asp-validation-for="Person.FechaAlta" class="text-danger"></span>
+            <label asp-for="Person.FechaAlta" class="control-label"></label>
+            <input asp-for="Person.FechaAlta" class="form-control"  readonly="readonly" />
+            <span asp-validation-for="Person.FechaAlta" class="text-danger"></span>
+        </div>*@
+            @*<div class="form-group">
+                <input type="hidden" asp-for="EnlaceVisitaPersona.PersonaID" />
+                <input   type="hidden"  asp-for="EnlaceVisitaPersona.VisitaID" />
             </div>*@
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Crear" class="btn btn-default" />
             </div>
         </form>
     </div>
