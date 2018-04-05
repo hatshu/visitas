@@ -6,11 +6,13 @@
 }
 <br />
 <br />
+<br />
 <h2>Listado de Visitantes</h2>
 
 <form>
     <p>
-        Buscar por DNI o Empresa: <input type="text" name="searchString" />
+        Buscar por DNI o Empresa: &nbsp;
+        <input type="text" name="searchString" />
         <input type="submit" value="Buscar" />
     </p>
 
@@ -59,10 +61,10 @@
                         @Html.DisplayFor(modelItem => item.FechaAlta)
                     </td>
                     <td>
-                        <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-page="./Edit" asp-route-id="@item.Id">@*Editar*@<img src="~/images/editUser.png" /></a> |
                         @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
-                        <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |
-                        <a asp-page="./VisitasPorPersona" asp-route-id="@item.Id"><spam class="glyphicon glyphicon-eye-open"></spam> Ver Visitas</a>
+                        @*<a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |*@
+                        <a asp-page="./VisitasPorPersona" asp-route-id="@item.Id"><img src="~/images/seeVisits.png" />@*<spam class="glyphicon glyphicon-eye-open"></spam> Ver Visitas*@</a>
                     </td>
                 </tr>
             }

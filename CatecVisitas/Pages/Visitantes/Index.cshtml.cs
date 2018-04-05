@@ -33,20 +33,24 @@ namespace CatecVisitas.Pages.Visitantes
 
         public IList<Person> Person { get; set; }
 
+        public IList<Person> PersonaListaFija { get; set; }
+
         public IList<Visita> Visita { get; set; }
 
+        public IList<EnlaceVisitaPersona> EnlaceVisitaPersonaList { get; set; }
 
         public IndexModel(CatecVisitas.Models.PersonContext context)
         {
             _context = context;
             Person = _context.Person.ToList();
+            PersonaListaFija = _context.Person.ToList();
             Visita = _context.Visita.ToList();
+            EnlaceVisitaPersonaList = _context.EnlaceVisitaPersona.ToList();
 
         }
 
         [BindProperty]
         public EnlaceVisitaPersona EnlaceVisitaPersona { get; set; }
-        public IList<EnlaceVisitaPersona> EnlaceVisitaPersonaList { get; set; }
 
         public async Task OnGetAsync(string searchString, string idVisita)
         {

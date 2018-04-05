@@ -5,48 +5,54 @@
     ViewData["Title"] = "Delete";
 }
 
-<h2>Delete</h2>
+<br />
+<br />
 
-<h3>¿Estás seguro de que quieres eliminar el registro?</h3>
+<h2>Borrar</h2>
+
+<h3>
+    <span class="glyphicon glyphicon-alert"> </span>  &nbsp;&iquest;Est&aacute;s seguro de que quieres eliminar el registro?
+</h3>
 <div>
+    <br />
     <h4>Visitante</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal ">
         <dt>
-            @Html.DisplayNameFor(model => model.Person.Nombre)
+            <h4> @Html.DisplayNameFor(model => model.Person.Nombre) </h4>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Person.Nombre)
+            <h4>  @Html.DisplayFor(model => model.Person.Nombre) </h4>
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Person.Apellidos)
+            <h4> @Html.DisplayNameFor(model => model.Person.Apellidos) </h4>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Person.Apellidos)
+            <h4>  @Html.DisplayFor(model => model.Person.Apellidos) </h4>
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Person.DNI)
+            <h4> @Html.DisplayNameFor(model => model.Person.DNI)  </h4>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Person.DNI)
+            <h4>  @Html.DisplayFor(model => model.Person.DNI) </h4>
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Person.Empresa)
+            <h4>   @Html.DisplayNameFor(model => model.Person.Empresa) </h4>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Person.Empresa)
+            <h4>   @Html.DisplayFor(model => model.Person.Empresa) </h4>
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Person.FechaAlta)
+            <h4>  @Html.DisplayNameFor(model => model.Person.FechaAlta) </h4>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Person.FechaAlta)
+            <h4>   @Html.DisplayFor(model => model.Person.FechaAlta) </h4>
         </dd>
     </dl>
     
     <form method="post">
         <input type="hidden" asp-for="Person.Id" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-page="./Index">Volver a la lista</a>
+        <a asp-page="./Index2">Volver a la lista</a>
     </form>
 </div>
