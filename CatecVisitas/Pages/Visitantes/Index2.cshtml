@@ -2,9 +2,10 @@
 @model CatecVisitas.Pages.Visitantes.Index2Model
 
 @{
-    ViewData["Title"] = "Index2";
+    ViewData["Title"] = "Listado de Visitantes";
 }
-
+<br />
+<br />
 <h2>Listado de Visitantes</h2>
 
 <form>
@@ -21,19 +22,19 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Person[0].Nombre)
-                </th>
+                    <h4> @Html.DisplayNameFor(model => model.Person[0].Nombre)</h4>
+</th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Person[0].Apellidos)
-                </th>
+                    <h4> @Html.DisplayNameFor(model => model.Person[0].Apellidos)</h4>
+</th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Person[0].DNI)
-                </th>
+                    <h4> @Html.DisplayNameFor(model => model.Person[0].DNI)</h4>
+</th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Person[0].Empresa)
-                </th>
+                    <h4>@Html.DisplayNameFor(model => model.Person[0].Empresa)</h4>
+</th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Person[0].FechaAlta)
+                    <h4>Fecha de alta</h4>
                 </th>
                 <th></th>
             </tr>

@@ -14,7 +14,7 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="EnlaceVisitaPersona.IDEnlace" />
-          
+
             <div class="form-group">
                 <label asp-for="EnlaceVisitaPersona.VisitaID" class="control-label"></label>
                 <input asp-for="EnlaceVisitaPersona.VisitaID" class="form-control" />
@@ -25,6 +25,7 @@
                 <input asp-for="EnlaceVisitaPersona.PersonaID" class="form-control" />
                 <span asp-validation-for="EnlaceVisitaPersona.PersonaID" class="text-danger"></span>
             </div>
+            @*//TODO: CAMBIAR ESTE BOTON*@
             <div class="form-group">
                 <button type="submit">
                     <span class="glyphicon glyphicon-floppy-save"> SAVE</span>

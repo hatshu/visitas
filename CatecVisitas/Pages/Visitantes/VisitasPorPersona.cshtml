@@ -2,14 +2,16 @@
 @model CatecVisitas.Pages.Visitantes.VisitasPorPersonaModel
 
 @{
-    ViewData["Title"] = "VisitasPorPersona";
+    ViewData["Title"] = "Visitas Por Persona";
     string query = Request.QueryString.ToString();
     string[] queryPart = query.Split('=');
     var queryStream = Convert.ToInt32(queryPart[1]);
     var espacio = " ";
 }
 
-
+<br />
+<br />
+<br />
 
 <h2>Visitas Por Persona</h2>
 
@@ -22,7 +24,7 @@
         <thead>
             <tr>
                 <th>
-                    <h4> Persona</h4>
+                    <h4>Persona</h4>
                 </th>
                 <th>
                     <h4>Visita</h4>
@@ -88,3 +90,6 @@
         </tbody>
     </table>
     </div>
+<div class="row">
+    <a href="Index2" class="btn btn-info">Volver a listado de Personas</a>
+</div>

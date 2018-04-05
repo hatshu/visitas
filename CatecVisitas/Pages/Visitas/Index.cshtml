@@ -5,9 +5,10 @@
     ViewData["Title"] = "Listado de Visitas";
 }
 
-
-
-<h2>Index</h2>
+<br />
+<br />
+<br />
+<h2>Listado de visitas</h2>
 
 <p>
     @*<a asp-page="Create">Create New</a>*@
@@ -19,23 +20,28 @@
             <tr>
 
                 <th>
-                    @Html.DisplayNameFor(model => model.Visita[0].IdVisita)
+                   <h4>ID</h4> 
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Visita[0].Motivo)
+                    <h4>Motivo</h4>
+                    @*@Html.DisplayNameFor(model => model.Visita[0].Motivo)*@
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Visita[0].Duracion)
+                    <h4>Duraci&oacute;n</h4>
+                    @*@Html.DisplayNameFor(model => model.Visita[0].Duracion)*@
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Visita[0].ResponsableCatec)
+                    <h4>Responsable</h4>
+                    @*@Html.DisplayNameFor(model => model.Visita[0].ResponsableCatec)*@
                 </th>
 
                 <th>
-                    @Html.DisplayNameFor(model => model.Visita[0].FechaVisita)
+                    <h4>Fecha</h4>
+                    @*@Html.DisplayNameFor(model => model.Visita[0].FechaVisita)*@
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Visita[0].Hora)
+                    <h4>Hora</h4>
+                    @*@Html.DisplayNameFor(model => model.Visita[0].Hora)*@
                 </th>
             </tr>
         </thead>

@@ -1,7 +1,7 @@
 ﻿@page
 @model CatecVisitas.Pages.Visitantes.VisitasConPersonasModel
 @{
-    ViewData["Title"] = "VisitasConPersonas";
+    ViewData["Title"] = "Visitas Con Personas";
     string query = Request.QueryString.ToString();
     string[] queryPart = query.Split('=');
     var queryStream = Convert.ToInt32(queryPart[1]);
