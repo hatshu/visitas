@@ -33,7 +33,7 @@ namespace CatecVisitas.Pages.Visitantes
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                persona = persona.Where(s => s.Empresa.Equals(searchString) || s.DNI.Equals(searchString));
+                persona = persona.Where(s => s.Empresa.Contains(searchString) || s.DNI.Equals(searchString));
             }
             Person = await persona.ToListAsync();
         }
