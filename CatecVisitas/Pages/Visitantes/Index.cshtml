@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "Listado de visitantes";
     string query = Request.QueryString.ToString();
-    string[] queryPart = query.Split('=','&');
+    string[] queryPart = query.Split('=', '&');
     var queryStream = "";
     if (queryPart.Length <= 2)
     {
@@ -18,6 +18,7 @@
 
     }
     var Motivo = "";
+    var Espacio = " ";
 }
 
 
@@ -44,26 +45,54 @@
 <h3> Visita: @queryStream | Motivo: @Motivo</h3>
 
 <p>
-    <div class="alert alert-info">
-        <span class="glyphicon glyphicon-comment"></span>   Si el visitante no ha estado antes en Catec tenemos que dar de <a asp-page="Create" asp-route-idVisita="@Model.Visitita"> Alta de Nuevo Visitante</a>
+
+
+    <div class="alert alert-info text-info">
+        <span class="glyphicon glyphicon-comment"></span>   Si el visitante no ha estado antes en Catec tenemos que dar de <a asp-page="Create" asp-route-idVisita="@Model.Visitita">  Alta de Nuevo Visitante </a>
     </div>
 </p>
 
-@*<form >
-       <p>
-          Buscar por DNI o Empresa: <input type="text" name="SearchString"/>
-          <input type="submit" value="Buscar" />
-       </p>
-    </form>*@
+<p>
+    <h3>Integrantes de la visita:</h3>
+</p>
+@*<div class="panel panel-default">
+    <div class="panel-body">*@
+        @foreach (var itemEnlace in Model.EnlaceVisitaPersonaList)
+        {
+            @if (itemEnlace.VisitaID == Convert.ToInt32(queryStream))
+            {
+                @foreach (var itemPersona in Model.PersonaListaFija)
+                {
+                    @if (itemPersona.Id == itemEnlace.PersonaID)
+
+                    {
+                        <span class="glyphicon glyphicon-check"></span> @Espacio @Html.DisplayFor(modelItem => itemPersona.Nombre) @Espacio @Html.DisplayFor(modelItem => itemPersona.Apellidos)
+                        <br />
+                    }
+
+                }
+
+            }
+
+
+        }
+    @*</div>
+</div>*@
+
 <form>
     <br />
     <div class="alert alert-info" style="text-emphasis:inherit">
         <p>
             <span class="glyphicon glyphicon-search"></span> Localizar Persona por DNI o Empresa:  <input type="text" name="SearchString" />
             <input type="hidden" name="idVisita" value="@queryStream" ; />
-            <input type="submit" value="Buscar"/>
+            <input type="submit" value="Buscar" />
         </p>
     </div>
+
+    <div class="row">
+        <a href="../Visitas/Index" class="btn btn-info">  Terminar</a>
+    </div>
+    <br />
     @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
 </form>
 <div class="panel panel-default">
@@ -72,22 +101,23 @@
         <thead>
             <tr>
                 <th>
-                    <h4>@Html.DisplayNameFor(model => model.Person[0].Id)</h4>
-</th>
+                    <h4>&nbsp;&nbsp;ID </h4>
+                </th>
                 <th>
                     <h4> @Html.DisplayNameFor(model => model.Person[0].Nombre)</h4>
-</th>
+                </th>
                 <th>
                     <h4>@Html.DisplayNameFor(model => model.Person[0].Apellidos)</h4>
-</th>
+                </th>
                 <th>
                     <h4>@Html.DisplayNameFor(model => model.Person[0].DNI)</h4>
-</th>
+                </th>
                 <th>
                     <h4>@Html.DisplayNameFor(model => model.Person[0].Empresa)</h4>
-</th>
+                </th>
                 <th>
-                    <h4>Fecha de Alta</h4> 
+                    <div class="text-nowrap"> <h4> Fecha Alta</h4> </div>
+
                 </th>
                 <th></th>
             </tr>
@@ -114,14 +144,14 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.FechaAlta)
                     </td>
-                    <td>
+                    <td width="45" height="45">
                         @*<a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |*@
                         @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
                         @*<a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |*@
                         @*<a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.Id" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a> |*@
 
                         <a href="#my_modal" data-toggle="modal" data-book-id="@item.Id" data-person-id="@item.Nombre" data-apellidos-id="@item.Apellidos">
-                            A&ntilde;adir
+                            @*<span class="glyphicon glyphicon-plus-sign"></span>*@ <img src="~/images/add.png" />
                         </a>
                     </td>
                 </tr>

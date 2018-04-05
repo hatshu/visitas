@@ -13,13 +13,19 @@ namespace CatecVisitas.Pages.Visitas
     {
         private readonly CatecVisitas.Models.PersonContext _context;
 
+        public IList<EnlaceVisitaPersona> EnlaceVisitaPersonaList { get; set; }
+
         public DeleteModel(CatecVisitas.Models.PersonContext context)
         {
             _context = context;
+            EnlaceVisitaPersonaList = _context.EnlaceVisitaPersona.ToList();
         }
 
         [BindProperty]
         public Visita Visita { get; set; }
+
+        [BindProperty]
+        public EnlaceVisitaPersona EnlaceVisitaPersona { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? IdVisita)
         {
@@ -45,6 +51,20 @@ namespace CatecVisitas.Pages.Visitas
             }
 
             Visita = await _context.Visita.FindAsync(IdVisita);
+
+
+            foreach (var item in EnlaceVisitaPersonaList)
+            {
+                if (item.VisitaID == IdVisita)
+                {
+                    EnlaceVisitaPersona = item;
+                    if (item != null)
+                    {
+                        _context.EnlaceVisitaPersona.Remove(EnlaceVisitaPersona);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+            }
 
             if (Visita != null)
             {
