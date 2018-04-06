@@ -8,7 +8,7 @@
 <br />
 <br />
 <br />
-<h2>Listado de visitas</h2>
+<h2> <img src="~/images/icons8-literatura-80.png" /> &nbsp;Listado de visitas</h2>
 
 <p>
     @*<a asp-page="Create">Create New</a>*@
@@ -82,12 +82,12 @@
                         @Html.DisplayFor(modelItem => item.Hora)
                     </td>
                     <td>
-                        <a asp-page="./Edit" asp-route-idVisita="@item.IdVisita">Editar</a> |
-                        <a asp-page="./Delete" asp-route-idVisita="@item.IdVisita">Borrar</a> |
+                        <a asp-page="./Edit" asp-route-idVisita="@item.IdVisita"><img src="~/images/icons8-editar-propiedad-30.png" /></a> |
+                        <a asp-page="./Delete" asp-route-idVisita="@item.IdVisita"><img src="~/images/icons8-basura-30.png" /></a> |
                         <a asp-page="../Visitantes/Index" asp-route-idVisita="@item.IdVisita">
-                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> A&ntilde;adir Visitantes
+                            @*<span class="glyphicon glyphicon-plus-sign fa-3x" aria-hidden="true"></span>*@  <img src="~/images/peoplesmall.png" />
                         </a> |
-                        <a asp-page="../Visitantes/VisitasConPersonas" asp-route-idVisita="@item.IdVisita"><span class="glyphicon glyphicon-eye-open"></span> Ver Integrantes</a>
+                        <a asp-page="../Visitantes/VisitasConPersonas" asp-route-idVisita="@item.IdVisita">@*<span class="glyphicon glyphicon-eye-open fa-3x"></span>*@  <img src="~/images/icons8-ver-detalles-30.png" /></a>
 
                     </td>
                 </tr>

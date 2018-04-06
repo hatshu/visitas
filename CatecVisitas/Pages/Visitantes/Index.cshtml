@@ -2,7 +2,7 @@
 @model CatecVisitas.Pages.Visitantes.IndexModel
 
 @{
-    ViewData["Title"] = "Listado de visitantes";
+    ViewData["Title"] = "Anadir Visitantes";
     string query = Request.QueryString.ToString();
     string[] queryPart = query.Split('=', '&');
     var queryStream = "";
@@ -28,7 +28,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <br />
 <br />
-<h2>Listado de Visitantes</h2>
+
 
 
 
@@ -42,7 +42,7 @@
 
 }
 
-<h3> Visita: @queryStream | Motivo: @Motivo</h3>
+<h2> <img src="~/images/peoplebig.png" /> &nbsp; A&ntilde;adir Visitantes a Visita: @queryStream <span class="glyphicon glyphicon-hand-right fa-2x"></span> Motivo: @Motivo </h2>
 
 <p>
 
