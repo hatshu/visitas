@@ -13,6 +13,7 @@ namespace CatecVisitas.Pages.Visitas
     {
         private readonly CatecVisitas.Models.PersonContext _context;
         public List<string> ListaNombres = new List<string>();
+        public string DateSort { get; set; }
         public IndexModel(CatecVisitas.Models.PersonContext context)
         {
             _context = context;
@@ -22,11 +23,20 @@ namespace CatecVisitas.Pages.Visitas
 
         public async Task OnGetAsync(string searchString)
         {
-            var visita = from m in _context.Visita
+
+            IQueryable<Visita> visitaIQFecha = from s in _context.Visita
+                                            select s;
+
+
+            visitaIQFecha = visitaIQFecha.OrderByDescending(s => s.FechaVisita.Date)
+                                         .ThenByDescending(s => s.Hora);
+                                         
+
+            var visita = from m in visitaIQFecha
                          select m;
             if (!String.IsNullOrEmpty(searchString))
             {
-                visita = visita.Where(s => s.IdVisita.Equals(searchString) || s.Motivo.Contains(searchString));
+                visita = visita.Where(s => s.FechaVisita.ToShortDateString().Equals(searchString) || s.Motivo.Contains(searchString));
             }
 
             Visita = await visita.ToListAsync();
