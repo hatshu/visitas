@@ -4,37 +4,42 @@
 @{
     ViewData["Title"] = "Delete";
 }
+<br />
+<br />
+<br />
 
-<h2>Borrar</h2>
+<h2> <img src="~/images/icons8-basura-80.png" /> &nbsp; Borrar</h2>
 
 <h3>&iquest; Seguro que quieres eliminar el registro?</h3>
 <div>
-    <h4>Visita</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Visita.IdVisita)
+            <h4> ID </h4>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Visita.IdVisita)
+            <h4> @Html.DisplayFor(model => model.Visita.IdVisita)</h4>
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Visita.FechaVisita)
+            <h4>Fecha</h4>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Visita.FechaVisita)
+            <h4> @Html.DisplayFor(model => model.Visita.FechaVisita)</h4>
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Visita.Motivo)
+            <h4> @Html.DisplayNameFor(model => model.Visita.Motivo)</h4>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Visita.Motivo)
+            <h4> @Html.DisplayFor(model => model.Visita.Motivo)</h4>
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Visita.IdVisita" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-page="./Index">Volver a la lista</a>
+        <input type="submit" value="Borrar" class="btn btn-default" />
+
     </form>
+    <br />
+    <a asp-page="./Index"><img src="~/images/back.png" /> Volver a la Lista</a>
+
 </div>
