@@ -13,6 +13,18 @@
 <p>
     @*<a asp-page="Create">Create New</a>*@
 </p>
+<br />
+
+<form>
+
+    <div class="alert alert-info" style="text-emphasis:inherit">
+
+        <span class="glyphicon glyphicon-search"></span> Localizar Visita por ID o MOTIVO:  <input type="text" name="SearchString" />
+        <input type="submit" value="Buscar" />
+    </div>
+
+</form>
+
 <div class="panel panel-default">
 
     <table class="table table-striped">
@@ -20,7 +32,7 @@
             <tr>
 
                 <th>
-                   <h4>ID</h4> 
+                    <h4>ID</h4>
                 </th>
                 <th>
                     <h4>Motivo</h4>
@@ -48,37 +60,38 @@
         <tbody>
             @foreach (var item in Model.Visita)
             {
-            <tr>
-             
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdVisita)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Motivo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Duracion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ResponsableCatec)
-                </td>
+                <tr>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaVisita)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Hora)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-idVisita="@item.IdVisita">Editar</a> |
-                    <a asp-page="./Delete" asp-route-idVisita="@item.IdVisita">Borrar</a> |
-                    <a asp-page="../Visitantes/Index" asp-route-idVisita="@item.IdVisita">
-                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> A&ntilde;adir Visitantes </a> | 
-                    <a asp-page="../Visitantes/VisitasConPersonas" asp-route-idVisita="@item.IdVisita"><span class="glyphicon glyphicon-eye-open"></span> Ver Integrantes</a>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdVisita)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Motivo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duracion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ResponsableCatec)
+                    </td>
 
-                </td>
-            </tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaVisita)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hora)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-idVisita="@item.IdVisita">Editar</a> |
+                        <a asp-page="./Delete" asp-route-idVisita="@item.IdVisita">Borrar</a> |
+                        <a asp-page="../Visitantes/Index" asp-route-idVisita="@item.IdVisita">
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> A&ntilde;adir Visitantes
+                        </a> |
+                        <a asp-page="../Visitantes/VisitasConPersonas" asp-route-idVisita="@item.IdVisita"><span class="glyphicon glyphicon-eye-open"></span> Ver Integrantes</a>
+
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
-    </div>
+</div>

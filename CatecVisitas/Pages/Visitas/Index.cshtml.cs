@@ -20,9 +20,16 @@ namespace CatecVisitas.Pages.Visitas
 
         public IList<Visita> Visita { get;set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string searchString)
         {
-            Visita = await _context.Visita.ToListAsync();
+            var visita = from m in _context.Visita
+                         select m;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                visita = visita.Where(s => s.IdVisita.Equals(searchString) || s.Motivo.Contains(searchString));
+            }
+
+            Visita = await visita.ToListAsync();
 
 
         }
