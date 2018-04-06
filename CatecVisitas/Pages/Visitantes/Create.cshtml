@@ -3,11 +3,20 @@
 
 @{
     ViewData["Title"] = "Alta";
+    string query = Request.QueryString.ToString();
+    string[] queryPart = query.Split('=', '&');
+    var IDVisita = "";
+    IDVisita =  queryPart[1];
+
+    }
 }
 
-<h2>Alta</h2>
+<br />
+<br />
+<br />
 
-<h4>Nuevo Visitante</h4>
+<h2> <img src="~/images/icons8-nombre-80.png" /> &nbsp; Nuevo Visitante</h2>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -51,7 +60,7 @@
 </div>
 
 <div>
-    <a asp-page="Index">Volver a la lista</a>
+    <a asp-page="Index" asp-route-idVisita="@IDVisita">Volver a la lista</a>
 </div>
 
 @section Scripts {

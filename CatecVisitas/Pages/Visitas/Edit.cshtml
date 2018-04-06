@@ -6,13 +6,18 @@
 }
 <div class="container">
 
-    <h2>Editar</h2>
 
-    <h4>Visita</h4>
+    <br />
+    <br />
+    <br />
+    <h2> <img src="~/images/icons8-editar-propiedad-80.png"/> Editar Visita</h2>
+    <br />
+
     <hr />
-
-    <div class="panel panel-default">
-        <div class=panel-body>
+    <div class="row">
+        <div class="col-md-4">
+            @*<div class="panel panel-default">*@
+            @*<div class=container>*@
             <form method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -20,14 +25,14 @@
                 <input type="hidden" asp-for="Visita.IdPerson" />
 
                 <div class="form-group">
-                    <label asp-for="Visita.FechaVisita" class="control-label"></label>
-                    <input asp-for="Visita.FechaVisita" class="form-control" />
+                    <label class="control-label">Fecha Visita</label>
+                    <input asp-for="Visita.FechaVisita" class="form-control" readonly="readonly" />
                     <span asp-validation-for="Visita.FechaVisita" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Visita.Hora" class="control-label"></label>
-                    <input asp-for="Visita.Hora" class="form-control" />
+                    <label class="control-label">Hora</label>
+                    <input asp-for="Visita.Hora" class="form-control" readonly="readonly" />
                     <span asp-validation-for="Visita.Hora" class="text-danger"></span>
                 </div>
 
@@ -50,18 +55,17 @@
                 </div>
                 @*//TODO: CAMBIAR ESTE BOTON*@
                 <div class="form-group">
-                    <button type="submit">
-                        <span class="glyphicon glyphicon-floppy-save"> SAVE</span>
-                    </button>
+                    <input type="submit" value="Guardar" class="btn btn-default" />
                 </div>
             </form>
+            @*</div>*@
+            @*</div>*@
         </div>
     </div>
-
     <div>
         <a asp-page="./Index">Volver</a>
     </div>
 </div>
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
