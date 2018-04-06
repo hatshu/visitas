@@ -54,12 +54,18 @@ namespace CatecVisitas.Pages.Visitantes
 
         public async Task OnGetAsync(string searchString, string idVisita)
         {
-            var persona = from p in _context.Person
-                          select p;
+
+
+            IQueryable<Person> personaIQNombreApellido = from s in _context.Person
+                                                select s;
+
+            personaIQNombreApellido = personaIQNombreApellido.OrderBy(s => s.Apellidos)
+                                           .ThenBy(s => s.Nombre);            
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                persona = persona.Where(s => s.Empresa.Contains(searchString) || s.DNI.Equals(searchString));
+
+                var persona = personaIQNombreApellido.Where(s => s.Empresa.Contains(searchString) || s.DNI.Equals(searchString));
                 Person = await persona.ToListAsync();
                 var visit = Request.QueryString.ToString();
                 //TODO: trabajar con visit para sacar todas las variables
@@ -80,8 +86,8 @@ namespace CatecVisitas.Pages.Visitantes
                 //persona = persona.Where(s => s.Empresa.Contains(searchString) || s.DNI.Equals(searchString));
                 //Person = await persona.ToListAsync();
                 //var visit = Request.QueryString.ToString();
-
-                Person = await persona.ToListAsync();
+               
+                Person = await personaIQNombreApellido.ToListAsync();
                 var visitSinBuscador = Request.QueryString.ToString();
                 VisitaArray = visitSinBuscador.Split('=');
                 if (VisitaArray.Length> 0 && !visitSinBuscador.Equals(""))
