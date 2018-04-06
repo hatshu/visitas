@@ -13,7 +13,7 @@
 <br />
 <br />
 
-<h2>Visitas Por Persona</h2>
+<h2> <img src="~/images/icons8-identificación-verificada-80.png"/> &nbsp; Visitas Por Persona </h2>
 
 <p>
     @*<a asp-page="Create">Create New</a>*@
@@ -53,7 +53,7 @@
                                 @*@Html.DisplayFor(modelItem => item.IdPerson)*@
                                 if (itemPersona.Id == item.PersonaID)
                                 {
-
+                                
                                     @Html.DisplayFor(modelItem => itemPersona.Nombre)
                                     @espacio
                                     @Html.DisplayFor(modelItem => itemPersona.Apellidos)
@@ -91,5 +91,5 @@
     </table>
     </div>
 <div class="row">
-    <a href="Index2" class="btn btn-info">Volver a listado de Personas</a>
+    <a href="Index2"><img src="~/images/back.png" /> Volver a la Lista</a>
 </div>

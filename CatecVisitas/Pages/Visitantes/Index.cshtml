@@ -48,7 +48,7 @@
 
 
     <div class="alert alert-info text-info">
-        <span class="glyphicon glyphicon-comment"></span>   Si el visitante no ha estado antes en Catec tenemos que dar de <a asp-page="Create" asp-route-idVisita="@Model.Visitita">  Alta de Nuevo Visitante </a>
+        <span class="glyphicon glyphicon-comment fa-2x"></span> &nbsp;  Si el visitante no ha estado antes en Catec tenemos que dar de <a asp-page="Create" asp-route-idVisita="@Model.Visitita">  Alta de Nuevo Visitante </a>
     </div>
 </p>
 
@@ -57,41 +57,43 @@
 </p>
 @*<div class="panel panel-default">
     <div class="panel-body">*@
-        @foreach (var itemEnlace in Model.EnlaceVisitaPersonaList)
+@foreach (var itemEnlace in Model.EnlaceVisitaPersonaList)
+{
+    @if (itemEnlace.VisitaID == Convert.ToInt32(queryStream))
+    {
+        @foreach (var itemPersona in Model.PersonaListaFija)
         {
-            @if (itemEnlace.VisitaID == Convert.ToInt32(queryStream))
+            @if (itemPersona.Id == itemEnlace.PersonaID)
+
             {
-                @foreach (var itemPersona in Model.PersonaListaFija)
-                {
-                    @if (itemPersona.Id == itemEnlace.PersonaID)
-
-                    {
-                        <span class="glyphicon glyphicon-check"></span> @Espacio @Html.DisplayFor(modelItem => itemPersona.Nombre) @Espacio @Html.DisplayFor(modelItem => itemPersona.Apellidos)
-                        <br />
-                    }
-
-                }
-
+                <span class="glyphicon glyphicon-check fa-2x"></span> @Espacio @Html.DisplayFor(modelItem => itemPersona.Nombre) @Espacio @Html.DisplayFor(modelItem => itemPersona.Apellidos)
+                <br />
             }
 
-
         }
-    @*</div>
-</div>*@
+
+    }
+
+
+}
+@*</div>
+    </div>*@
 
 <form>
     <br />
     <div class="alert alert-info" style="text-emphasis:inherit">
         <p>
-            <span class="glyphicon glyphicon-search"></span> Localizar Persona por DNI o Empresa:  <input type="text" name="SearchString" />
+            <span class="glyphicon glyphicon-search"></span> &nbsp; Si la persona ya ha estado antes en CATEC podr&aacute; localizarla por el DNI o Empresa:  <input type="text" name="SearchString" />
             <input type="hidden" name="idVisita" value="@queryStream" ; />
             <input type="submit" value="Buscar" />
         </p>
     </div>
 
-    <div class="row">
-        <a href="../Visitas/Index" class="btn btn-info">  Terminar</a>
+    <div class="col-lg-offset-10">
+
+        <a href="../Visitas/Index"><img src="~/images/icons8-cerrar-ventana-30.png" />  Terminar de a&ntilde;adir</a>
     </div>
+
     <br />
     @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
 </form>
@@ -187,8 +189,9 @@
 
 </div>
 
-<div class="row">
-    <a href="../Visitas/Index" class="btn btn-info">  Terminar</a>
+<div class="col-lg-offset-10">
+
+    <a href="../Visitas/Index"><img src="~/images/icons8-cerrar-ventana-30.png" />Terminar de a&ntilde;adir</a>
 </div>
 
 <div class="modal fade" id="my_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
