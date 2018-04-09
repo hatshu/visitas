@@ -22,7 +22,7 @@ namespace CatecVisitas.Pages.Visitantes
 
 
         public IList<Person> Person { get; set; }
-        public IList<Visita> Visita { get; set; }
+        //public IList<Visita> Visita { get; set; }
 
 
         public async Task OnGetAsync(string searchString)
