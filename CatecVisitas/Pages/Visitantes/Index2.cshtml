@@ -25,16 +25,16 @@
             <tr>
                 <th>
                     <h4> @Html.DisplayNameFor(model => model.Person[0].Nombre)</h4>
-</th>
+                </th>
                 <th>
                     <h4> @Html.DisplayNameFor(model => model.Person[0].Apellidos)</h4>
-</th>
+                </th>
                 <th>
                     <h4> @Html.DisplayNameFor(model => model.Person[0].DNI)</h4>
-</th>
+                </th>
                 <th>
                     <h4>@Html.DisplayNameFor(model => model.Person[0].Empresa)</h4>
-</th>
+                </th>
                 <th>
                     <h4>Fecha de alta</h4>
                 </th>
@@ -70,4 +70,24 @@
             }
         </tbody>
     </table>
-    </div>
+
+    @{
+        var prevDisabled = !Model.Person.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.Person.HasNextPage ? "disabled" : "";
+    }
+
+
+
+</div>
+
+
+<a asp-page="./Index2"
+   asp-route-pageIndex="@(Model.Person.PageIndex - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index2"
+   asp-route-pageIndex="@(Model.Person.PageIndex + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

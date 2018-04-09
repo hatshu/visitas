@@ -21,21 +21,42 @@ namespace CatecVisitas.Pages.Visitantes
         }
 
 
-        public IList<Person> Person { get; set; }
+        //public IList<Person> Person { get; set; }
+        public PaginatedList<Person> Person { get; set; }
+
         //public IList<Visita> Visita { get; set; }
 
 
-        public async Task OnGetAsync(string searchString)
+        public async Task OnGetAsync( string searchString, int? pageIndex)
         {
 
-            var persona = from p in _context.Person
-                          select p;
+            //var persona = from p in _context.Person
+            //                  select p;
+
+            //    if (!String.IsNullOrEmpty(searchString))
+            //    {
+            //        persona = persona.Where(s => s.Empresa.Contains(searchString) || s.DNI.Equals(searchString));
+            //    }
+            //    Person = await persona.ToListAsync();
+
+            if (searchString != null)
+            {
+                pageIndex = 1;
+            }
+
+            IQueryable<Person> PersonIQ = from s in _context.Person
+                                            select s;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                persona = persona.Where(s => s.Empresa.Contains(searchString) || s.DNI.Equals(searchString));
+                PersonIQ = PersonIQ.Where(s => s.Empresa.Contains(searchString)
+                                       || s.DNI.Equals(searchString));
             }
-            Person = await persona.ToListAsync();
+            PersonIQ = PersonIQ.OrderBy(s => s.Apellidos);
+            int pageSize = 15;
+            Person = await PaginatedList<Person>.CreateAsync(
+                PersonIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
+
         }
 
     }
