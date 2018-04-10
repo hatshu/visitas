@@ -11,6 +11,8 @@ namespace CatecVisitas.Pages.Visitas
 {
     public class IndexModel : PageModel
     {
+        private int pageIndex = 0;
+        public string SearchString = "";
         private readonly CatecVisitas.Models.PersonContext _context;
         public List<string> ListaNombres = new List<string>();
         public string DateSort { get; set; }
@@ -26,10 +28,10 @@ namespace CatecVisitas.Pages.Visitas
         public async Task OnGetAsync(string searchString, int? pageIndex)
         {
 
-            if (searchString != null)
-            {
-                pageIndex = 1;
-            }
+            //if (searchString != null)
+            //{
+            //    pageIndex = 1 + pageIndex;
+            //}
 
             IQueryable<Visita> visitaIQFecha = from s in _context.Visita
                                             select s;
@@ -43,11 +45,18 @@ namespace CatecVisitas.Pages.Visitas
             //             select m;
             if (!String.IsNullOrEmpty(searchString))
             {
+                int pageSize = 15;
                 visitaIQFecha = visitaIQFecha.Where(s => s.FechaVisita.ToShortDateString().Equals(searchString) || s.Motivo.Contains(searchString));
+                SearchString = searchString;
+                Visita = await PaginatedList<Visita>.CreateAsync(visitaIQFecha.AsNoTracking(), pageIndex ?? 1, pageSize);
             }
-            int pageSize = 15;
-            //Visita = await visita.ToListAsync();
-            Visita = await PaginatedList<Visita>.CreateAsync(visitaIQFecha.AsNoTracking(), pageIndex ?? 1, pageSize);
+            else
+            {
+                int pageSize = 15;
+                //Visita = await visita.ToListAsync();
+                Visita = await PaginatedList<Visita>.CreateAsync(visitaIQFecha.AsNoTracking(), pageIndex ?? 1, pageSize);
+            }
+           
 
         }
     }
