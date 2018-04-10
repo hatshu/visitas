@@ -11,6 +11,7 @@ namespace CatecVisitas.Pages.Visitantes
 {
     public class Index2Model : PageModel
     {
+        private int pageIndex = 0;
 
         public string SearchString = "";
 
@@ -40,10 +41,10 @@ namespace CatecVisitas.Pages.Visitantes
             //    }
             //    Person = await persona.ToListAsync();
 
-            if (searchString != null)
-            {
-                pageIndex = 1 + pageIndex;
-            }
+            //if (searchString != null)
+            //{
+            //    pageIndex = pageIndex;
+            //}
 
             IQueryable<Person> PersonIQ = from s in _context.Person
                                             select s;
@@ -55,7 +56,7 @@ namespace CatecVisitas.Pages.Visitantes
                 PersonIQ = PersonIQ.Where(s => s.Empresa.Contains(searchString)
                                        || s.DNI.Equals(searchString));
                 PersonIQ = PersonIQ.OrderBy(s => s.Apellidos);
-                int pageSize = 20;
+                int pageSize = 15;
                 Person = await PaginatedList<Person>.CreateAsync(PersonIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
                 SearchString = searchString;
                 
