@@ -46,7 +46,7 @@ namespace CatecVisitas.Pages.Visitas
             if (!String.IsNullOrEmpty(searchString))
             {
                 int pageSize = 15;
-                visitaIQFecha = visitaIQFecha.Where(s => s.FechaVisita.ToShortDateString().Equals(searchString) || s.Motivo.Contains(searchString));
+                visitaIQFecha = visitaIQFecha.Where(s => s.FechaVisita.ToShortDateString().Equals(searchString.Trim()) || s.Motivo.ToLower().Contains(searchString.ToLower())) ;
                 SearchString = searchString;
                 Visita = await PaginatedList<Visita>.CreateAsync(visitaIQFecha.AsNoTracking(), pageIndex ?? 1, pageSize);
             }
