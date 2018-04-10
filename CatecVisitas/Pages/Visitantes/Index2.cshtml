@@ -61,17 +61,33 @@
                         @Html.DisplayFor(modelItem => item.FechaAlta)
                     </td>
                     <td>
-                        <a asp-page="./Edit" asp-route-id="@item.Id">@*Editar*@<img src="~/images/editUser.png" /></a> |
+                        <a asp-page="./Edit" asp-route-id="@item.Id">@*Editar*@<img src="~/images/editUser.png"  class="icon" rel="popover" data-txt="EDITAR"/></a> |
                         @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
                         @*<a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |*@
-                        <a asp-page="./VisitasPorPersona" asp-route-id="@item.Id"><img src="~/images/seeVisits.png" />@*<spam class="glyphicon glyphicon-eye-open"></spam> Ver Visitas*@</a>
+                        <a asp-page="./VisitasPorPersona" asp-route-id="@item.Id"><img src="~/images/seeVisits.png"  class="icon" rel="popover" data-txt="Ver visitas de esta persona"/>@*<spam class="glyphicon glyphicon-eye-open"></spam> Ver Visitas*@</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 
+    @section Scripts
+        {
 
+        <script>
+        $('document').ready(function () {
+
+            var popOverSettings = {
+                placement: 'top',
+                selector: '.icon',
+                //title: 'EDITAR',
+                trigger: "hover",
+                content: function () { return $(this).data('txt');}
+            };
+            $(this).popover(popOverSettings);
+        });
+        </script>
+    }
 
 
 
@@ -84,12 +100,12 @@
 <a asp-page="./Index2"
    asp-route-searchString="@Model.SearchString"
    asp-route-pageIndex="@(Model.Person.PageIndex - 1)"
-   class="btn btn-default @prevDisabled">
+   class="btn btn-primary @prevDisabled">
     Anterior
 </a>
 <a asp-page="./Index2"
    asp-route-searchString="@Model.SearchString"
    asp-route-pageIndex="@(Model.Person.PageIndex + 1)"
-   class="btn btn-default @nextDisabled">
+   class="btn btn-primary @nextDisabled">
     Siguiente
 </a>

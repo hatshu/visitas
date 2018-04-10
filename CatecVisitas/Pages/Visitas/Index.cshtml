@@ -103,13 +103,13 @@
 <a asp-page="./Index"
    asp-route-pageIndex="@(Model.Visita.PageIndex - 1)"
    asp-route-searchString="@Model.SearchString"
-   class="btn btn-default @prevDisabled">
+   class="btn btn-primary @prevDisabled">
     Anterior
 </a>
 <a asp-page="./Index"
    asp-route-pageIndex="@(Model.Visita.PageIndex + 1)"
    asp-route-searchString="@Model.SearchString"
-   class="btn btn-default @nextDisabled">
+   class="btn btn-primary @nextDisabled">
     Siguiente
 </a>
 

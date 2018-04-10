@@ -152,8 +152,8 @@
                         @*<a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |*@
                         @*<a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.Id" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a> |*@
 
-                        <a href="#my_modal" data-toggle="modal" data-book-id="@item.Id" data-person-id="@item.Nombre" data-apellidos-id="@item.Apellidos">
-                            @*<span class="glyphicon glyphicon-plus-sign"></span>*@ <img src="~/images/add.png" />
+                        <a href="#my_modal" data-toggle="modal" data-book-id="@item.Id" data-person-id="@item.Nombre" data-apellidos-id="@item.Apellidos"  >
+                            @*<span class="glyphicon glyphicon-plus-sign"></span>*@ <img src="~/images/add.png" class="icon" rel="popover" data-txt="AGREGAR"/>
                         </a>
                     </td>
                 </tr>
@@ -181,6 +181,19 @@
                 $(e.currentTarget).find('input[name="apellidosId"]').val(apellidosId);
                 active3 = document.getElementById("apellidosId").value;
                 //alert(active3);
+            });
+        </script>
+        <script>
+            $('document').ready(function () {
+
+                var popOverSettings = {
+                    placement: 'top',
+                    selector: '.icon',
+                    //title: 'EDITAR',
+                    trigger: "hover",
+                    content: function () { return $(this).data('txt'); }
+                };
+                $(this).popover(popOverSettings);
             });
         </script>
     }
@@ -238,8 +251,8 @@
             </div>
             <div class="modal-footer">
 
-                <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-info">A&ntilde;adir</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">A&ntilde;adir</button>
             </div>
             </form>
         </div>
