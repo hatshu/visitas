@@ -86,8 +86,9 @@ namespace CatecVisitas.Pages.Visitantes
                 //persona = persona.Where(s => s.Empresa.Contains(searchString) || s.DNI.Equals(searchString));
                 //Person = await persona.ToListAsync();
                 //var visit = Request.QueryString.ToString();
-               
-                Person = await personaIQNombreApellido.ToListAsync();
+                var persona = personaIQNombreApellido.Where(s => s.Empresa.Contains("") && s.DNI.Equals(""));
+                Person = await persona.ToListAsync();
+                //Person = await personaIQNombreApellido.ToListAsync();
                 var visitSinBuscador = Request.QueryString.ToString();
                 VisitaArray = visitSinBuscador.Split('=');
                 if (VisitaArray.Length> 0 && !visitSinBuscador.Equals(""))

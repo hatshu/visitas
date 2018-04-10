@@ -71,23 +71,23 @@
         </tbody>
     </table>
 
-    @{
-        var prevDisabled = !Model.Person.HasPreviousPage ? "disabled" : "";
-        var nextDisabled = !Model.Person.HasNextPage ? "disabled" : "";
-    }
+
 
 
 
 </div>
 
-
+@{
+    var prevDisabled = !Model.Person.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Person.HasNextPage ? "disabled" : "";
+}
 <a asp-page="./Index2"
    asp-route-pageIndex="@(Model.Person.PageIndex - 1)"
    class="btn btn-default @prevDisabled">
-    Previous
+    Anterior
 </a>
 <a asp-page="./Index2"
    asp-route-pageIndex="@(Model.Person.PageIndex + 1)"
    class="btn btn-default @nextDisabled">
-    Next
+    Siguiente
 </a>
