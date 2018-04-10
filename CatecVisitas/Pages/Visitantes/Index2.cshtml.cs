@@ -12,6 +12,7 @@ namespace CatecVisitas.Pages.Visitantes
     public class Index2Model : PageModel
     {
 
+        public string SearchString = "";
 
         private readonly CatecVisitas.Models.PersonContext _context;
 
@@ -41,20 +42,31 @@ namespace CatecVisitas.Pages.Visitantes
 
             if (searchString != null)
             {
-                pageIndex = 1;
+                pageIndex = 1 + pageIndex;
             }
 
             IQueryable<Person> PersonIQ = from s in _context.Person
                                             select s;
 
+            
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 PersonIQ = PersonIQ.Where(s => s.Empresa.Contains(searchString)
                                        || s.DNI.Equals(searchString));
+                PersonIQ = PersonIQ.OrderBy(s => s.Apellidos);
+                int pageSize = 20;
+                Person = await PaginatedList<Person>.CreateAsync(PersonIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
+                SearchString = searchString;
+                
             }
-            PersonIQ = PersonIQ.OrderBy(s => s.Apellidos);
-            int pageSize = 15;
-            Person = await PaginatedList<Person>.CreateAsync(PersonIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
+            else
+            {
+             PersonIQ = PersonIQ.OrderBy(s => s.Apellidos);
+             int pageSize = 15;
+             Person = await PaginatedList<Person>.CreateAsync(PersonIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
+            }
+           
 
         }
 

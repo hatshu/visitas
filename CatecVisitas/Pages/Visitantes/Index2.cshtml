@@ -82,11 +82,13 @@
     var nextDisabled = !Model.Person.HasNextPage ? "disabled" : "";
 }
 <a asp-page="./Index2"
+   asp-route-searchString="@Model.SearchString"
    asp-route-pageIndex="@(Model.Person.PageIndex - 1)"
    class="btn btn-default @prevDisabled">
     Anterior
 </a>
 <a asp-page="./Index2"
+   asp-route-searchString="@Model.SearchString"
    asp-route-pageIndex="@(Model.Person.PageIndex + 1)"
    class="btn btn-default @nextDisabled">
     Siguiente
