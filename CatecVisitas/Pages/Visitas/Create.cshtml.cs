@@ -38,7 +38,7 @@ namespace CatecVisitas.Pages.Visitas
             //Visita.IdPerson = Convert.ToInt32(partOfQueryString[1]);
             Visita.FechaVisita = DateTime.Today.Date;
             //Visita.Hora = DateTime.Now("hh:mm:ss");
-            Visita.Hora = DateTime.Now;
+            Visita.Hora = DateTime.Now.TimeOfDay;
 
 
             _context.Visita.Add(Visita);
