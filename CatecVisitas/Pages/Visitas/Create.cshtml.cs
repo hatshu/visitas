@@ -37,8 +37,10 @@ namespace CatecVisitas.Pages.Visitas
             //var partOfQueryString = queryString.Split('=');
             //Visita.IdPerson = Convert.ToInt32(partOfQueryString[1]);
             Visita.FechaVisita = DateTime.Today.Date;
-            Visita.Hora = DateTime.Now.ToString("hh:mm:ss");
-            
+            //Visita.Hora = DateTime.Now("hh:mm:ss");
+            Visita.Hora = DateTime.Now;
+
+
             _context.Visita.Add(Visita);
             await _context.SaveChangesAsync();
 
