@@ -95,3 +95,18 @@
         </tbody>
     </table>
 </div>
+
+@{
+    var prevDisabled = !Model.Visita.HasPreviousPage  ? "disabled" : "";
+    var nextDisabled = !Model.Visita.HasNextPage ? "disabled" : "";
+}
+<a asp-page="./Index"
+   asp-route-pageIndex="@(Model.Visita.PageIndex - 1)"
+   class="btn btn-default @prevDisabled">
+    Anterior
+</a>
+<a asp-page="./Index"
+   asp-route-pageIndex="@(Model.Visita.PageIndex + 1)"
+   class="btn btn-default @nextDisabled">
+    Siguiente
+</a>

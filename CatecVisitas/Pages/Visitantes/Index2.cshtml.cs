@@ -54,8 +54,7 @@ namespace CatecVisitas.Pages.Visitantes
             }
             PersonIQ = PersonIQ.OrderBy(s => s.Apellidos);
             int pageSize = 15;
-            Person = await PaginatedList<Person>.CreateAsync(
-                PersonIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
+            Person = await PaginatedList<Person>.CreateAsync(PersonIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
 
         }
 

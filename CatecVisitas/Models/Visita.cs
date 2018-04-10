@@ -20,6 +20,7 @@ namespace CatecVisitas.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime FechaVisita { get; set; }
         [DisplayFormat(DataFormatString = "{0:HH-mm}")]
+        //TODO: cambiar a tipo DATE
         public string Hora { get; set; }
         public string Motivo { get; set; }
         public string Duracion { get; set; }

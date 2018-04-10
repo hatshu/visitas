@@ -49,5 +49,10 @@ namespace CatecVisitas.Models
         {
             throw new NotImplementedException();
         }
+
+        internal IQueryable<Visita> NoTracking()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

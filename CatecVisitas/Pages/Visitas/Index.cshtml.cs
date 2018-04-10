@@ -19,10 +19,17 @@ namespace CatecVisitas.Pages.Visitas
             _context = context;
         }
 
-        public IList<Visita> Visita { get;set; }
+        //public IList<Visita> Visita { get;set; }
+        public PaginatedList<Visita> Visita { get; set; }
 
-        public async Task OnGetAsync(string searchString)
+
+        public async Task OnGetAsync(string searchString, int? pageIndex)
         {
+
+            if (searchString != null)
+            {
+                pageIndex = 1;
+            }
 
             IQueryable<Visita> visitaIQFecha = from s in _context.Visita
                                             select s;
@@ -30,17 +37,17 @@ namespace CatecVisitas.Pages.Visitas
 
             visitaIQFecha = visitaIQFecha.OrderByDescending(s => s.FechaVisita.Date)
                                          .ThenByDescending(s => s.Hora);
-                                         
 
-            var visita = from m in visitaIQFecha
-                         select m;
+
+            //var visita = from m in visitaIQFecha
+            //             select m;
             if (!String.IsNullOrEmpty(searchString))
             {
-                visita = visita.Where(s => s.FechaVisita.ToShortDateString().Equals(searchString) || s.Motivo.Contains(searchString));
+                visitaIQFecha = visitaIQFecha.Where(s => s.FechaVisita.ToShortDateString().Equals(searchString) || s.Motivo.Contains(searchString));
             }
-
-            Visita = await visita.ToListAsync();
-
+            int pageSize = 15;
+            //Visita = await visita.ToListAsync();
+            Visita = await PaginatedList<Visita>.CreateAsync(visitaIQFecha.AsNoTracking(), pageIndex ?? 1, pageSize);
 
         }
     }
