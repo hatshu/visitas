@@ -9,7 +9,7 @@
 <br />
 <br />
 <div class="table">
-    <h2>   <img src="~/images/editUserBig.png" /> &nbsp; Editar Visitante</h2>
+    <h2>   <img src="~/images/editUserBig.png" /> &nbsp; Editar Visitante / Edit Visitor</h2>
 </div>
 
 
@@ -21,28 +21,28 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Person.Id" />
             <div class="form-group">
-                <label asp-for="Person.Nombre" class="control-label"></label>
+                <label asp-for="Person.Nombre" class="control-label">Nombre / Name:</label>
                 <input asp-for="Person.Nombre" class="form-control" />
                 <span asp-val
                       ation-for="Person.Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Person.Apellidos" class="control-label"></label>
+                <label asp-for="Person.Apellidos" class="control-label">Apellidos / Surname:</label>
                 <input asp-for="Person.Apellidos" class="form-control" />
                 <span asp-validation-for="Person.Apellidos" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Person.DNI" class="control-label"></label>
+                <label asp-for="Person.DNI" class="control-label">DNI / ID / PASSPORT NUMBER:</label>
                 <input asp-for="Person.DNI" class="form-control" />
                 <span asp-validation-for="Person.DNI" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Person.Empresa" class="control-label"></label>
+                <label asp-for="Person.Empresa" class="control-label">Empresa / Company:</label>
                 <input asp-for="Person.Empresa" class="form-control" />
                 <span asp-validation-for="Person.Empresa" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label  class="control-label">Fecha Alta</label>
+                <label  class="control-label">Fecha Alta / Register Date</label>
                 <input asp-for="Person.FechaAlta" class="form-control" readonly="readonly" />
                 <span asp-validation-for="Person.FechaAlta" class="text-danger"></span>
             </div>
