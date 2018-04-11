@@ -3890,6 +3890,7 @@ fieldset[disabled] a.btn {
    border-color: #446e9b;
 }
 
+
    .btn-primary:focus,
    .btn-primary.focus {
       color: #ffffff;
@@ -4265,10 +4266,10 @@ fieldset[disabled] a.btn {
 
 .btn-xs,
 .btn-group-xs > .btn {
-   padding: 1px 5px;
-   font-size: 12px;
-   line-height: 1.5;
-   border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
 }
 
 .btn-block {
@@ -6043,8 +6044,9 @@ a.label:focus {
 
 .btn-xs .badge,
 .btn-group-xs > .btn .badge {
-   top: 0;
-   padding: 1px 5px;
+    top: 0;
+    padding: 1px 5px;
+
 }
 
 a.badge:hover,
@@ -8311,6 +8313,7 @@ button.close {
       filter: none;
       border: 1px solid #2e4b69;
    }
+
 
 .btn-success {
    background-image: -webkit-linear-gradient(#61dd45, #3cb521 50%, #36a41e);
