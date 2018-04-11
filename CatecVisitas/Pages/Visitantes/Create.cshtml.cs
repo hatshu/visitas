@@ -36,11 +36,32 @@ namespace CatecVisitas.Pages.Visitantes
         public Person Person { get; set; }
         [BindProperty]
         public EnlaceVisitaPersona EnlaceVisitaPersona { get; set; }
+
         public IList<EnlaceVisitaPersona> EnlaceVisitaPersonaList { get; set; }
 
+        //public IList<Person> PersonList { get; set; }
 
-        public async Task<IActionResult> OnPostAsync(string save)
+        public async Task<IActionResult> OnPostAsync(string DNI)
         {
+
+         IQueryable<Person> PersonIQ = from s in _context.Person
+                                          select s;
+
+            if (!String.IsNullOrEmpty(DNI))
+            {
+                PersonIQ = PersonIQ.Where(s => s.DNI.Equals(DNI));
+                if ((PersonIQ != null) && (!PersonIQ.Any()))
+                {
+                    ModelState.AddModelError("NewEmp", "EL DNI esta duplicado");
+                    return Page();
+                }
+
+
+            }
+
+
+
+
             if (!ModelState.IsValid)
             {
                 return Page();
