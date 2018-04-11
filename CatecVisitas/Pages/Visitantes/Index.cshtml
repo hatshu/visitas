@@ -42,21 +42,22 @@
 
 }
 
-<h2> <img src="~/images/peoplebig.png" /> &nbsp; A&ntilde;adir Visitantes a Visita: @queryStream <span class="glyphicon glyphicon-hand-right fa-2x"></span> Motivo: @Motivo </h2>
+<h2> <img src="~/images/peoplebig.png" /> &nbsp; A&ntilde;adir Visitantes a Visita: @queryStream <span class="glyphicon glyphicon-arrow-right fa-2x"></span> Motivo: @Motivo </h2>
+
+
+
+
+<div class="alert alert-info text-info">
+    <p>
+        <span class="glyphicon glyphicon-comment fa-2x"></span>  &nbsp;  Si el visitante no ha estado antes en Catec: <a asp-page="Create" asp-route-idVisita="@Model.Visitita">  <strong style="font-size:large"> <img src="~/images/add.png" />  Alta de Nuevo Visitante </strong> </a>
+    </p>
+</div>
 
 <p>
-
-
-    <div class="alert alert-info text-info">
-        <span class="glyphicon glyphicon-comment fa-2x"></span> &nbsp;  Si el visitante no ha estado antes en Catec tenemos que dar de <a asp-page="Create" asp-route-idVisita="@Model.Visitita">  Alta de Nuevo Visitante </a>
-    </div>
+    <h2>Integrantes de la visita:</h2>
 </p>
-
-<p>
-    <h3>Integrantes de la visita:</h3>
-</p>
-@*<div class="panel panel-default">
-    <div class="panel-body">*@
+<div class="panel panel-default">
+    <div class="panel-body">
 @foreach (var itemEnlace in Model.EnlaceVisitaPersonaList)
 {
     @if (itemEnlace.VisitaID == Convert.ToInt32(queryStream))
@@ -66,8 +67,8 @@
             @if (itemPersona.Id == itemEnlace.PersonaID)
 
             {
-                <span class="glyphicon glyphicon-check fa-2x"></span> @Espacio @Html.DisplayFor(modelItem => itemPersona.Nombre) @Espacio @Html.DisplayFor(modelItem => itemPersona.Apellidos)
-                <br />
+                <h4> <span class="glyphicon glyphicon-check fa-2x"></span> @Espacio @Html.DisplayFor(modelItem => itemPersona.Nombre) @Espacio @Html.DisplayFor(modelItem => itemPersona.Apellidos)</h4>
+
             }
 
         }
@@ -76,23 +77,23 @@
 
 
 }
-@*</div>
-    </div>*@
+</div>
+    </div>
 
 <form>
     <br />
-    <div class="alert alert-info" style="text-emphasis:inherit">
+    <div class="alert alert-info" >
         <p>
-            <span class="glyphicon glyphicon-search"></span> &nbsp; Si la persona ya ha estado antes en CATEC podr&aacute; localizarla por el DNI o Empresa:  <input type="text" name="SearchString" />
-            <input type="hidden" name="idVisita" value="@queryStream" ; />
-            <input type="submit" value="Buscar" />
+            <span class="glyphicon glyphicon-search"></span> &nbsp; Buscar por DNI o Empresa:  <input type="text" name="SearchString" />
+            <input type="hidden" name="idVisita" value="@queryStream" />
+            @*<input type="submit" value="Buscar"  />*@
+            <button class="btn btn-primary" type="submit"  >
+                @*<span class="glyphicon glyphicon-search"></span > &nbsp;*@ Buscar
+            </button>
         </p>
     </div>
 
-    @*<div class="col-lg-offset-10">
 
-        <a href="../Visitas/Index"><img src="~/images/icons8-cerrar-ventana-30.png" />  Terminar de a&ntilde;adir</a>
-    </div>*@
 
     <br />
     @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
@@ -100,37 +101,37 @@
 <div class="panel panel-default">
 
     <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>
-                    <h4>&nbsp;&nbsp;ID </h4>
-                </th>
-                <th>
-                    <h4> @Html.DisplayNameFor(model => model.Person[0].Nombre)</h4>
-                </th>
-                <th>
-                    <h4>@Html.DisplayNameFor(model => model.Person[0].Apellidos)</h4>
-                </th>
-                <th>
-                    <h4>@Html.DisplayNameFor(model => model.Person[0].DNI)</h4>
-                </th>
-                <th>
-                    <h4>@Html.DisplayNameFor(model => model.Person[0].Empresa)</h4>
-                </th>
-                <th>
-                    <div class="text-nowrap"> <h4> Fecha Alta</h4> </div>
+        @*<thead>*@
+        @*<tr>*@
+        @*<th>
+                <h4>&nbsp;&nbsp;ID </h4>
+            </th>*@
+        @*<th>*@
+        @*<h4> @Html.DisplayNameFor(model => model.Person[0].Nombre)</h4>*@
+        @*</th>*@
+        @*<th>*@
+        @*<h4>@Html.DisplayNameFor(model => model.Person[0].Apellidos)</h4>*@
+        @*</th>*@
+        @*<th>*@
+        @*<h4>@Html.DisplayNameFor(model => model.Person[0].DNI)</h4>*@
+        @*</th>*@
+        @*<th>*@
+        @*<h4>@Html.DisplayNameFor(model => model.Person[0].Empresa)</h4>*@
+        @*</th>*@
+        @*<th>*@
+        @*<div class="text-nowrap"> <h4> Fecha Alta</h4> </div>*@
 
-                </th>
-                <th></th>
-            </tr>
-        </thead>
+        @*</th>*@
+        @*<th></th>*@
+        @*</tr>*@
+        @*</thead>*@
         <tbody>
             @foreach (var item in Model.Person)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.Nombre)
                     </td>
@@ -152,8 +153,8 @@
                         @*<a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |*@
                         @*<a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.Id" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a> |*@
 
-                        <a href="#my_modal" data-toggle="modal" data-book-id="@item.Id" data-person-id="@item.Nombre" data-apellidos-id="@item.Apellidos"  >
-                            @*<span class="glyphicon glyphicon-plus-sign"></span>*@ <img src="~/images/add.png" class="icon" rel="popover" data-txt="AGREGAR"/>
+                        <a href="#my_modal" data-toggle="modal" data-book-id="@item.Id" data-person-id="@item.Nombre" data-apellidos-id="@item.Apellidos">
+                            @*<span class="glyphicon glyphicon-plus-sign"></span>*@ <img src="~/images/add.png" class="icon" rel="popover" data-txt="AGREGAR" />
                         </a>
                     </td>
                 </tr>
@@ -203,8 +204,9 @@
 </div>
 
 <div class="col-lg-offset-10">
-
-    <a href="../Visitas/Index"><img src="~/images/icons8-cerrar-ventana-30.png" />Terminar de a&ntilde;adir</a>
+    <div class="btn btn-primary">
+        <a href="../Visitas/Index" style="color:white"><div style="font-weight:200"><img src="~/images/icons-eliminar-30 .png" style="max-height:20px" /> &nbsp;Terminar de a&ntilde;adir</div></a>
+    </div>
 </div>
 
 <div class="modal fade" id="my_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
