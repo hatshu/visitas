@@ -21,8 +21,13 @@ namespace CatecVisitas.Models
         public DateTime FechaVisita { get; set; }
         [DisplayFormat(DataFormatString = "{0:HH:mm}")]
         public DateTime Hora { get; set; }
+        [StringLength(50, ErrorMessage = "El campo motivo no puede tener mas de 100 caracteres")]
+        [Required(ErrorMessage = "El motivo es obligatorio")]
         public string Motivo { get; set; }
+        [StringLength(50, ErrorMessage = "El campo duracion no puede tener mas de 50 caracteres")]
         public string Duracion { get; set; }
+        [StringLength(50, ErrorMessage = "El campo responsable no puede tener mas de 50 caracteres")]
+        [Required(ErrorMessage = "El responsable es obligatorio")]
         public string ResponsableCatec { get; set; }
 
     }
