@@ -6,13 +6,25 @@
     string[] queryPart = query.Split('=');
     var queryStream = Convert.ToInt32(queryPart[1]);
     var espacio = " ";
+    var motivo = "";
+
 }
+
+@foreach (var item in Model.Visita)
+{
+    if (queryStream == item.IdVisita)
+    {
+        motivo = item.Motivo;
+        break;
+    }
+}
+
 
 <br />
 <br />
 <br />
 @*<div class="table-bordered">*@
-    <h2> <img src="~/images/icons8-sobre-nosotros-80.png" />  &nbsp; Personas que realizan la visita @queryStream:</h2>
+    <h2> <img src="~/images/icons8-sobre-nosotros-80.png" />  &nbsp; Personas que realizan la visita @queryStream con motivo @motivo:</h2>
 @*</div>*@
 <br />
 <div class="panel panel-default">
@@ -30,10 +42,10 @@
                 <th>
                     <h4>Fecha</h4>
                 </th>
-                <th>
+                @*<th>
                     <h4>Motivo</h4>
-                </th>
-                <th></th>
+                </th>*@
+                
             </tr>
         </thead>
         <tbody>
@@ -83,7 +95,7 @@
                                 }
                             }
                         </td>
-                        <td>
+                        @*<td>
                             @foreach (var itemVisita in Model.Visita)
                             {
                                 if (itemVisita.IdVisita == item.VisitaID)
@@ -91,7 +103,7 @@
                                     @Html.DisplayFor(modelItem => itemVisita.Motivo)
                                 }
                             }
-                        </td>
+                        </td>*@
                     </tr>
                 }
             }
