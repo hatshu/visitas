@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CatecVisitas.Models;
+using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations;
 
 namespace CatecVisitas.Pages.Visitantes
 {
@@ -17,13 +19,14 @@ namespace CatecVisitas.Pages.Visitantes
 
         public string[] QueryArray;
 
-     
+        public bool validationError = false;
 
         private readonly CatecVisitas.Models.PersonContext _context;
 
         public CreateModel(CatecVisitas.Models.PersonContext context)
         {
             _context = context;
+            PersonList = _context.Person.ToList();
 
         }
 
@@ -39,28 +42,29 @@ namespace CatecVisitas.Pages.Visitantes
 
         public IList<EnlaceVisitaPersona> EnlaceVisitaPersonaList { get; set; }
 
-        //public IList<Person> PersonList { get; set; }
+        public IList<Person> PersonList { get; set; }
+
+      
+
 
         public async Task<IActionResult> OnPostAsync(string DNI)
         {
 
-         IQueryable<Person> PersonIQ = from s in _context.Person
+            IQueryable<Person> PersonIQ = from s in _context.Person
                                           select s;
 
-            if (!String.IsNullOrEmpty(DNI))
+            var DNIID = Person.DNI;
+            if (!String.IsNullOrEmpty(DNIID))
             {
-                PersonIQ = PersonIQ.Where(s => s.DNI.Equals(DNI));
-                if ((PersonIQ != null) && (!PersonIQ.Any()))
+                PersonIQ = PersonIQ.Where(s => s.DNI.Equals(DNIID));
+                if (PersonIQ.Count() > 0)
                 {
-                    ModelState.AddModelError("NewEmp", "EL DNI esta duplicado");
-                    return Page();
+                    ModelState.AddModelError("DNIerror", "EL DNI esta duplicado");
+                    validationError = true;
                 }
 
 
             }
-
-
-
 
             if (!ModelState.IsValid)
             {
