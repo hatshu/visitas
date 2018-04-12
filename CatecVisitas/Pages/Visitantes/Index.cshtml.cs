@@ -27,6 +27,8 @@ namespace CatecVisitas.Pages.Visitantes
 
         public string VisitaID;
 
+        public bool duplicateITEM = false;
+
         private const string PageName = "../Visitantes/Index";
 
         private readonly CatecVisitas.Models.PersonContext _context;
@@ -135,10 +137,32 @@ namespace CatecVisitas.Pages.Visitantes
                 }
             }
 
-            _context.EnlaceVisitaPersona.Add(EnlaceVisitaPersona);
 
 
-            await _context.SaveChangesAsync();
+                //TODO: COMPROBAR QUE LA PERSONA NO ESTA YA EN LA LISTA
+
+            foreach (var item in EnlaceVisitaPersonaList)
+            {
+                if (EnlaceVisitaPersona.VisitaID.Equals(item.VisitaID) && EnlaceVisitaPersona.PersonaID.Equals(item.PersonaID))
+                {
+                    duplicateITEM = true;
+                    break;
+                }
+               
+            }
+
+            if (!duplicateITEM)
+            {
+                _context.EnlaceVisitaPersona.Add(EnlaceVisitaPersona);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                return Page();
+            }
+           
+           
+           
             //return RedirectToPage("./Index");
             return this.RedirectToPage
             (PageName, new { idVisita = Visitita });
