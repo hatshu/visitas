@@ -4,10 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using CatecVisitas.Models;
-using System.Runtime.Serialization;
-using System.ComponentModel.DataAnnotations;
+
 
 namespace CatecVisitas.Pages.Visitantes
 {
@@ -47,7 +45,7 @@ namespace CatecVisitas.Pages.Visitantes
       
 
 
-        public async Task<IActionResult> OnPostAsync(string DNI)
+        public async Task<IActionResult> OnPostAsync()
         {
 
             IQueryable<Person> PersonIQ = from s in _context.Person
