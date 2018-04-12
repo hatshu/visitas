@@ -6,9 +6,9 @@
     string query = Request.QueryString.ToString();
     string[] queryPart = query.Split('=', '&');
     var IDVisita = "";
-    IDVisita =  queryPart[1];
+    IDVisita = queryPart[1];
 
-    }
+}
 }
 
 <br />
@@ -38,6 +38,12 @@
                 <label asp-for="Person.DNI" class="control-label">DNI / ID / PASSPORT NUMBER:</label>
                 <input asp-for="Person.DNI" class="form-control" />
                 <span asp-validation-for="Person.DNI" class="text-danger"></span>
+               @if (Model.validationError)
+               {
+                   <label class="text-danger"> El DNI ya existe en la base de datos</label>
+
+               }
+
             </div>
             <div class="form-group">
                 <label asp-for="Person.Empresa" class="control-label">Empresa / Company:</label>
@@ -45,18 +51,19 @@
                 <span asp-validation-for="Person.Empresa" class="text-danger"></span>
             </div>
             @*<div class="form-group">
-            <label asp-for="Person.FechaAlta" class="control-label"></label>
-            <input asp-for="Person.FechaAlta" class="form-control"  readonly="readonly" />
-            <span asp-validation-for="Person.FechaAlta" class="text-danger"></span>
-        </div>*@
+                    <label asp-for="Person.FechaAlta" class="control-label"></label>
+                    <input asp-for="Person.FechaAlta" class="form-control"  readonly="readonly" />
+                    <span asp-validation-for="Person.FechaAlta" class="text-danger"></span>
+                </div>*@
             @*<div class="form-group">
-            <input type="hidden" asp-for="EnlaceVisitaPersona.PersonaID" />
-            <input   type="hidden"  asp-for="EnlaceVisitaPersona.VisitaID" />
-        </div>*@
+                    <input type="hidden" asp-for="EnlaceVisitaPersona.PersonaID" />
+                    <input   type="hidden"  asp-for="EnlaceVisitaPersona.VisitaID" />
+                </div>*@
 
-           
+
 
             <div class="form-group">
+
                 <input type="submit" value="Alta" class="btn btn-primary" />
             </div>
         </form>

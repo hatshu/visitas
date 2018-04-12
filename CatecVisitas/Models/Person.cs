@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace CatecVisitas.Models
     public class Person
     {
         public int Id { get; set; }
-        [StringLength(50, ErrorMessage = "El campo nombre no puede tener mas de 50 caracteres")]
+        [StringLength(50, ErrorMessage = "El campo {0} no puede tener mas de 50 caracteres")]
         [Required(ErrorMessage = "El nombre es obligatorio")]
         public string Nombre { get; set; }
         [StringLength(50, ErrorMessage = "El campo apellido no puede tener mas de 50 caracteres")]
