@@ -58,44 +58,54 @@
 </p>
 <div class="panel panel-default">
     <div class="panel-body">
-@foreach (var itemEnlace in Model.EnlaceVisitaPersonaList)
-{
-    @if (itemEnlace.VisitaID == Convert.ToInt32(queryStream))
-    {
-        @foreach (var itemPersona in Model.PersonaListaFija)
+        @foreach (var itemEnlace in Model.EnlaceVisitaPersonaList)
         {
-            @if (itemPersona.Id == itemEnlace.PersonaID)
-
+            @if (itemEnlace.VisitaID == Convert.ToInt32(queryStream))
             {
-                <h4> <span class="glyphicon glyphicon-check fa-2x"></span> @Espacio @Html.DisplayFor(modelItem => itemPersona.Nombre) @Espacio @Html.DisplayFor(modelItem => itemPersona.Apellidos)</h4>
+                @foreach (var itemPersona in Model.PersonaListaFija)
+                {
+                    @if (itemPersona.Id == itemEnlace.PersonaID)
+
+                    {
+                        <h4> <span class="glyphicon glyphicon-check fa-2x"></span> @Espacio @Html.DisplayFor(modelItem => itemPersona.Nombre) @Espacio @Html.DisplayFor(modelItem => itemPersona.Apellidos)</h4>
+
+                    }
+
+                }
 
             }
 
+
         }
-
-    }
-
-
-}
-</div>
     </div>
+</div>
+
+<br />
+
+
+
+@if (@Model.duplicateITEM)
+{
+   
+<label class="text-danger">&nbsp; <span class="glyphicon glyphicon-alert"></span>&nbsp; Esta persona ya existe en la lista...</label>
+    <br />
+}
+
+
 
 <form>
     <br />
-    <div class="alert alert-info" >
+    <div class="alert alert-info">
         <p>
             <span class="glyphicon glyphicon-search"></span> &nbsp; Buscar por DNI o Empresa:  <input type="text" name="SearchString" />
             <input type="hidden" name="idVisita" value="@queryStream" />
             @*<input type="submit" value="Buscar"  />*@
-            <button class="btn btn-primary" type="submit"  >
+            <button class="btn btn-primary" type="submit">
                 @*<span class="glyphicon glyphicon-search"></span > &nbsp;*@ Buscar
             </button>
         </p>
     </div>
 
-
-
-    <br />
     @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
 </form>
 <div class="panel panel-default">
@@ -126,43 +136,49 @@
         @*</tr>*@
         @*</thead>*@
         <tbody>
-            @foreach (var item in Model.Person)
+            @if (!Model.duplicateITEM)
             {
-                <tr>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.Id)
-                        </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Apellidos)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DNI)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Empresa)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaAlta)
-                    </td>
-                    <td width="45" height="45">
-                        @*<a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |*@
-                        @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
-                        @*<a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |*@
-                        @*<a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.Id" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a> |*@
+                @foreach (var item in Model.Person)
+                {
+                    <tr>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Apellidos)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DNI)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaAlta)
+                        </td>
+                        <td width="45" height="45">
+                            @*<a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |*@
+                            @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
+                            @*<a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |*@
+                            @*<a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.Id" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a> |*@
 
-                        <a href="#my_modal" data-toggle="modal" data-book-id="@item.Id" data-person-id="@item.Nombre" data-apellidos-id="@item.Apellidos">
-                            @*<span class="glyphicon glyphicon-plus-sign"></span>*@ <img src="~/images/add.png" class="icon" rel="popover" data-txt="AGREGAR" />
-                        </a>
-                    </td>
-                </tr>
+                            <a href="#my_modal" data-toggle="modal" data-book-id="@item.Id" data-person-id="@item.Nombre" data-apellidos-id="@item.Apellidos">
+                                @*<span class="glyphicon glyphicon-plus-sign"></span>*@ <img src="~/images/add.png" class="icon" rel="popover" data-txt="AGREGAR" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+
             }
+
 
 
         </tbody>
     </table>
+
 
     @section Scripts
         {
@@ -244,6 +260,7 @@
                         </div>
                         <br />
                     </div>
+
                     @*<button class="btn-link" type="submit" style="height:auto">
                             <span class="glyphicon glyphicon-ok-circle"></span>
                         </button>*@
@@ -257,6 +274,7 @@
                 <button type="submit" class="btn btn-primary">A&ntilde;adir</button>
             </div>
             </form>
+
         </div>
     </div>
 </div>
