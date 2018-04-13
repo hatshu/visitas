@@ -2,7 +2,7 @@
 @model CatecVisitas.Pages.Visitas.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Visitas";
 }
 <div class="container">
 
@@ -26,15 +26,17 @@
 
                 <div class="form-group">
                     <label class="control-label">Fecha Visita / Date Visit </label>
-                    <input asp-for="Visita.FechaVisita" class="form-control" readonly="readonly" />
-                    <span asp-validation-for="Visita.FechaVisita.Date" class="text-danger"></span>
+                    @*<label> @Html.DisplayFor(model => model.Visita.FechaVisita.ToShortDateString()) </label>*@
+                    <input asp-for="Visita.FechaVisita.Date" class="form-control" readonly="readonly" disabled="disabled" />
+                    <span asp-validation-for="Visita.FechaVisita" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label">Hora / Hour</label>
-                    <input asp-for="Visita.Hora" class="form-control" readonly="readonly" />
-                    <span asp-validation-for="Visita.Hora.TimeOfDay" class="text-danger"></span>
-                </div>
+                    @*<label class="control-label">@Html.DisplayFor(model => model.Visita.Hora))</label>*@
+                        <input asp-for="Visita.Hora.TimeOfDay" class="form-control" readonly="readonly"disabled="disabled"/>
+                        <span asp-validation-for="Visita.Hora" class="text-danger"></span>
+</div>
 
                 <div class="form-group">
                     <label asp-for="Visita.Motivo" class="control-label">Motivo / Reason</label>
@@ -53,7 +55,6 @@
                     <input asp-for="Visita.ResponsableCatec" class="form-control" />
                     <span asp-validation-for="Visita.ResponsableCatec" class="text-danger"></span>
                 </div>
-                @*//TODO: CAMBIAR ESTE BOTON*@
                 <div class="form-group">
                     <input type="submit" value="Guardar" class="btn btn-primary" />
                 </div>

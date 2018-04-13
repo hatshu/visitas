@@ -4,6 +4,8 @@
     var nombre =usuario.Split('\\');
 
 }
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,24 +37,31 @@
             <a asp-page="/Index" class="navbar-brand">CATEC</a>
          </div>
          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-               <li><a asp-page="/Index"> <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Visitantes <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                     <li><a asp-page="/Visitantes/Index2">Listado de Visitantes</a></li>
-                     <li><a asp-page="/Visitas/Index">Listado de Visitas</a></li>
-                     <li class="divider"></li>
-                     <li class="dropdown-header">Alta</li>
-                     <li><a asp-page="/Visitantes/Create2"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir nuevo visitante</a></li>
-                     <li><a asp-page="/Visitas/Create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir nueva visita</a></li>
-                  </ul>
-               </li>
-               @*<li><a asp-page="/Visitantes/Index">Listado de Visitantes</a></li>*@
-               @*<li><a asp-page="/About">Listado de Autorizados</a></li>
-               <li><a asp-page="/Contact">Contacto</a></li>*@
-            </ul>
-            <p class="nav navbar-text navbar-right">Hola, @nombre[1] de @nombre[0]</p>
+             <ul class="nav navbar-nav">
+                 <li><a asp-page="/Index"> <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                 <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-book" ></span> Visitas <b class="caret"></b></a>
+                     <ul class="dropdown-menu">
+                         <li><a asp-page="/Visitas/Index"><span class="glyphicon glyphicon-list"></span>&nbsp;Listado de Visitas</a></li>
+                         <li class="divider"></li>
+                         <li class="dropdown-header">Alta</li>
+                         <li><a asp-page="/Visitas/Create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir nueva visita</a></li>
+                     </ul>
+                 </li>
+                 <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Visitantes <b class="caret"></b></a>
+                     <ul class="dropdown-menu">
+                         <li><a asp-page="/Visitantes/Index2"><span class="glyphicon glyphicon-list"></span>&nbsp;Listado de Visitantes</a></li>
+                         <li class="divider"></li>
+                         <li class="dropdown-header">Alta</li>
+                         <li><a asp-page="/Visitantes/Create2"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir nuevo visitante</a></li>
+                     </ul>
+                 </li>
+                 @*<li><a asp-page="/Visitantes/Index">Listado de Visitantes</a></li>*@
+                 @*<li><a asp-page="/About">Listado de Autorizados</a></li>
+        <li><a asp-page="/Contact">Contacto</a></li>*@
+             </ul>
+            <p class="nav navbar-text navbar-right"><span class="glyphicon glyphicon-hand-right"></span>&nbsp; Hola, @nombre[1] de @nombre[0]</p>
          </div>
       </div>
    </nav>

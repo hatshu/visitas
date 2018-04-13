@@ -19,18 +19,23 @@ namespace CatecVisitas
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-         // requires 
-         // using RazorPagesMovie.Models;
-         // using Microsoft.EntityFrameworkCore;
+            // requires 
+            // using RazorPagesMovie.Models;
+            // using Microsoft.EntityFrameworkCore;
 
-         services.AddDbContext<PersonContext>(options =>
-             options.UseSqlServer(Configuration.GetConnectionString("PersonContext")));
-         services.AddMvc();
+            services.AddDbContext<PersonContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("PersonContext")));
+            services.AddMvc().AddRazorPagesOptions(options =>
+             {
+                 options.Conventions.AuthorizeFolder("/Visitas");
+                 options.Conventions.AuthorizeFolder("/Visitantes");
+                 options.Conventions.AuthorizeFolder("/EnlaceVisitaPersona");
+             });
 
-      }
+        }
 
-      // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-      public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
