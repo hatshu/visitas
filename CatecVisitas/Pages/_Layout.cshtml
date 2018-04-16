@@ -40,7 +40,7 @@
              <ul class="nav navbar-nav">
                  <li><a asp-page="/Index"> <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
                  <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-book" ></span> Visitas <b class="caret"></b></a>
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Visitas <b class="caret"></b></a>
                      <ul class="dropdown-menu">
                          <li><a asp-page="/Visitas/Index"><span class="glyphicon glyphicon-list"></span>&nbsp;Listado de Visitas</a></li>
                          <li class="divider"></li>
@@ -61,7 +61,7 @@
                  @*<li><a asp-page="/About">Listado de Autorizados</a></li>
         <li><a asp-page="/Contact">Contacto</a></li>*@
              </ul>
-            <p class="nav navbar-text navbar-right"><span class="glyphicon glyphicon-hand-right"></span>&nbsp; Hola, @nombre[1] de @nombre[0]</p>
+            <p class="nav navbar-text navbar-right"><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>&nbsp; Hola, @nombre[1] de @nombre[0]</p>
          </div>
       </div>
    </nav>
