@@ -49,7 +49,7 @@ namespace CatecVisitas.Pages.Visitantes
             IQueryable<Person> PersonIQ = from s in _context.Person
                                             select s;
 
-            
+            var sourceFull = PersonIQ.Count();
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -57,7 +57,7 @@ namespace CatecVisitas.Pages.Visitantes
                                        || s.DNI.Equals(searchString));
                 PersonIQ = PersonIQ.OrderBy(s => s.Apellidos);
                 int pageSize = 15;
-                Person = await PaginatedList<Person>.CreateAsync(PersonIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
+                Person = await PaginatedList<Person>.CreateAsync(PersonIQ.AsNoTracking(), pageIndex ?? 1, pageSize, sourceFull);
                 SearchString = searchString;
                 
             }
@@ -65,7 +65,7 @@ namespace CatecVisitas.Pages.Visitantes
             {
              PersonIQ = PersonIQ.OrderBy(s => s.Apellidos);
              int pageSize = 15;
-             Person = await PaginatedList<Person>.CreateAsync(PersonIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
+             Person = await PaginatedList<Person>.CreateAsync(PersonIQ.AsNoTracking(), pageIndex ?? 1, pageSize, sourceFull);
             }
            
 

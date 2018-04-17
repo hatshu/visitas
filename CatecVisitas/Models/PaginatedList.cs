@@ -35,17 +35,20 @@ namespace CatecVisitas.Models
         }
 
         public static async Task<PaginatedList<T>> CreateAsync(
-            IQueryable<T> source, int pageIndex, int pageSize)
+            IQueryable<T> source, int pageIndex, int pageSize, int sourceFull)
         {
 
-            
 
-            var count = await source.CountAsync();
-            var items = await source
-                .Skip((pageIndex - 1) * pageSize)
-                .Take(pageSize).ToListAsync();
+            var count = sourceFull;
+            //var count = await source.CountAsync();
+            //var items = await source
+            //    .Skip((pageIndex - 1) * pageSize)
+            //    .Take(pageSize).ToListAsync();
+            ////var items = await source.ToListAsync();
 
-            return new PaginatedList<T>(items, count, pageIndex, pageSize);
+            //return new PaginatedList<T>(items, count, pageIndex, pageSize);
+            return new PaginatedList<T>(source.ToList(), count, pageIndex, pageSize);
+
         }
 
         internal IQueryable<Person> AsNoTracking()
@@ -54,6 +57,10 @@ namespace CatecVisitas.Models
         }
 
         internal IQueryable<Visita> NoTracking()
+        {
+            throw new NotImplementedException();
+        }
+        internal List<Visita> DoNoTracking()
         {
             throw new NotImplementedException();
         }
