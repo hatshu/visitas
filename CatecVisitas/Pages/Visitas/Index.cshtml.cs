@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CatecVisitas.Models;
+using System.Data.SqlClient;
+
 
 namespace CatecVisitas.Pages.Visitas
 {
@@ -23,6 +25,7 @@ namespace CatecVisitas.Pages.Visitas
 
         //public IList<Visita> Visita { get;set; }
         public PaginatedList<Visita> Visita { get; set; }
+        public PaginatedList<Visita> Visit { get; set; }
 
 
         public async Task OnGetAsync(string searchString, int? pageIndex)
@@ -40,23 +43,52 @@ namespace CatecVisitas.Pages.Visitas
             visitaIQFecha = visitaIQFecha.OrderByDescending(s => s.FechaVisita.Date)
                                          .ThenByDescending(s => s.Hora);
 
+            var sourceFull = visitaIQFecha.Count();
 
             //var visita = from m in visitaIQFecha
             //             select m;
             if (!String.IsNullOrEmpty(searchString))
             {
                 int pageSize = 15;
-                visitaIQFecha = visitaIQFecha.Where(s => s.FechaVisita.ToShortDateString().Equals(searchString.Trim()) || s.Motivo.ToLower().Contains(searchString.ToLower()) || s.ResponsableCatec.ToLower().Equals(searchString.ToLower())) ;
+
+                if (pageIndex == null)
+                {
+                    pageIndex = 1;
+                }
+
+                var MinPageRank = (pageIndex - 1) * pageSize + 1;
+                var MaxPageRank = (pageIndex * pageSize);
+                visitaIQFecha = visitaIQFecha.Where(s => s.FechaVisita.ToShortDateString().Equals(searchString.Trim()) || s.Motivo.ToLower().Contains(searchString.ToLower()) || s.ResponsableCatec.ToLower().Equals(searchString.ToLower()));
+                //var visit = _context.Visita.FromSql($"SELECT * FROM (SELECT [RANK] = ROW_NUMBER() OVER (ORDER BY Hora DESC),* FROM Visita) A WHERE A.[RANK] BETWEEN {MinPageRank} AND {MaxPageRank}").ToList();
+
+                IQueryable<Visita> visitita = from s in visitaIQFecha.AsQueryable() select s;
+
+               
                 
                 SearchString = searchString;
-                Visita = await PaginatedList<Visita>.CreateAsync(visitaIQFecha.AsNoTracking(), pageIndex ?? 1, pageSize);
+
+
+                Visita = await PaginatedList<Visita>.CreateAsync(visitaIQFecha.AsNoTracking(), pageIndex ?? 1, pageSize, sourceFull);
             }
             else
             {
                 int pageSize = 15;
                 //Visita = await visita.ToListAsync();
-   
-                Visita = await PaginatedList<Visita>.CreateAsync(visitaIQFecha.AsNoTracking(), pageIndex ?? 1, pageSize);
+                if (pageIndex==null)
+                {
+                    pageIndex = 1;
+                }
+                
+                var MinPageRank =  (pageIndex - 1) * pageSize + 1; 
+                var MaxPageRank = (pageIndex * pageSize);
+                var visit = _context.Visita.FromSql($"SELECT * FROM (SELECT [RANK] = ROW_NUMBER() OVER (ORDER BY Hora DESC),* FROM Visita) A WHERE A.[RANK] BETWEEN {MinPageRank} AND {MaxPageRank}").ToList();
+
+                IQueryable<Visita> visitita = from s in visit.AsQueryable() select s;
+
+
+                Visita = await PaginatedList<Visita>.CreateAsync(visitita.AsNoTracking(), pageIndex ?? 1, pageSize, sourceFull);
+
+                //Visita = await PaginatedList<Visita>.CreateAsync(visitaIQFecha.AsNoTracking(), pageIndex ?? 1, pageSize);
             }
            
 
