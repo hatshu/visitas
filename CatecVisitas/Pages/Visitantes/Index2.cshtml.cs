@@ -53,13 +53,26 @@ namespace CatecVisitas.Pages.Visitantes
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                PersonIQ = PersonIQ.Where(s => s.Empresa.Contains(searchString)
-                                       || s.DNI.Equals(searchString));
-                PersonIQ = PersonIQ.OrderBy(s => s.Apellidos);
                 int pageSize = 15;
-                Person = await PaginatedList<Person>.CreateAsync(PersonIQ.AsNoTracking(), pageIndex ?? 1, pageSize, sourceFull);
+
+                if (pageIndex == null)
+                {
+                    pageIndex = 1;
+                }
+
+                var MinPageRank = (pageIndex - 1) * pageSize + 1;
+                var MaxPageRank = (pageIndex * pageSize);
+                var searchCriteria = '%' + searchString + '%';
+                PersonIQ = PersonIQ.Where(s => s.Empresa.Contains(searchString) || s.DNI.Equals(searchString));
+                //PersonIQ = PersonIQ.OrderBy(s => s.Apellidos);
+                sourceFull = PersonIQ.Count();
+                var person2008 = _context.Person.FromSql($"SELECT * FROM (SELECT [RANK] = ROW_NUMBER() OVER (ORDER BY Apellidos, Nombre),* FROM Person WHERE Empresa LIKE {searchCriteria} OR DNI = {searchString}) A WHERE A.[RANK] BETWEEN {MinPageRank} AND {MaxPageRank}").ToList();
+
+                IQueryable<Person> Personita = from s in person2008.AsQueryable() select s;
+
                 SearchString = searchString;
-                
+                Person = await PaginatedList<Person>.CreateAsync(Personita.AsNoTracking(), pageIndex ?? 1, pageSize, sourceFull);
+
             }
             else
             {
@@ -72,9 +85,9 @@ namespace CatecVisitas.Pages.Visitantes
 
                 var MinPageRank = (pageIndex - 1) * pageSize + 1;
                 var MaxPageRank = (pageIndex * pageSize);
-                var person = _context.Person.FromSql($"SELECT * FROM (SELECT [RANK] = ROW_NUMBER() OVER (ORDER BY Apellidos , Nombre),* FROM Person) A WHERE A.[RANK] BETWEEN {MinPageRank} AND {MaxPageRank}").ToList();
+                var person2008 = _context.Person.FromSql($"SELECT * FROM (SELECT [RANK] = ROW_NUMBER() OVER (ORDER BY Apellidos , Nombre),* FROM Person) A WHERE A.[RANK] BETWEEN {MinPageRank} AND {MaxPageRank}").ToList();
 
-                IQueryable<Person> Personita = from s in person.AsQueryable() select s;
+                IQueryable<Person> Personita = from s in person2008.AsQueryable() select s;
                 Person = await PaginatedList<Person>.CreateAsync(Personita.AsNoTracking(), pageIndex ?? 1, pageSize, sourceFull);
             }
            

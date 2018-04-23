@@ -141,7 +141,7 @@ namespace CatecVisitas.Pages.Visitas
             if (searchString.Contains("-"))
             {
                 var searchArray = searchString.Split('-');
-                if (searchArray.Count()==3 && searchArray[0].Length <= 2 && searchArray[1].Length <= 2 && searchArray[2].Length <= 4)
+                if (searchArray.Count()==3 && searchArray[0].Length <= 2 && searchArray[1].Length <= 2 && searchArray[2].Length <= 4 && Convert.ToInt32(searchArray[1]) <= 12)
                 {
                     return true;
                 }
@@ -151,7 +151,7 @@ namespace CatecVisitas.Pages.Visitas
             if (searchString.Contains('/'))
             {
                 var searchArray = searchString.Split('/');
-                if (searchArray.Count() == 3 && searchArray[0].Length <= 2 && searchArray[1].Length <= 2 && searchArray[2].Length <= 4)
+                if (searchArray.Count() == 3 && searchArray[0].Length <= 2 && searchArray[1].Length <= 2 && searchArray[2].Length <= 4  && Convert.ToInt32(searchArray[1]) <= 12)
                 {
                     return true;
                 }
