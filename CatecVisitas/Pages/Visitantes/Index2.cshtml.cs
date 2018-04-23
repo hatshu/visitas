@@ -72,7 +72,7 @@ namespace CatecVisitas.Pages.Visitantes
 
                 var MinPageRank = (pageIndex - 1) * pageSize + 1;
                 var MaxPageRank = (pageIndex * pageSize);
-                var person = _context.Person.FromSql($"SELECT * FROM (SELECT [RANK] = ROW_NUMBER() OVER (ORDER BY Apellidos),* FROM Person) A WHERE A.[RANK] BETWEEN {MinPageRank} AND {MaxPageRank}").ToList();
+                var person = _context.Person.FromSql($"SELECT * FROM (SELECT [RANK] = ROW_NUMBER() OVER (ORDER BY Apellidos , Nombre),* FROM Person) A WHERE A.[RANK] BETWEEN {MinPageRank} AND {MaxPageRank}").ToList();
 
                 IQueryable<Person> Personita = from s in person.AsQueryable() select s;
                 Person = await PaginatedList<Person>.CreateAsync(Personita.AsNoTracking(), pageIndex ?? 1, pageSize, sourceFull);
