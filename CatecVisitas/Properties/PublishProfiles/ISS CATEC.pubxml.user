@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo se usa en el proceso de publicación y empaquetado del proyecto web. Para personalizar el comportamiento de este proceso,
+edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 para obtener más información. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA6XuaiyrcOEiDrB72aH9GgwAAAAACAAAAAAADZgAAwAAAABAAAABLYOW7MovrU0UWDYcyFaaDAAAAAASAAACgAAAAEAAAABxhke84b91iFfHiAjhgzEIYAAAAMJbC+ACEvMqlnfwAEdYSnxslGJLmqCnpFAAAAIvROIWcKQU3/GFySY5VYeWiB57t</EncryptedPassword>
+    <_PublishTargetUrl>C:\Users\bmartin\Desktop\Visitas</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.Development.json">
+      <publishTime>03/08/2018 09:48:44</publishTime>
+    </File>
+    <File Include="appsettings.json">
+      <publishTime>04/23/2018 12:31:16</publishTime>
+    </File>
+    <File Include="bundleconfig.json">
+      <publishTime>03/08/2018 09:48:44</publishTime>
+    </File>
+    <File Include="CatecVisitas.deps.json">
+      <publishTime>04/23/2018 13:21:23</publishTime>
+    </File>
+    <File Include="CatecVisitas.dll">
+      <publishTime>04/23/2018 13:21:17</publishTime>
+    </File>
+    <File Include="CatecVisitas.pdb">
+      <publishTime>04/23/2018 13:21:17</publishTime>
+    </File>
+    <File Include="CatecVisitas.PrecompiledViews.pdb">
+      <publishTime>04/23/2018 13:21:22</publishTime>
+    </File>
+    <File Include="CatecVisitas.runtimeconfig.json">
+      <publishTime>04/23/2018 13:21:23</publishTime>
+    </File>
+    <File Include="dotnet-aspnet-codegenerator-design.dll">
+      <publishTime>02/21/2018 09:05:43</publishTime>
+    </File>
+    <File Include="Microsoft.CodeAnalysis.CSharp.Workspaces.dll">
+      <publishTime>03/15/2018 11:21:04</publishTime>
+    </File>
+    <File Include="Microsoft.CodeAnalysis.Workspaces.dll">
+      <publishTime>03/15/2018 11:21:05</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll">
+      <publishTime>02/21/2018 09:05:43</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Core.dll">
+      <publishTime>02/21/2018 09:05:43</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll">
+      <publishTime>02/21/2018 09:05:43</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll">
+      <publishTime>02/21/2018 09:05:43</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll">
+      <publishTime>02/21/2018 09:05:44</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll">
+      <publishTime>02/21/2018 09:05:44</publishTime>
+    </File>
+    <File Include="NuGet.Frameworks.dll">
+      <publishTime>03/15/2018 11:21:00</publishTime>
+    </File>
+    <File Include="System.Composition.AttributedModel.dll">
+      <publishTime>03/15/2018 11:21:05</publishTime>
+    </File>
+    <File Include="System.Composition.Convention.dll">
+      <publishTime>03/15/2018 11:21:05</publishTime>
+    </File>
+    <File Include="System.Composition.Hosting.dll">
+      <publishTime>03/15/2018 11:21:05</publishTime>
+    </File>
+    <File Include="System.Composition.Runtime.dll">
+      <publishTime>03/15/2018 11:21:05</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>04/23/2018 13:21:23</publishTime>
+    </File>
+    <File Include="wwwroot/css/site.css">
+      <publishTime>03/21/2018 08:39:16</publishTime>
+    </File>
+    <File Include="wwwroot/css/site.min.css">
+      <publishTime>03/08/2018 09:48:44</publishTime>
+    </File>
+    <File Include="wwwroot/favicon.ico">
+      <publishTime>03/08/2018 09:48:44</publishTime>
+    </File>
+    <File Include="wwwroot/images/add.png">
+      <publishTime>04/05/2018 12:49:01</publishTime>
+    </File>
+    <File Include="wwwroot/images/addPlus.png">
+      <publishTime>04/05/2018 12:52:34</publishTime>
+    </File>
+    <File Include="wwwroot/images/back.png">
+      <publishTime>04/06/2018 11:59:54</publishTime>
+    </File>
+    <File Include="wwwroot/images/banner1.svg">
+      <publishTime>03/08/2018 09:48:44</publishTime>
+    </File>
+    <File Include="wwwroot/images/banner3.svg">
+      <publishTime>03/08/2018 09:48:44</publishTime>
+    </File>
+    <File Include="wwwroot/images/banner4.svg">
+      <publishTime>03/08/2018 09:48:44</publishTime>
+    </File>
+    <File Include="wwwroot/images/bg.png">
+      <publishTime>03/08/2018 12:45:54</publishTime>
+    </File>
+    <File Include="wwwroot/images/bg1.jpg">
+      <publishTime>03/09/2018 08:58:04</publishTime>
+    </File>
+    <File Include="wwwroot/images/bg1920x1080.jpg">
+      <publishTime>03/08/2018 10:59:42</publishTime>
+    </File>
+    <File Include="wwwroot/images/brown-concrete-wall-background-texture-hd.jpg">
+      <publishTime>03/09/2018 08:55:24</publishTime>
+    </File>
+    <File Include="wwwroot/images/colaboracion.svg">
+      <publishTime>03/16/2018 13:22:36</publishTime>
+    </File>
+    <File Include="wwwroot/images/editUser.png">
+      <publishTime>04/05/2018 14:06:56</publishTime>
+    </File>
+    <File Include="wwwroot/images/editUserBig.png">
+      <publishTime>04/06/2018 10:56:14</publishTime>
+    </File>
+    <File Include="wwwroot/images/entrevista.svg">
+      <publishTime>03/19/2018 09:01:51</publishTime>
+    </File>
+    <File Include="wwwroot/images/estudiar.svg">
+      <publishTime>03/16/2018 13:24:25</publishTime>
+    </File>
+    <File Include="wwwroot/images/evaluacion.svg">
+      <publishTime>03/19/2018 09:00:51</publishTime>
+    </File>
+    <File Include="wwwroot/images/eyeSmall.png">
+      <publishTime>04/05/2018 14:08:27</publishTime>
+    </File>
+    <File Include="wwwroot/images/fadacateactrasnparente.png">
+      <publishTime>01/18/2018 09:45:03</publishTime>
+    </File>
+    <File Include="wwwroot/images/fadacatecSmall.png">
+      <publishTime>01/22/2018 12:13:40</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons-cerrar-ventana-30.png">
+      <publishTime>04/11/2018 09:49:43</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons-eliminar-30 .png">
+      <publishTime>04/11/2018 09:50:07</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-basura-30.png">
+      <publishTime>04/06/2018 12:29:06</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-basura-80.png">
+      <publishTime>04/06/2018 13:16:34</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-cancelar-30.png">
+      <publishTime>04/11/2018 09:15:03</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-cerrar-ventana-30.png">
+      <publishTime>04/06/2018 13:35:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-crear-nuevo-30.png">
+      <publishTime>04/06/2018 12:32:39</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-editar-propiedad-30.png">
+      <publishTime>04/06/2018 10:58:04</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-editar-propiedad-80.png">
+      <publishTime>04/06/2018 10:57:54</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-guardar-cerrar-30.png">
+      <publishTime>04/06/2018 12:01:39</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-hombre-menú-de-usuario-30.png">
+      <publishTime>04/06/2018 12:36:36</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-hombre-menú-de-usuario-80.png">
+      <publishTime>04/06/2018 12:36:39</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-identificación-verificada-30.png">
+      <publishTime>04/06/2018 13:24:28</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-identificación-verificada-80.png">
+      <publishTime>04/06/2018 13:24:22</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-literatura-30.png">
+      <publishTime>04/06/2018 12:10:15</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-literatura-80.png">
+      <publishTime>04/06/2018 12:10:19</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-nombre-30.png">
+      <publishTime>04/06/2018 12:40:30</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-nombre-80.png">
+      <publishTime>04/06/2018 12:40:26</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-retroceso-30.png">
+      <publishTime>04/06/2018 11:59:35</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-sobre-nosotros-30.png">
+      <publishTime>04/06/2018 11:56:51</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons8-ver-detalles-30.png">
+      <publishTime>04/06/2018 12:04:04</publishTime>
+    </File>
+    <File Include="wwwroot/images/la-busqueda-de-empleo.svg">
+      <publishTime>03/19/2018 09:11:08</publishTime>
+    </File>
+    <File Include="wwwroot/images/Logo_FADA.jpg">
+      <publishTime>11/28/2014 12:16:04</publishTime>
+    </File>
+    <File Include="wwwroot/images/lupasmall.png">
+      <publishTime>04/06/2018 11:54:17</publishTime>
+    </File>
+    <File Include="wwwroot/images/paper-texture-cells-light-661820-wallhere.com.jpg">
+      <publishTime>03/09/2018 08:48:34</publishTime>
+    </File>
+    <File Include="wwwroot/images/peoplebig.png">
+      <publishTime>04/06/2018 10:59:25</publishTime>
+    </File>
+    <File Include="wwwroot/images/peoplesmall.png">
+      <publishTime>04/06/2018 10:59:21</publishTime>
+    </File>
+    <File Include="wwwroot/images/reunion.svg">
+      <publishTime>03/16/2018 13:23:06</publishTime>
+    </File>
+    <File Include="wwwroot/images/seeVisits.png">
+      <publishTime>04/05/2018 14:08:27</publishTime>
+    </File>
+    <File Include="wwwroot/images/tarjeta-comercial.svg">
+      <publishTime>03/16/2018 13:16:16</publishTime>
+    </File>
+    <File Include="wwwroot/images/trabajo-en-equipo.svg">
+      <publishTime>03/19/2018 09:10:23</publishTime>
+    </File>
+    <File Include="wwwroot/images/user-20.svg">
+      <publishTime>06/22/2016 15:38:08</publishTime>
+    </File>
+    <File Include="wwwroot/images/wooden-background-light-texture-672230-wallhere.com %281%29.jpg">
+      <publishTime>03/08/2018 13:23:20</publishTime>
+    </File>
+    <File Include="wwwroot/js/site.js">
+      <publishTime>03/08/2018 09:48:44</publishTime>
+    </File>
+    <File Include="wwwroot/js/site.min.js">
+      <publishTime>03/08/2018 09:48:44</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/.bower.json">
+      <publishTime>03/08/2018 09:48:44</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-theme.css.map">
+      <publishTime>03/08/2018 09:48:44</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-theme.min.css.map">
+      <publishTime>03/08/2018 09:48:44</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.css.map">
+      <publishTime>03/08/2018 09:48:44</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.eot">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.svg">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.js">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/npm.js">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/LICENSE">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery-validation-unobtrusive/.bower.json">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery-validation/.bower.json">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery-validation/dist/jquery.validate.js">
+      <publishTime>04/11/2018 12:36:52</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery-validation/LICENSE.md">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery/.bower.json">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery/dist/jquery.js">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery/dist/jquery.min.map">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery/LICENSE.txt">
+      <publishTime>03/08/2018 09:48:45</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
