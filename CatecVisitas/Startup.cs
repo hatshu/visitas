@@ -12,6 +12,7 @@ namespace CatecVisitas
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            var appSettings = Configuration.GetSection("Authorized:Users");
         }
 
         public IConfiguration Configuration { get; }
@@ -22,7 +23,7 @@ namespace CatecVisitas
             // requires 
             // using RazorPagesMovie.Models;
             // using Microsoft.EntityFrameworkCore;
-
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddDbContext<PersonContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("PersonContext")));
             services.AddMvc().AddRazorPagesOptions(options =>
@@ -31,7 +32,6 @@ namespace CatecVisitas
                  options.Conventions.AuthorizeFolder("/Visitantes");
                  options.Conventions.AuthorizeFolder("/EnlaceVisitaPersona");
              });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
