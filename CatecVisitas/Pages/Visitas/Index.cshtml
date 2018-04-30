@@ -1,8 +1,14 @@
 @page
 @model CatecVisitas.Pages.Visitas.IndexModel
-
+@using Microsoft.Extensions.Options;
+@using CatecVisitas.Models;
+@inject IOptions<AppSettings> Settings
 @{
     ViewData["Title"] = "Listado de Visitas";
+    var usuario = @User.Identity.Name;
+    var nombre = usuario.Split('\\');
+    var users = @Settings.Value.Users;
+    var authorized = false;
 }
 
 <br />
@@ -10,17 +16,28 @@
 <br />
 <h2> <img src="~/images/icons8-literatura-80.png" /> &nbsp;Listado de visitas</h2>
 
+@foreach (var item in users)
+{
+    if (nombre[1].Equals(item))
+    {
+        authorized = true;
+        break;
+    }
+
+}
+
 <p>
     @*<a asp-page="Create">Create New</a>*@
 </p>
 <br />
-
+@if (authorized)
+{
 <form>
 
     <div class="alert alert-info" style="text-emphasis:inherit">
 
         <span class="glyphicon glyphicon-search"></span> Localizar Visita por FECHA, MOTIVO o RESPONSABLE:  <input type="text" name="SearchString" />
-        <input type="submit" value="Buscar" class="btn btn-primary"/>
+        <input type="submit" value="Buscar" class="btn btn-primary" />
     </div>
 
 </form>
@@ -87,7 +104,7 @@
                         <a asp-page="../Visitantes/Index" asp-route-idVisita="@item.IdVisita">
                             @*<span class="glyphicon glyphicon-plus-sign fa-3x" aria-hidden="true"></span>*@  <img src="~/images/peoplesmall.png" class="icon" rel="popover" data-txt="AGREGAR VISITANTES" />
                         </a> |
-                        <a asp-page="../Visitantes/VisitasConPersonas" asp-route-idVisita="@item.IdVisita">@*<span class="glyphicon glyphicon-eye-open fa-3x"></span>*@  <img src="~/images/icons8-ver-detalles-30.png" class="icon" rel="popover" data-txt="VER VISITANTES"/></a>
+                        <a asp-page="../Visitantes/VisitasConPersonas" asp-route-idVisita="@item.IdVisita">@*<span class="glyphicon glyphicon-eye-open fa-3x"></span>*@  <img src="~/images/icons8-ver-detalles-30.png" class="icon" rel="popover" data-txt="VER VISITANTES" /></a>
 
                     </td>
                 </tr>
@@ -95,6 +112,8 @@
         </tbody>
     </table>
 </div>
+}
+
 
 @{
     var prevDisabled = !Model.Visita.HasPreviousPage ? "disabled" : "";
@@ -114,7 +133,7 @@
 </a>
 
 @section Scripts
-{
+    {
 
     <script>
         $('document').ready(function () {
@@ -124,9 +143,9 @@
                 selector: '.icon',
                 //title: 'EDITAR',
                 trigger: "hover",
-                content: function () { return $(this).data('txt');}
+                content: function () { return $(this).data('txt'); }
             };
-            $(this).popover(popOverSettings); 
+            $(this).popover(popOverSettings);
         });
     </script>
 }
