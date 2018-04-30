@@ -1,7 +1,12 @@
 ﻿@using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging
+@using Microsoft.Extensions.Options;
+@using CatecVisitas.Models;
+@inject IOptions<AppSettings> Settings
 @{
     var usuario = @User.Identity.Name;
     var nombre = usuario.Split('\\');
+    var users = @Settings.Value.Users;
+    var authorized = false;
 
 }
 
@@ -45,7 +50,16 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-page="/Index"> <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
-                    @if (nombre[1].Equals("bmartin"))
+                    @foreach (var item in users)
+                    {
+                        if (nombre[1].Equals(item))
+                        {
+                            authorized = true;
+                            break;
+                        }
+
+                    }
+                    @if (authorized)
                     {
                         <li class="dropdown">
 
