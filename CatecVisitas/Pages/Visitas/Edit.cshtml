@@ -1,16 +1,36 @@
 @page
 @model CatecVisitas.Pages.Visitas.EditModel
-
+@using Microsoft.Extensions.Options;
+@using CatecVisitas.Models;
+@inject IOptions<AppSettings> Settings
 @{
     ViewData["Title"] = "Editar Visitas";
+    var usuario = @User.Identity.Name;
+    var nombre = usuario.Split('\\');
+    var users = @Settings.Value.Users;
+    var authorized = false;
 }
 <div class="container">
 
+    @foreach (var item in users)
+    {
+        if (nombre[1].Equals(item))
+        {
+            authorized = true;
+            break;
+        }
+
+    }
+
+
+    @if (authorized)
+    {
+
 
     <br />
     <br />
     <br />
-    <h2> <img src="~/images/icons8-editar-propiedad-80.png"/> Editar Visita / Edit Visit</h2>
+    <h2> <img src="~/images/icons8-editar-propiedad-80.png" /> Editar Visita / Edit Visit</h2>
     <br />
 
     <hr />
@@ -24,19 +44,19 @@
                 <input type="hidden" asp-for="Visita.IdVisita" />
                 <input type="hidden" asp-for="Visita.IdPerson" />
 
-                <div class="form-group" >
+                <div class="form-group">
                     <label class="control-label">Fecha Visita / Date Visit </label>
                     @*<label> @Html.DisplayFor(model => model.Visita.FechaVisita.ToShortDateString()) </label>*@
-                    <input asp-for="Visita.FechaVisita.Date" class="form-control" readonly="readonly" disabled="disabled" />
-                    <span asp-validation-for="Visita.FechaVisita" class="text-danger"></span>
+                    <input asp-for="Visita.FechaVisita" class="form-control" readonly="readonly" />
+                    <span asp-validation-for="Visita.FechaVisita.Date" class="text-danger"></span>
                 </div>
 
-                <div class="form-group" >
+                <div class="form-group">
                     <label class="control-label">Hora / Hour</label>
                     @*<label class="control-label">@Html.DisplayFor(model => model.Visita.Hora))</label>*@
-                        <input asp-for="Visita.Hora.TimeOfDay" class="form-control" readonly="readonly"disabled="disabled"/>
-                        <span asp-validation-for="Visita.Hora" class="text-danger"></span>
-</div>
+                    <input asp-for="Visita.Hora" class="form-control" readonly="readonly" />
+                    <span asp-validation-for="Visita.Hora.TimeOfDay" class="text-danger"></span>
+                </div>
 
                 <div class="form-group">
                     <label asp-for="Visita.Motivo" class="control-label">Motivo / Reason</label>
@@ -63,10 +83,11 @@
             @*</div>*@
         </div>
     </div>
+    }
     <div>
         <a asp-page="./Index"><img src="~/images/back.png" /> Volver a la Lista</a>
     </div>
 </div>
-        @section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
