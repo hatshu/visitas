@@ -1,95 +1,115 @@
 ﻿@page
 @model CatecVisitas.Pages.Visitantes.VisitasPorPersonaModel
-
+@using Microsoft.Extensions.Options;
+@using CatecVisitas.Models;
+@inject IOptions<AppSettings> Settings
 @{
     ViewData["Title"] = "Visitas Por Persona";
     string query = Request.QueryString.ToString();
     string[] queryPart = query.Split('=');
     var queryStream = Convert.ToInt32(queryPart[1]);
     var espacio = " ";
+    var usuario = @User.Identity.Name;
+    var nombre = usuario.Split('\\');
+    var users = @Settings.Value.Users;
+    var authorized = false;
+}
+
+@foreach (var item in users)
+{
+    if (nombre[1].Equals(item))
+    {
+        authorized = true;
+        break;
+    }
+
 }
 
 <br />
 <br />
 <br />
 
-<h2> <img src="~/images/icons8-identificación-verificada-80.png"/> &nbsp; Visitas Por Persona </h2>
+@if (authorized)
+{
 
-<p>
-    @*<a asp-page="Create">Create New</a>*@
-</p>
-<div class="panel panel-default">
+    <h2> <img src="~/images/icons8-identificación-verificada-80.png" /> &nbsp; Visitas Por Persona </h2>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>
-                    <h4>Persona</h4>
-                </th>
-                <th>
-                    <h4>Visita</h4>
-                </th>
-                <th>
-                    <h4>Fecha</h4>
-                </th>
-                <th>
-                    <h4>Motivo</h4>
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.EnlaceVisitasPersonas)
-            {
+    <p>
+        @*<a asp-page="Create">Create New</a>*@
+    </p>
+    <div class="panel panel-default">
 
-
-
-                @if (@item.PersonaID == queryStream)
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <h4>Persona</h4>
+                    </th>
+                    <th>
+                        <h4>Visita</h4>
+                    </th>
+                    <th>
+                        <h4>Fecha</h4>
+                    </th>
+                    <th>
+                        <h4>Motivo</h4>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.EnlaceVisitasPersonas)
                 {
-                    <tr>
-                        <td>
-                            @foreach (var itemPersona in Model.Persona)
-                            {
-                                @*@Html.DisplayFor(modelItem => item.IdPerson)*@
-                                if (itemPersona.Id == item.PersonaID)
-                                {
-                                
-                                    @Html.DisplayFor(modelItem => itemPersona.Nombre)
-                                    @espacio
-                                    @Html.DisplayFor(modelItem => itemPersona.Apellidos)
-                                }
-                            }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.VisitaID)
-                        </td>
-                        <td>
-                            @foreach (var itemVisita in Model.Visita)
-                            {
-                                if (itemVisita.IdVisita == item.VisitaID)
-                                {
-                                    @Html.DisplayFor(modelItem => itemVisita.FechaVisita)
-                                    @espacio
-                                    @Html.DisplayFor(modelItem => itemVisita.Hora)
 
-                                }
-                            }
-                        </td>
-                        <td>
-                            @foreach (var itemVisita in Model.Visita)
-                            {
-                                if (itemVisita.IdVisita == item.VisitaID)
+
+
+                    @if (@item.PersonaID == queryStream)
+                    {
+                        <tr>
+                            <td>
+                                @foreach (var itemPersona in Model.Persona)
                                 {
-                                    @Html.DisplayFor(modelItem => itemVisita.Motivo)
+                                    @*@Html.DisplayFor(modelItem => item.IdPerson)*@
+                                    if (itemPersona.Id == item.PersonaID)
+                                    {
+
+                                        @Html.DisplayFor(modelItem => itemPersona.Nombre)
+                                        @espacio
+                                        @Html.DisplayFor(modelItem => itemPersona.Apellidos)
+                                    }
                                 }
-                            }
-                        </td>
-                    </tr>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VisitaID)
+                            </td>
+                            <td>
+                                @foreach (var itemVisita in Model.Visita)
+                                {
+                                    if (itemVisita.IdVisita == item.VisitaID)
+                                    {
+                                        @Html.DisplayFor(modelItem => itemVisita.FechaVisita)
+                                        @espacio
+                                        @Html.DisplayFor(modelItem => itemVisita.Hora)
+
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @foreach (var itemVisita in Model.Visita)
+                                {
+                                    if (itemVisita.IdVisita == item.VisitaID)
+                                    {
+                                        @Html.DisplayFor(modelItem => itemVisita.Motivo)
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     </div>
-<div class="row">
-    <a href="Index2"><img src="~/images/back.png" /> Volver a la Lista</a>
-</div>
+    <div class="row">
+        <a href="Index2"><img src="~/images/back.png" /> Volver a la Lista</a>
+    </div>
+}

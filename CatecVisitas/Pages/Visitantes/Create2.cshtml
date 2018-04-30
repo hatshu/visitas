@@ -1,68 +1,86 @@
 ﻿@page
 @model CatecVisitas.Pages.Visitantes.Create2Model
-
+@using Microsoft.Extensions.Options;
+@using CatecVisitas.Models;
+@inject IOptions<AppSettings> Settings
 @{
     ViewData["Title"] = "Altas";
+    var usuario = @User.Identity.Name;
+    var nombre = usuario.Split('\\');
+    var users = @Settings.Value.Users;
+    var authorized = false;
 }
 
 <br />
 <br />
 <br />
+@foreach (var item in users)
+{
+    if (nombre[1].Equals(item))
+    {
+        authorized = true;
+        break;
+    }
 
-<h2> <img src="~/images/icons8-nombre-80.png" /> &nbsp; Nuevo Visitante / New visitor</h2>
+}
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Person.Nombre" class="control-label">Nombre / Name:</label>
-                <input asp-for="Person.Nombre" class="form-control" />
-                <span asp-validation-for="Person.Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Person.Apellidos" class="control-label">Apellidos / Surname:</label>
-                <input asp-for="Person.Apellidos" class="form-control" />
-                <span asp-validation-for="Person.Apellidos" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Person.DNI" class="control-label">DNI / ID / PASSPORT NUMBER:</label>
-                <input asp-for="Person.DNI" class="form-control" />
-                <span asp-validation-for="Person.DNI" class="text-danger"></span>
-                @if (Model.validationError)
-                {
-                    <label class="text-danger"> El DNI ya existe en la base de datos</label>
+@if (authorized)
+{
 
-                }
-            </div>
-            <div class="form-group">
-                <label asp-for="Person.Empresa" class="control-label">Empresa / Company:</label>
-                <input asp-for="Person.Empresa" class="form-control" />
-                <span asp-validation-for="Person.Empresa" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-                    <label asp-for="Person.FechaAlta" class="control-label"></label>
-                    <input asp-for="Person.FechaAlta" class="form-control"  readonly="readonly" />
-                    <span asp-validation-for="Person.FechaAlta" class="text-danger"></span>
-                </div>*@
+    <h2> <img src="~/images/icons8-nombre-80.png" /> &nbsp; Nuevo Visitante / New visitor</h2>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Person.Nombre" class="control-label">Nombre / Name:</label>
+                    <input asp-for="Person.Nombre" class="form-control" />
+                    <span asp-validation-for="Person.Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Person.Apellidos" class="control-label">Apellidos / Surname:</label>
+                    <input asp-for="Person.Apellidos" class="form-control" />
+                    <span asp-validation-for="Person.Apellidos" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Person.DNI" class="control-label">DNI / ID / PASSPORT NUMBER:</label>
+                    <input asp-for="Person.DNI" class="form-control" />
+                    <span asp-validation-for="Person.DNI" class="text-danger"></span>
+                    @if (Model.validationError)
+                    {
+                        <label class="text-danger"> El DNI ya existe en la base de datos</label>
+
+                    }
+                </div>
+                <div class="form-group">
+                    <label asp-for="Person.Empresa" class="control-label">Empresa / Company:</label>
+                    <input asp-for="Person.Empresa" class="form-control" />
+                    <span asp-validation-for="Person.Empresa" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="Person.FechaAlta" class="control-label"></label>
+                        <input asp-for="Person.FechaAlta" class="form-control"  readonly="readonly" />
+                        <span asp-validation-for="Person.FechaAlta" class="text-danger"></span>
+                    </div>*@
 
 
 
 
 
-            <div class="form-group">
-                <input type="submit" value="Alta" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="form-group">
+                    <input type="submit" value="Alta" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-page="Index2"><img src="~/images/back.png" /> Volver a la Lista</a>
+    <div>
+        <a asp-page="Index2"><img src="~/images/back.png" /> Volver a la Lista</a>
 
-</div>
-
+    </div>
+}
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

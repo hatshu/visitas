@@ -1,97 +1,117 @@
 ﻿@page
 @model CatecVisitas.Pages.Visitantes.Index2Model
-
+@using Microsoft.Extensions.Options;
+@using CatecVisitas.Models;
+@inject IOptions<AppSettings> Settings
 @{
     ViewData["Title"] = "Listado de Visitantes";
+    var usuario = @User.Identity.Name;
+    var nombre = usuario.Split('\\');
+    var users = @Settings.Value.Users;
+    var authorized = false;
 }
 <br />
 <br />
 <br />
 <h2><img src="~/images/icons8-hombre-menú-de-usuario-80.png" /> &nbsp;Listado de Visitantes</h2>
+@foreach (var item in users)
+{
+    if (nombre[1].Equals(item))
+    {
+        authorized = true;
+        break;
+    }
 
+}
 <form>
+    @if (authorized)
+    {
+
     <p>
         Buscar por DNI o Empresa: &nbsp;
         <input type="text" name="searchString" />
         <input type="submit" value="Buscar" />
     </p>
-
+    }
     @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
 </form>
+
+
 <div class="panel panel-default">
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>
-                    <h4> @Html.DisplayNameFor(model => model.Person[0].Nombre)</h4>
-                </th>
-                <th>
-                    <h4> @Html.DisplayNameFor(model => model.Person[0].Apellidos)</h4>
-                </th>
-                <th>
-                    <h4> @Html.DisplayNameFor(model => model.Person[0].DNI)</h4>
-                </th>
-                <th>
-                    <h4>@Html.DisplayNameFor(model => model.Person[0].Empresa)</h4>
-                </th>
-                <th>
-                    <h4>Fecha de alta</h4>
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Person)
-            {
+    @if (authorized)
+    {
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Apellidos)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DNI)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Empresa)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaAlta)
-                    </td>
-                    <td>
-                        <a asp-page="./Edit" asp-route-id="@item.Id">@*Editar*@<img src="~/images/editUser.png"  class="icon" rel="popover" data-txt="EDITAR"/></a> |
-                        @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
-                        @*<a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |*@
-                        <a asp-page="./VisitasPorPersona" asp-route-id="@item.Id"><img src="~/images/seeVisits.png"  class="icon" rel="popover" data-txt="Ver visitas de esta persona"/>@*<spam class="glyphicon glyphicon-eye-open"></spam> Ver Visitas*@</a>
-                    </td>
+                    <th>
+                        <h4> @Html.DisplayNameFor(model => model.Person[0].Nombre)</h4>
+                    </th>
+                    <th>
+                        <h4> @Html.DisplayNameFor(model => model.Person[0].Apellidos)</h4>
+                    </th>
+                    <th>
+                        <h4> @Html.DisplayNameFor(model => model.Person[0].DNI)</h4>
+                    </th>
+                    <th>
+                        <h4>@Html.DisplayNameFor(model => model.Person[0].Empresa)</h4>
+                    </th>
+                    <th>
+                        <h4>Fecha de alta</h4>
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-
-    @section Scripts
-        {
-
-        <script>
-        $('document').ready(function () {
-
-            var popOverSettings = {
-                placement: 'top',
-                selector: '.icon',
-                //title: 'EDITAR',
-                trigger: "hover",
-                content: function () { return $(this).data('txt');}
-            };
-            $(this).popover(popOverSettings);
-        });
-        </script>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Person)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Apellidos)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DNI)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaAlta)
+                        </td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.Id">@*Editar*@<img src="~/images/editUser.png" class="icon" rel="popover" data-txt="EDITAR" /></a> |
+                            @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
+                            @*<a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |*@
+                            <a asp-page="./VisitasPorPersona" asp-route-id="@item.Id"><img src="~/images/seeVisits.png" class="icon" rel="popover" data-txt="Ver visitas de esta persona" />@*<spam class="glyphicon glyphicon-eye-open"></spam> Ver Visitas*@</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
+        @section Scripts
+            {
+
+            <script>
+                $('document').ready(function () {
+
+                    var popOverSettings = {
+                        placement: 'top',
+                        selector: '.icon',
+                        //title: 'EDITAR',
+                        trigger: "hover",
+                        content: function () { return $(this).data('txt'); }
+                    };
+                    $(this).popover(popOverSettings);
+                });
+            </script>
+        }
 
 
 
-</div>
+    </div>
 
 @{
     var prevDisabled = !Model.Person.HasPreviousPage ? "disabled" : "";
