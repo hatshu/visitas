@@ -1,16 +1,32 @@
 @page
 @model CatecVisitas.Pages.Visitas.CreateModel
-
+@using Microsoft.Extensions.Options;
+@using CatecVisitas.Models;
+@inject IOptions<AppSettings> Settings
 @{
     ViewData["Title"] = "Alta Visita";
+    var usuario = @User.Identity.Name;
+    var nombre = usuario.Split('\\');
+    var users = @Settings.Value.Users;
+    var authorized = false;
 }
 <br />
 <br />
 <br />
+@foreach (var item in users)
+{
+    if (nombre[1].Equals(item))
+    {
+        authorized = true;
+        break;
+    }
 
+}
 
+@if(authorized)
+{
 
- @*<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>*@ <h2><img src="~/images/icons8-crear-nuevo-80.png" /> Alta Visita / Add Visit</h2>
+@*<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>*@ <h2><img src="~/images/icons8-crear-nuevo-80.png" /> Alta Visita / Add Visit</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -58,12 +74,12 @@
 </div>
 
 <div>
-   
-    <a asp-page="Index"><img src="~/images/back.png" /> Volver a la Lista</a> 
+
+    <a asp-page="Index"><img src="~/images/back.png" /> Volver a la Lista</a>
 
 
 </div>
-
+}
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

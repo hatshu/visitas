@@ -1,9 +1,28 @@
 @page
 @model CatecVisitas.Pages.Visitas.DeleteModel
-
+@using Microsoft.Extensions.Options;
+@using CatecVisitas.Models;
+@inject IOptions<AppSettings> Settings
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Borrar Visita";
+    var usuario = @User.Identity.Name;
+    var nombre = usuario.Split('\\');
+    var users = @Settings.Value.Users;
+    var authorized = false;
 }
+
+@foreach (var item in users)
+{
+    if (nombre[1].Equals(item))
+    {
+        authorized = true;
+        break;
+    }
+
+}
+
+@if (authorized)
+{
 <br />
 <br />
 <br />
@@ -43,3 +62,4 @@
     <a asp-page="./Index"><img src="~/images/back.png" /> Volver a la Lista</a>
 
 </div>
+}
