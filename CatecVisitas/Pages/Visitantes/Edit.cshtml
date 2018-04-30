@@ -1,66 +1,86 @@
 @page
 @model CatecVisitas.Pages.Visitantes.EditModel
-
+@using Microsoft.Extensions.Options;
+@using CatecVisitas.Models;
+@inject IOptions<AppSettings> Settings
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
+    var usuario = @User.Identity.Name;
+    var nombre = usuario.Split('\\');
+    var users = @Settings.Value.Users;
+    var authorized = false;
 }
 
-<br />
-<br />
-<br />
-<div class="table">
-    <h2>   <img src="~/images/editUserBig.png" /> &nbsp; Editar Visitante / Edit Visitor</h2>
-</div>
+
+@foreach (var item in users)
+{
+    if (nombre[1].Equals(item))
+    {
+        authorized = true;
+        break;
+    }
+
+}
 
 
-@*<h4>Visitante</h4>*@
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Person.Id" />
-            <div class="form-group">
-                <label asp-for="Person.Nombre" class="control-label">Nombre / Name:</label>
-                <input asp-for="Person.Nombre" class="form-control" />
-                <span asp-val
-                      ation-for="Person.Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Person.Apellidos" class="control-label">Apellidos / Surname:</label>
-                <input asp-for="Person.Apellidos" class="form-control" />
-                <span asp-validation-for="Person.Apellidos" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Person.DNI" class="control-label">DNI / ID / PASSPORT NUMBER:</label>
-                <input asp-for="Person.DNI" class="form-control" />
-                <span asp-validation-for="Person.DNI" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Person.Empresa" class="control-label">Empresa / Company:</label>
-                <input asp-for="Person.Empresa" class="form-control" />
-                <span asp-validation-for="Person.Empresa" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label  class="control-label">Fecha Alta / Register Date</label>
-                <input asp-for="Person.FechaAlta" class="form-control" readonly="readonly" disabled="disabled" />
-                <span asp-validation-for="Person.FechaAlta" class="text-danger"></span>
-            </div>
-            @*//TODO: CAMBIAR ESTE BOTON*@
-            @*<div class="form-group">*@
-            <div class="form-group">
-                 <input type="submit" value="Guardar" class="btn btn-primary" />
-            </div>
-            @*<span class="glyphicon glyphicon-floppy-save"> </span>*@@*Guardar*@
-            @*</div>*@
-        </form>
+@if (authorized)
+{
+    <br />
+    <br />
+    <br />
+    <div class="table">
+        <h2>   <img src="~/images/editUserBig.png" /> &nbsp; Editar Visitante / Edit Visitor</h2>
     </div>
-</div>
 
-<div>
-    <a asp-page="./Index2"><img src="~/images/back.png" /> Volver a la Lista</a>
-</div>
 
+    @*<h4>Visitante</h4>*@
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Person.Id" />
+                <div class="form-group">
+                    <label asp-for="Person.Nombre" class="control-label">Nombre / Name:</label>
+                    <input asp-for="Person.Nombre" class="form-control" />
+                    <span asp-val
+                          ation-for="Person.Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Person.Apellidos" class="control-label">Apellidos / Surname:</label>
+                    <input asp-for="Person.Apellidos" class="form-control" />
+                    <span asp-validation-for="Person.Apellidos" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Person.DNI" class="control-label">DNI / ID / PASSPORT NUMBER:</label>
+                    <input asp-for="Person.DNI" class="form-control" />
+                    <span asp-validation-for="Person.DNI" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Person.Empresa" class="control-label">Empresa / Company:</label>
+                    <input asp-for="Person.Empresa" class="form-control" />
+                    <span asp-validation-for="Person.Empresa" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Fecha Alta / Register Date</label>
+                    <input asp-for="Person.FechaAlta" class="form-control" readonly="readonly" disabled="disabled" />
+                    <span asp-validation-for="Person.FechaAlta" class="text-danger"></span>
+                </div>
+                @*//TODO: CAMBIAR ESTE BOTON*@
+                @*<div class="form-group">*@
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                </div>
+                @*<span class="glyphicon glyphicon-floppy-save"> </span>*@@*Guardar*@
+                @*</div>*@
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-page="./Index2"><img src="~/images/back.png" /> Volver a la Lista</a>
+    </div>
+}
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
