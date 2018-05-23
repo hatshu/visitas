@@ -52,7 +52,7 @@
                     <li><a asp-page="/Index"> <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
                     @foreach (var item in users)
                     {
-                        if (nombre[1].Equals(item))
+                        if (usuario.Equals(item))
                         {
                             authorized = true;
                             break;
