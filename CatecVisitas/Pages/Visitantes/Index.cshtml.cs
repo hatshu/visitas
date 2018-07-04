@@ -67,7 +67,8 @@ namespace CatecVisitas.Pages.Visitantes
             if (!String.IsNullOrEmpty(searchString))
             {
 
-                var persona = personaIQNombreApellido.Where(s => s.Empresa.Contains(searchString) || s.DNI.Equals(searchString));
+                //var persona = personaIQNombreApellido.Where(s => s.Empresa.Contains(searchString) || s.DNI.Equals(searchString));
+                var persona = personaIQNombreApellido.Where(s => s.DNI.Equals(searchString));
                 Person = await persona.ToListAsync();
                 var visit = Request.QueryString.ToString();
                 //TODO: trabajar con visit para sacar todas las variables
