@@ -9,3 +9,4 @@ CatecVisitas/bin/Debug/*
 .vs/config/applicationhost.config
 CatecVisitas/bin/Release/*
 CatecVisitas/Pages/Visitantes/Index.cshtml.orig
+.vs/CatecVisitas/v14/.suo
