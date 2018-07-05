@@ -66,12 +66,14 @@
 
     <div class="alert alert-info text-info">
         <p>
-            <span class="glyphicon glyphicon-comment fa-2x"></span>  &nbsp;  Si el visitante no ha estado antes en Catec: <a asp-page="Create" asp-route-idVisita="@Model.Visitita">  <strong style="font-size:large"> <img src="~/images/add.png" />  Alta de Nuevo Visitante </strong> </a>
+            <span class="glyphicon glyphicon-comment fa-2x"></span>  &nbsp;  Si el visitante no ha estado antes en Catec \ If the visitor has not been to Catec before: <a asp-page="Create" asp-route-idVisita="@Model.Visitita">  <strong style="font-size:large"> <img src="~/images/add.png" />  Nuevo Visitante / New Visitor</strong> </a>
         </p>
     </div>
 
     <p>
-        <h2>Integrantes de la visita:</h2>
+        <h3>
+            Integrantes de la visita \ Members of the visit:
+        </h3>
     </p>
     <div class="panel panel-default">
         <div class="panel-body">
@@ -112,24 +114,28 @@
 }
 
 
-<form>
-    @if (authorized)
+    <form>
+        @if (authorized)
     {
-        <br />
-        <div class="alert alert-info">
+        <div class="alert alert-info text-info">
             <p>
-                <span class="glyphicon glyphicon-search"></span> &nbsp; Buscar por DNI:  <input type="text" name="SearchString" />
+                <span class="glyphicon glyphicon-comment fa-2x"></span>  &nbsp;  Si el visitante ha estado antes en Catec puedes usar el buscador \ If the visitor has been in catec before you can use the search engine:
+            </p>
+        </div>
+        <div >
+            <p>
+                <span class="glyphicon glyphicon-search"></span> &nbsp; DNI / ID / PASSPORT:  <input type="text" name="SearchString" />
                 <input type="hidden" name="idVisita" value="@queryStream" />
                 @*<input type="submit" value="Buscar"  />*@
                 <button class="btn btn-primary" type="submit">
-                    @*<span class="glyphicon glyphicon-search"></span > &nbsp;*@ Buscar
+                    @*<span class="glyphicon glyphicon-search"></span > &nbsp;*@ Buscar / Find
                 </button>
             </p>
         </div>
 
         @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
-    }
-</form>
+}
+    </form>
 <div class="panel panel-default">
 
     @if (authorized)
@@ -190,7 +196,7 @@
                                 @*<a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.Id" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a> |*@
 
                                 <a href="#my_modal" data-toggle="modal" data-book-id="@item.Id" data-person-id="@item.Nombre" data-apellidos-id="@item.Apellidos">
-                                    @*<span class="glyphicon glyphicon-plus-sign"></span>*@ <img src="~/images/add.png" class="icon" rel="popover" data-txt="AGREGAR" />
+                                    @*<span class="glyphicon glyphicon-plus-sign"></span>*@ <img src="~/images/add.png" class="icon" rel="popover" data-txt="AGREGAR / ADD" />
                                 </a>
                             </td>
                         </tr>
@@ -244,7 +250,7 @@
 
 <div class="col-lg-offset-10">
     <div class="btn btn-primary">
-        <a href="../Visitas/Index" style="color:white"><div style="font-weight:200"><img src="~/images/icons-eliminar-30 .png" style="max-height:20px" /> &nbsp;Terminar de a&ntilde;adir</div></a>
+        <a href="../Visitas/Index" style="color:white"><div style="font-weight:200"><img src="~/images/icons-eliminar-30 .png" style="max-height:20px" /> &nbsp;Terminar de a&ntilde;adir / Finish</div></a>
     </div>
 </div>
 
