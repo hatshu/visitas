@@ -13,13 +13,13 @@
     var nombre = usuario.Split('\\');
     var users = @Settings.Value.Users;
     var authorized = false;
-   
+    var aceptoTratamientoDatos = false;
+    var aceptoConfidencialidad = false;
 }
 
 <br />
 <br />
 <br />
-
 
 
 @foreach (var item in users)
@@ -32,70 +32,200 @@
 
 }
 
-    @if (authorized)
-    {
-        <h2>
-            <img src="~/images/icons8-nombre-80.png" /> &nbsp; Nuevo Visitante / New visitor
-        </h2>
+@if (authorized)
+{
+    <h2>
+        <img src="~/images/icons8-nombre-80.png" /> &nbsp; Nuevo Visitante / New visitor
+    </h2>
 
 
 
-        <hr />
-        <div class="row">
-            <div class="col-md-4">
-                <form method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Person.Nombre" class="control-label">Nombre / Name:</label>
-                        <input asp-for="Person.Nombre" class="form-control" />
-                        <span asp-validation-for="Person.Nombre" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Person.Apellidos" class="control-label">Apellidos / Surname:</label>
-                        <input asp-for="Person.Apellidos" class="form-control" />
-                        <span asp-validation-for="Person.Apellidos" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Person.DNI" class="control-label">DNI / ID / PASSPORT NUMBER:</label>
-                        <input asp-for="Person.DNI" class="form-control" />
-                        <span asp-validation-for="Person.DNI" class="text-danger"></span>
-                        @if (Model.validationError)
-                        {
-                            <label class="text-danger"> El DNI ya existe en la base de datos</label>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Person.Nombre" class="control-label">Nombre / Name:</label>
+                    <input asp-for="Person.Nombre" class="form-control" />
+                    <span asp-validation-for="Person.Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Person.Apellidos" class="control-label">Apellidos / Surname:</label>
+                    <input asp-for="Person.Apellidos" class="form-control" />
+                    <span asp-validation-for="Person.Apellidos" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Person.DNI" class="control-label">DNI / ID / PASSPORT NUMBER:</label>
+                    <input asp-for="Person.DNI" class="form-control" />
+                    <span asp-validation-for="Person.DNI" class="text-danger"></span>
+                    @if (Model.validationError)
+                    {
+                        <label class="text-danger"> El DNI ya existe en la base de datos</label>
 
-                        }
+                    }
 
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Person.Empresa" class="control-label">Empresa / Company:</label>
-                        <input asp-for="Person.Empresa" class="form-control" />
-                        <span asp-validation-for="Person.Empresa" class="text-danger"></span>
-                    </div>
-                    @*<div class="form-group">
-                            <label asp-for="Person.FechaAlta" class="control-label"></label>
-                            <input asp-for="Person.FechaAlta" class="form-control"  readonly="readonly" />
-                            <span asp-validation-for="Person.FechaAlta" class="text-danger"></span>
-                        </div>*@
-                    @*<div class="form-group">
-                            <input type="hidden" asp-for="EnlaceVisitaPersona.PersonaID" />
-                            <input   type="hidden"  asp-for="EnlaceVisitaPersona.VisitaID" />
-                        </div>*@
+                </div>
+                <div class="form-group">
+                    <label asp-for="Person.Empresa" class="control-label">Empresa / Company:</label>
+                    <input asp-for="Person.Empresa" class="form-control" />
+                    <span asp-validation-for="Person.Empresa" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="Person.FechaAlta" class="control-label"></label>
+                        <input asp-for="Person.FechaAlta" class="form-control"  readonly="readonly" />
+                        <span asp-validation-for="Person.FechaAlta" class="text-danger"></span>
+                    </div>*@
+                @*<div class="form-group">
+                        <input type="hidden" asp-for="EnlaceVisitaPersona.PersonaID" />
+                        <input   type="hidden"  asp-for="EnlaceVisitaPersona.VisitaID" />
+                    </div>*@
 
 
 
-                    <div class="form-group">
+                <div class="form-group">
 
-                        <input type="submit" value="Alta" class="btn btn-primary" />
-                    </div>
-                </form>
-            </div>
+                    <input type="submit" value="Alta" class="btn btn-primary" />
+                </div>
+            </form>
         </div>
-    }
+    </div>
+    <br />
+    <div class="form-check">
+        <input type="checkbox" class="big-checkbox"  id="checkConsentimiento">
+        <a href="#myModal" data-toggle="modal" data-target="#myModal">
+            CONSENTIMIENTO PARA EL TRATAMIENTO DE DATOS PERSONALES / CONSENT FOR PROCESSING PERSONAL DATA
+        </a>
+    </div>
+
+}
+<br />
+<br />
 
 <div>
     <a asp-page="Index" asp-route-idVisita="@IDVisita">@*Volver a la lista*@ <img src="~/images/back.png" /> Volver a la Lista</a>
 </div>
 
-@section Scripts {
+
+
+@section Scripts
+    {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $('#myModal').on('show.bs.modal', function (e) {
+            //alert('hola');
+        });
+    </script>
+    <script>
+        $('document').ready(function () {
+
+            var popOverSettings = {
+                placement: 'top',
+                selector: '.icon',
+                //title: 'EDITAR',
+                trigger: "hover",
+                content: function () { return $(this).data('txt'); }
+            };
+            $(this).popover(popOverSettings);
+        });
+    </script>
 }
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel"><b>CONSENTIMIENTO PARA EL TRATAMIENTO DE DATOS PERSONALES</b></h4>
+                </div>*@
+            <div class="modal-body">
+
+                <input type="hidden" id="bookId" name="bookId" value="" readonly="readonly" />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4><b>CONSENTIMIENTO PARA EL TRATAMIENTO DE DATOS PERSONALES</b></h4>
+                        <b>Fundaci&oacute;n Andaluza para el Desarrollo Aeroespacial</b> es el Responsable del tratamiento de los datos personales del Usuario y le informa que estos datos ser&aacute;n tratados de conformidad con lo dispuesto en el Reglamento (UE) 2016/679 de 27 de abril de 2016 (GDPR), por lo que se le facilita la siguiente informaci&oacute;n del tratamiento:
+                        <br />
+                        <br />
+                        <b>Fin del tratamiento: </b>mantener una relaci&oacute;n comercial y  el env&iacute;o de comunicaciones sobre nuestros productos y servicios.
+                        <br />
+                        <br />
+                        <b>Criterios de conservaci&oacute;n de los datos:</b> se conservar&aacute;n mientras exista un inter&eacute;s mutuo para mantener el fin del tratamiento y cuando ya no sea necesario para tal fin,se suprimir&aacute;n con medidas de seguridad adecuadas para garantizar la seudonimizaci&oacute;n de los datos o la destrucci&oacute;n total de los mismos.
+                        <br />
+                        <br />
+                        <b>Comunicaci&oacute;n de los datos:</b> No se comunicar&aacute;n los datos a terceros, salvo obligaci&oacute;n legal.
+                        <br />
+                        <br />
+                        <b>Derechos que asisten al Usuario:</b>
+
+                        <ul>
+                            <li>
+                                Derecho a retirar el consentimiento en cualquier momento.
+                            </li>
+                            <li>
+                                Derecho de acceso, rectificaci&oacute;n, portabilidad y supresi&oacute;n de sus datos y a la limitaci&oacute;n u oposici&oacute;n al su tratamiento.
+                            </li>
+                            <li>
+                                Derecho a presentar una reclamaci&oacute;n ante la Autoridad de control (agpd.es) si considera que el tratamiento no se ajusta a la normativa vigente.
+                            </li>
+                        </ul>
+
+                        <b>Datos de contacto para ejercer sus derechos:</b> <br />
+                        Direcci&oacute;n postal: Fundaci&oacute;n Andaluza para el Desarrollo Aeroespacial. Parq. Tecnol&oacute;gico Aeron&aacute;utico de Andaluc&iacute;a. Calle Wilbur y Orville Wright, 19 41309 La Rinconada (SEVILLA). Email: info&#64;catec.aero
+                        <br />
+                        <br />
+                        <hr />
+                        <h4> <b>CONSENT FOR PROCESSING PERSONAL DATA</b></h4>
+                        <b>Andalusian Foundation for Aerospace Development</b> is the Controller for processing the User&apos;s personal data and informs them that this data will be processed in accordance with the provisions of Regulation (EU) 2016/679 of 27 April 2016 (GDPR), and therefore the following processing information is provided:
+                        <br />
+                        <br />
+                        <b>Purpose of processing:</b> maintain a commercial relationship and send communications about our products and services.
+                        <br />
+                        <br />
+                        <b>Data retention criteria:</b> data shall be retained while there is a mutual interest in maintaining the purpose of processing and when such purpose is no longer necessary, the data shall be deleted with the appropriate security measures to ensure the pseudonymisation or the complete destruction of them.
+                        <br />
+                        <br />
+                        <b>Data communication:</b> The data will not be disclosed to third parties, unless legally obliged to do so.
+                        <br />
+                        <br />
+                        <b>Rights of the User:</b>
+
+                        <ul>
+                            <li>
+                                Right to withdraw consent at any time.
+                            </li>
+                            <li>
+                                Right of access, rectification, portability and erasure of data and the limitation or opposition to their processing.
+                            </li>
+                            <li>
+                                If you consider that the data processing does not comply with current legislation, you are entitled to file a complaint with the supervisory authority at www.agpd.es.
+                            </li>
+                        </ul>
+
+
+                        <b>Contact information to exercise your rights:</b>
+                        <br />
+                        Postal address: Andalusian Foundation for Aerospace Development. Parq. Tecnol&oacute;gico Aeron&aacute;utico de Andaluc&iacute;a. C/ Wilbur y Orville Wright, 19 41309 La Rinconada (SEVILLA). Email: info@catec.aero
+                    </div>
+                    <br />
+
+                </div>
+            </div>
+
+            @*<button class="btn-link" type="submit" style="height:auto">
+                    <span class="glyphicon glyphicon-ok-circle"></span>
+                </button>*@
+
+            @*<a asp-page="../Visitantes/Index" asp-route-idVisita="@Model.Visitita"> <span class="glyphicon glyphicon-remove-circle" style="font-stretch:extra-expanded"></span></a>*@
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+    </div>

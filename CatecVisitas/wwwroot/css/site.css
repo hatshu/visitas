@@ -44,3 +44,8 @@ hr.style6 {
    background-color: #fff;
    border-top: 2px dotted #8c8b8b;
 }
+
+.big-checkbox {
+    width: 20px;
+    height: 20px;
+}
