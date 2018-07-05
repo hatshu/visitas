@@ -84,17 +84,21 @@
 
 
                 <div class="form-group">
-
-                    <input type="submit" value="Alta" class="btn btn-primary" />
+                    <input type="submit" id="txtPassportNumber" value="Enviar/Submit" class="btn btn-primary" disabled />
                 </div>
             </form>
         </div>
     </div>
     <br />
     <div class="form-check">
-        <input type="checkbox" class="big-checkbox"  id="checkConsentimiento">
-        <a href="#myModal" data-toggle="modal" data-target="#myModal">
+        <input type="checkbox" class="big-checkbox" id="chkPassport" onclick="EnableDisableTextBox(this)">
+        <a href="#consentimiento" data-toggle="modal" data-target="#consentimiento">
             CONSENTIMIENTO PARA EL TRATAMIENTO DE DATOS PERSONALES / CONSENT FOR PROCESSING PERSONAL DATA
+        </a>
+        <br />
+        <input type="checkbox" class="big-checkbox" id="chkPassport2" onclick="EnableDisableTextBox(this)">
+        <a href="#confidencialidad" data-toggle="modal" data-target="#confidencialidad">
+            VISITOR CONFIDENTIALITY AGREEMENT/ VISITOR CONFIDENTIALITY AGREEMENT
         </a>
     </div>
 
@@ -129,9 +133,18 @@
             $(this).popover(popOverSettings);
         });
     </script>
+    <script type="text/javascript">
+        function EnableDisableTextBox(chkPassport) {
+            var txtPassportNumber = document.getElementById("txtPassportNumber");
+            txtPassportNumber.disabled = chkPassport.checked ? false : true;
+            //if (!txtPassportNumber.disabled) {
+            //    txtPassportNumber.focus();
+            //}
+        }
+    </script>
 }
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="consentimiento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             @*<div class="modal-header">
@@ -228,4 +241,93 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="confidencialidad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel"><b>CONSENTIMIENTO PARA EL TRATAMIENTO DE DATOS PERSONALES</b></h4>
+                </div>*@
+            <div class="modal-body">
+
+                <input type="hidden" id="bookId" name="bookId" value="" readonly="readonly" />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4><b>ACUERDO DE CONFIDENCIALIDAD DEL VISITANTE</b></h4>
+                        Acepto y entiendo que las tecnolog&iacute;as y la informaci&oacute;n exhibidas en las instalaciones de Fundaci&oacute;n Andaluza para el Desarrollo Aeroespacial son confidenciales. Para poder acceder a las instalaciones de Fundaci&oacute;n Andaluza para el Desarrollo Aeroespacial, acepto:
+                        <ul>
+                            <li>
+                                1. Que toda la informaci&oacute;n que haya visto, obtenido o mostrado durante mi visita a las instalaciones de Fundaci&oacute;n Andaluza para el Desarrollo Aeroespacial es propiedad de Fundaci&oacute;n Andaluza para el Desarrollo Aeroespacial y es confidencial,
+                            </li>
+                            <li>
+                                2. No utilizar&eacute; dicha informaci&oacute;n confidencial para ning&uacute;n otro prop&oacute;sito que no sea mi visita a las instalaciones de Fundaci&oacute;n Andaluza para el Desarrollo Aeroespacial, y
+                            </li>
+                            <li>
+                                3. No divulgar&eacute; esta informaci&oacute;n confidencial a ninguna otra persona.
+                            </li>
+                        </ul>
+                        Tambi&eacute;n estoy de acuerdo en que no tomar&eacute; fotograf&iacute;as ni har&eacute; grabaciones de audio y / o video durante mi visita.
+                        <br />
+                        <br />
+                        Se entender&aacute; por "informaci&oacute;n confidencial" toda informaci&oacute;n relativa a una persona f&iacute;sica identificada o identificable por la cual pueda determinarse, directa o indirectamente su identidad, sea mediante identificador, nombre, n&uacute;mero, localizaci&oacute;n o elementos propios de la identidad f&iacute;sica, fisiol&oacute;gica, gen&eacute;tica, ps&iacute;quica, econ&oacute;mica, cultural o social de dicha persona.
+                        <br />
+                        <br />
+                        Que Fundaci&oacute;n Andaluza para el Desarrollo Aeroespacial es Responsable del tratamiento de datos personales objetos de este acuerdo conforme lo dispuesto en el Reglamento (UE) 2016/679 de 27 de abril de 2016 (GDPR).
+                        <br />
+                        <br />
+                        En el caso de que la PERSONA VISITANTE tuviese acceso a datos personales de manera accidental o fortuita, se comprometer&aacute; a no revelar, transferir, ceder o de cualquier otra forma comunicar dichos datos, bajo ning&uacute;n concepto o circunstancia, ya sea verbalmente o por escrito, por medios electr&oacute;nicos, papel o mediante acceso inform&aacute;tico, ni siquiera para su conservaci&oacute;n a terceros.
+                        <br />
+                        <br />
+                        La informaci&oacute;n antes referida incluye tambi&eacute;n los secretos comerciales establecidos en la Directiva (UE) 2016/943 de 8 de junio de 2016 relativa a la protecci&oacute;n de los conocimientos t&eacute;cnicos y la informaci&oacute;n empresarial no divulgados contra su obtenci&oacute;n, utilizaci&oacute;n y revelaci&oacute;n il&iacute;citas, abarcando los siguientes tipos de informaci&oacute;n (conste por escrito o no), sin que la presente enumeraci&oacute;n excluya otras clases de informaciones tambi&eacute;n confidenciales: t&eacute;cnicas, programas de formaci&oacute;n, test, investigaci&oacute;n y desarrollo, ideas, invenciones, conceptos, anotaciones, esquemas, diseños, dibujos, organigramas, memor&aacute;ndums, procesos, procedimientos, "know-how", f&oacute;rmulas, datos, programas y aplicaciones inform&aacute;ticas, mejoras, descubrimientos, conocimientos de cualquier clase puestos a disposici&oacute;n de la PERSONA, materiales de referencia, materiales y t&eacute;cnicas de marketing, planes de investigaci&oacute;n y desarrollo, marketing, nuevos productos, nombres de clientes, canales de comercializaci&oacute;n, secretos comerciales y cualquier otra informaci&oacute;n relacionada con clientes y proveedores, listas de precios, pol&iacute;ticas de precios, pol&iacute;tica de ventas, informaci&oacute;n financiera, presupuestos, plantillas y m&eacute;todos de gesti&oacute;n y contabilidad, as&iacute; como los derechos, t&iacute;tulos e intereses que pudiera alegar sobre las invenciones, patentables o no, realizadas u obtenidas por la PERSONA durante la vigencia de su contrato.
+
+                        <hr />
+                        <h4> <b>VISITOR CONFIDENTIALITY AGREEMENT</b></h4>
+                        I accept and understand that the technologies and information displayed at the facilities of Andalusian Foundation for Aerospace Development are confidential. In order to access the facilities of Andalusian Foundation for Aerospace Development, I accept:
+                        <br />
+                        <br />
+                        <ul>
+                            <li>
+                                1. That all information that I have seen, obtained or been shown during my visit to the facilities of Andalusian Foundation for Aerospace Development is property of Andalusian Foundation for Aerospace Development and is confidential,
+                            </li>
+                            <li>
+                                2. I will not use such confidential information for any purpose other than my visit to the premises of Andalusian Foundation for Aerospace Development, and
+                            </li>
+                            <li>
+                                3. I will not disclose this confidential information to any other person. I also agree that I will not take photographs or record audios and/or videos during my visit.
+                            </li>
+                        </ul>
+                        "Confidential information" shall mean any information relating to an identified or identifiable natural person which can be used to establish, directly or indirectly, the identity of that person, whether by reference to an identifier, name, number, location or elements of their physical, physiological, genetic, psychological, economic, cultural or social identity.
+                        <br />
+                        <br />
+                        That Andalusian Foundation for Aerospace Development is the Controller responsible for personal data processing, the purpose of this contract in compliance with the provisions of Regulation (EU) 2016/679 of 27 April 2016 (GDPR).
+                        <br />
+                        <br />
+                        In the event that the VISITOR has access to personal data in an accidental or fortuitous manner, the VISITOR undertakes not to disclose, transfer, assign or any other form of communicating such data, under any circumstances, either verbally or in writing, by electronic means, paper or by computer access, not even for the purposes of its retention to third parties.
+                        <br />
+                        <br />
+                        The information referred to above includes as well the trade secrets established in the Directive (EU) 2016/943 of 8 June 2016 on the protection of undisclosed know-how and business information (trade secrets) against their unlawful acquisition, use and disclosure, including the following types of information (whether or not in writing), but not excluding other types of information which are also confidential: techniques, training programmes, testing, research and development, ideas, inventions, concepts, notes, diagrams, designs, drawings, organisation charts, memoranda, processes, procedures, know-how, formulas, data, computer software and applications, improvements, discoveries, knowledge of any kind made available to the PERSON, reference materials, marketing materials and techniques, research and development plans, marketing, new products, customer names, marketing channels, trade secrets and any other information relating to customers and suppliers, price lists, pricing policies, sales policy, financial information, budgets, templates and management and accounting methods, as well as any rights, titles and interests that may be claimed in respect to inventions, whether patentable or not, made or obtained by the USER during the term of the contract.
+                        <br />
+
+                    </div>
+                    <br />
+
+                </div>
+            </div>
+
+            @*<button class="btn-link" type="submit" style="height:auto">
+                    <span class="glyphicon glyphicon-ok-circle"></span>
+                </button>*@
+
+            @*<a asp-page="../Visitantes/Index" asp-route-idVisita="@Model.Visitita"> <span class="glyphicon glyphicon-remove-circle" style="font-stretch:extra-expanded"></span></a>*@
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
     </div>
+</div>
