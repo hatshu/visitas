@@ -66,7 +66,7 @@
 
     <div class="alert alert-info text-info">
         <p>
-            <span class="glyphicon glyphicon-comment fa-2x"></span>  &nbsp;  Si el visitante no ha estado antes en Catec \ If the visitor has not been to Catec before: <a asp-page="Create" asp-route-idVisita="@Model.Visitita">  <strong style="font-size:large"> <img src="~/images/add.png" />  Nuevo Visitante / New Visitor</strong> </a>
+            <span class="glyphicon glyphicon-comment fa-2x"></span>  &nbsp;  Si el visitante no ha estado antes en Catec / If the visitor has not been to Catec before: <a asp-page="Create" asp-route-idVisita="@Model.Visitita">  <strong style="font-size:large"> <img src="~/images/add.png" />  Nuevo Visitante / New Visitor</strong> </a>
         </p>
     </div>
 
@@ -119,17 +119,19 @@
     {
         <div class="alert alert-info text-info">
             <p>
-                <span class="glyphicon glyphicon-comment fa-2x"></span>  &nbsp;  Si el visitante ha estado antes en Catec puedes usar el buscador \ If the visitor has been in catec before you can use the search engine:
+                <span class="glyphicon glyphicon-comment fa-2x"></span>  &nbsp;  Si el visitante ha estado antes en Catec puedes usar el buscador / If the visitor has been in catec before you can use the search engine:
             </p>
         </div>
         <div >
             <p>
-                <span class="glyphicon glyphicon-search"></span> &nbsp; DNI / ID / PASSPORT:  <input type="text" name="SearchString" />
-                <input type="hidden" name="idVisita" value="@queryStream" />
-                @*<input type="submit" value="Buscar"  />*@
-                <button class="btn btn-primary" type="submit">
-                    @*<span class="glyphicon glyphicon-search"></span > &nbsp;*@ Buscar / Find
-                </button>
+                <h4>
+                    <span class="glyphicon glyphicon-search"></span> &nbsp;  DNI / ID / PASSPORT:  <input type="text" name="SearchString" />
+                    <input type="hidden" name="idVisita" value="@queryStream" />
+                    @*<input type="submit" value="Buscar"  />*@
+                    <button class="btn btn-primary" type="submit">
+                        @*<span class="glyphicon glyphicon-search"></span > &nbsp;*@ Buscar / Find
+                    </button>
+                </h4>
             </p>
         </div>
 
