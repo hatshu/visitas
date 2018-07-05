@@ -84,19 +84,19 @@
 
 
                 <div class="form-group">
-                    <input type="submit" id="txtPassportNumber" value="Enviar/Submit" class="btn btn-primary" disabled />
+                    <input type="submit" id="buttonID" value="Enviar/Submit" class="btn btn-primary" disabled />
                 </div>
             </form>
         </div>
     </div>
     <br />
     <div class="form-check">
-        <input type="checkbox" class="big-checkbox" id="chkPassport" onclick="EnableDisableTextBox(this)">
+        <input type="checkbox" class="big-checkbox" id="chkPassport">
         <a href="#consentimiento" data-toggle="modal" data-target="#consentimiento">
             CONSENTIMIENTO PARA EL TRATAMIENTO DE DATOS PERSONALES / CONSENT FOR PROCESSING PERSONAL DATA
         </a>
         <br />
-        <input type="checkbox" class="big-checkbox" id="chkPassport2" onclick="EnableDisableTextBox(this)">
+        <input type="checkbox" class="big-checkbox" id="chkPassport2">
         <a href="#confidencialidad" data-toggle="modal" data-target="#confidencialidad">
             VISITOR CONFIDENTIALITY AGREEMENT/ VISITOR CONFIDENTIALITY AGREEMENT
         </a>
@@ -134,13 +134,14 @@
         });
     </script>
     <script type="text/javascript">
-        function EnableDisableTextBox(chkPassport) {
-            var txtPassportNumber = document.getElementById("txtPassportNumber");
-            txtPassportNumber.disabled = chkPassport.checked ? false : true;
-            //if (!txtPassportNumber.disabled) {
-            //    txtPassportNumber.focus();
-            //}
-        }
+        $(".big-checkbox").on("click", function () {
+            if ($(".big-checkbox:checked").length > 1) {
+                $('#buttonID').prop('disabled', false);
+            }
+            else {
+                $('#buttonID').prop('disabled', true);
+            }
+        });
     </script>
 }
 
