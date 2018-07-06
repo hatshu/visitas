@@ -16,7 +16,7 @@
 
 
 <div class="jumbotron text-center" style="background: transparent">
-    <h1>Aplicación de control de Visitas</h1>
+    <h1>Libro de Visitas / Guestbook</h1>
     <p></p>
 </div>
 @*@users = @Settings.Value.Users;*@
@@ -32,9 +32,9 @@
 }
 
 @*@if (usuario.Equals("bmartin"))*@
-    @if (authorized)
-    {
-        <div class="row">
+@if (authorized)
+{
+    @*<div class="row">
             <div class="col-sm-6">
 
                 <div class="thumbnail">
@@ -56,11 +56,25 @@
                 <div class="row">
                     <img src="~/images/catecLogo.png" style="width:100%" />
                 </div>
-                @*<div class="col-sm-4">
-                       <h3>Column 3 CATEC</h3>
-                       <p>Lorem ipsum dolor..</p>
-                       <p>Ut enim ad..</p>
-                    </div>*@
             </div>
+        </div>*@
+
+<div class="container">
+
+       
+        <a asp-page="/Visitas/Create">
+            <div class="text-info">
+                <p align="center" style="text-size-adjust:auto">A&ntilde;adir Visita / Add Visit</p>
+            </div>
+            <div class="text-center">
+                <img src="images/trabajoequipo.svg" alt="Add New Visit"  style="width:30%">
+            </div>
+        </a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <img src="~/images/catecLogo.png" style="width:100%" />
         </div>
+    </div>
+
     }
