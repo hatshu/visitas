@@ -11,70 +11,70 @@
     var authorized = false;
 }
 <br />
-<br />
 
+<div class="contenedorEspecial">
 
+    <div class="jumbotron text-center" style="background: transparent">
+        <h1>Libro de Visitas / Guestbook</h1>
 
-<div class="jumbotron text-center" style="background: transparent">
-    <h1>Libro de Visitas / Guestbook</h1>
-    <p></p>
-</div>
-@*@users = @Settings.Value.Users;*@
+    </div>
+    @*@users = @Settings.Value.Users;*@
 
-@foreach (var item in users)
-{
-    if (usuario.Equals(item))
+    @foreach (var item in users)
     {
-        authorized = true;
-        break;
+        if (usuario.Equals(item))
+        {
+            authorized = true;
+            break;
+        }
+
     }
 
-}
+    @*@if (usuario.Equals("bmartin"))*@
+    @if (authorized)
+    {
+        @*<div class="row">
+                <div class="col-sm-6">
 
-@*@if (usuario.Equals("bmartin"))*@
-@if (authorized)
-{
-    @*<div class="row">
-            <div class="col-sm-6">
-
-                <div class="thumbnail">
-                    <h4 align="center">A&ntilde;adir Visita</h4>
-                    <p align="center"></p>
-                    <a asp-page="/Visitas/Create"> <img src="images/trabajo-en-equipo.svg" alt="..." class="img-thumbnail" style="width: 40%; background: transparent;border: transparent"></a>
+                    <div class="thumbnail">
+                        <h4 align="center">A&ntilde;adir Visita</h4>
+                        <p align="center"></p>
+                        <a asp-page="/Visitas/Create"> <img src="images/trabajo-en-equipo.svg" alt="..." class="img-thumbnail" style="width: 40%; background: transparent;border: transparent"></a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-6">
+                <div class="col-sm-6">
 
-                <div class="thumbnail">
-                    <h4 align="center">Listado de Visitas</h4>
-                    <p align="center"></p>
-                    <a asp-page="/Visitas/Index"> <img src="images/la-busqueda-de-empleo.svg" alt="..." class="img-thumbnail" style="width: 40%; background: transparent;border: transparent"></a>
+                    <div class="thumbnail">
+                        <h4 align="center">Listado de Visitas</h4>
+                        <p align="center"></p>
+                        <a asp-page="/Visitas/Index"> <img src="images/la-busqueda-de-empleo.svg" alt="..." class="img-thumbnail" style="width: 40%; background: transparent;border: transparent"></a>
 
+                    </div>
                 </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <img src="~/images/catecLogo.png" style="width:100%" />
+                <div class="container">
+                    <div class="row">
+                        <img src="~/images/catecLogo.png" style="width:100%" />
+                    </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
 
-<div class="container">
 
-       
+
+
         <a asp-page="/Visitas/Create">
             <div class="text-info">
                 <p align="center" style="text-size-adjust:auto">A&ntilde;adir Visita / Add Visit</p>
             </div>
             <div class="text-center">
-                <img src="images/trabajoequipo.svg" alt="Add New Visit"  style="width:30%">
+                <img src="images/trabajoequipo.svg" alt="Add New Visit" style="width:24%">
             </div>
         </a>
-    </div>
-    <div class="container">
-        <div class="row">
-            <img src="~/images/catecLogo.png" style="width:100%" />
-        </div>
-    </div>
+
+     
+            <div class="row">
+                <img src="~/images/catecLogo.png" style="width:100%" />
+            </div>
+     
 
     }
+</div>
