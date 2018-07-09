@@ -7,9 +7,11 @@
     var nombre = usuario.Split('\\');
     var users = @Settings.Value.Users;
     var authorized = false;
+    //USUARIOS NORMALES QUE NO PUEDEN VER LA LISTA DE VISITANTES EN LA BARRA DE NAVEGACION
+    var usuarioRecepcion1 = "CATEC\\aux_recepcion";
+    var usuarioRecepcion2 = "HWPC0044\\recepcion";
 
 }
-
 
 <!DOCTYPE html>
 <html>
@@ -39,53 +41,57 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-                <div class="navbar-header ">   <a asp-page="/Index"><img src="~/images/fadawhite.png" /></a>&nbsp;&nbsp;&nbsp;  <a asp-page="/Index"><img src="~/images/catecwhite.png" /></a></div> 
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-header ">   <a asp-page="/Index"><img src="~/images/fadawhite.png" /></a>&nbsp;&nbsp;&nbsp;  <a asp-page="/Index"><img src="~/images/catecwhite.png" /></a></div>
                 @*<a asp-page="/Index" class="navbar-brand">CATEC</a>*@
             </div>
- 
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-page="/Index"> <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
                     @foreach (var item in users)
-            {
-                if (usuario.Equals(item))
-                {
-                    authorized = true;
-                    break;
-                }
+                    {
+                        if (usuario.Equals(item))
+                        {
+                            authorized = true;
+                            break;
+                        }
 
-            }
+                    }
                     @if (authorized)
-            {
-                <li class="dropdown">
+                    {
+                        <li class="dropdown">
 
 
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Visitas <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a asp-page="/Visitas/Index"><span class="glyphicon glyphicon-list"></span>&nbsp;Listado de Visitas</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Alta</li>
-                        <li><a asp-page="/Visitas/Create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir nueva visita</a></li>
-                    </ul>
-                </li>
-                @*<li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Visitantes <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a asp-page="/Visitantes/Index2"><span class="glyphicon glyphicon-list"></span>&nbsp;Listado de Visitantes</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header">Alta</li>
-                    <li><a asp-page="/Visitantes/Create2"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir nuevo visitante</a></li>
-                </ul>
-            </li>*@
-                @*<li><a asp-page="/Visitantes/Index">Listado de Visitantes</a></li>*@
-                @*<li><a asp-page="/About">Listado de Autorizados</a></li>
-            <li><a asp-page="/Contact">Contacto</a></li>*@
-    }
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Visitas <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-page="/Visitas/Index"><span class="glyphicon glyphicon-list"></span>&nbsp;Listado de Visitas</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Alta</li>
+                                <li><a asp-page="/Visitas/Create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir nueva visita</a></li>
+                            </ul>
+                        </li>
+                        @if (!usuario.Equals(usuarioRecepcion1) && !usuario.Equals(usuarioRecepcion2))
+                        {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Visitantes <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-page="/Visitantes/Index2"><span class="glyphicon glyphicon-list"></span>&nbsp;Listado de Visitantes</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Alta</li>
+                                <li><a asp-page="/Visitantes/Create2"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir nuevo visitante</a></li>
+                            </ul>
+                        </li>
+
+                        }
+                        @*<li><a asp-page="/Visitantes/Index">Listado de Visitantes</a></li>*@
+                        @*<li><a asp-page="/About">Listado de Autorizados</a></li>
+                            <li><a asp-page="/Contact">Contacto</a></li>*@
+                    }
                 </ul>
                 <div class="navbar-text navbar-right"><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>&nbsp; Hola, @nombre[1] de @nombre[0]</div>
                 @*<p class="nav navbar-text navbar-right"><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>&nbsp; Hola, @nombre[1] de @nombre[0]</p>*@
