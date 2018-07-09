@@ -49,3 +49,8 @@ hr.style6 {
     width: 15px;
     height: 15px;
 }
+
+.contenedorEspecial {
+    height: 100%;
+    width: 100%
+}
