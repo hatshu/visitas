@@ -7,8 +7,12 @@
     ViewData["Title"] = "Home page";
     var usuario = @User.Identity.Name;
     var nombre = usuario.Split('\\');
-    var users = @Settings.Value.Users;
+    //USUARIOS ADMIN
+    var users = @Settings.Value.UsersAdmin;
+    //USUARIOS NORMALES
+    var users2 = @Settings.Value.Users;
     var authorized = false;
+    var authorized2 = false;
 }
 <br />
 
@@ -29,9 +33,18 @@
         }
 
     }
+    @foreach (var item in users2)
+    {
+        if (usuario.Equals(item))
+        {
+            authorized2 = true;
+            break;
+        }
+
+    }
 
     @*@if (usuario.Equals("bmartin"))*@
-    @if (authorized)
+    @if (authorized || authorized2)
     {
         @*<div class="row">
                 <div class="col-sm-6">
@@ -70,11 +83,11 @@
             </div>
         </a>
 
-     
-            <div class="row">
-                <img src="~/images/catecLogo.png" style="width:100%" />
-            </div>
-     
+
+        <div class="row">
+            <img src="~/images/catecLogo.png" style="width:100%" />
+        </div>
+
 
     }
 </div>

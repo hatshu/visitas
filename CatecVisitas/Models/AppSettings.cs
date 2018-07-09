@@ -8,9 +8,10 @@ namespace CatecVisitas.Models
 {
     public class AppSettings
     {
+        public List<string> UsersAdmin { get; set; }
         public List<string> Users { get; set; }
 
     }
 
-   
+
 }

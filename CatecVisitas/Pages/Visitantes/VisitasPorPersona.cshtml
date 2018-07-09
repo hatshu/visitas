@@ -11,8 +11,12 @@
     var espacio = " ";
     var usuario = @User.Identity.Name;
     var nombre = usuario.Split('\\');
-    var users = @Settings.Value.Users;
+    //USUARIOS ADMIN
+    var users = @Settings.Value.UsersAdmin;
+    //USUARIOS NORMALES
+    var users2 = @Settings.Value.Users;
     var authorized = false;
+    var authorized2 = false;
 }
 
 @foreach (var item in users)
@@ -24,12 +28,20 @@
     }
 
 }
+@foreach (var item in users2)
+{
+    if (usuario.Equals(item))
+    {
+        authorized2 = true;
+        break;
+    }
 
+}
 <br />
 <br />
 <br />
 
-@if (authorized)
+@if (authorized || authorized2)
 {
 
     <h2> <img src="~/images/icons8-identificación-verificada-80.png" /> &nbsp; Visitas Por Persona </h2>

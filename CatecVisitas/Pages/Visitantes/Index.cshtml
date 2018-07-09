@@ -7,8 +7,12 @@
     ViewData["Title"] = "Anadir Visitantes";
     var usuario = @User.Identity.Name;
     var nombre = usuario.Split('\\');
-    var users = @Settings.Value.Users;
+    //USUARIOS ADMIN
+    var users = @Settings.Value.UsersAdmin;
+    //USUARIOS NORMALES
+    var users2 = @Settings.Value.Users;
     var authorized = false;
+    var authorized2 = false;
     string query = Request.QueryString.ToString();
     string[] queryPart = query.Split('=', '&');
     var queryStream = "";
@@ -44,7 +48,15 @@
     }
 
 }
+@foreach (var item in users2)
+{
+    if (usuario.Equals(item))
+    {
+        authorized2 = true;
+        break;
+    }
 
+}
 
 
 
@@ -57,7 +69,7 @@
 
 }
 
-@if (authorized)
+@if (authorized || authorized2)
 {
     <h2> <img src="~/images/peoplebig.png" /> &nbsp; A&ntilde;adir Visitantes a Visita: @queryStream <span class="glyphicon glyphicon-chevron-right fa-2x"></span> Motivo: @Motivo </h2>
 
@@ -115,14 +127,14 @@
 
 
     <form>
-        @if (authorized)
+        @if (authorized || authorized2)
     {
         <div class="alert alert-info text-info">
             <p>
                 <span class="glyphicon glyphicon-comment fa-2x"></span>  &nbsp;  Si el visitante ha estado antes en Catec puedes usar el buscador / If the visitor has been in catec before you can use the search engine:
             </p>
         </div>
-        <div >
+        <div>
             <p>
                 <h4>
                     <span class="glyphicon glyphicon-search"></span> &nbsp;  DNI / ID / PASSPORT:  <input type="text" name="SearchString" />
@@ -138,16 +150,16 @@
         @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
 }
     </form>
-<div class="panel panel-default">
+    <div class="panel panel-default">
 
-    @if (authorized)
+        @if (authorized || authorized2)
     {
         <table class="table table-striped">
             @*<thead>*@
             @*<tr>*@
             @*<th>
-                    <h4>&nbsp;&nbsp;ID </h4>
-                </th>*@
+                <h4>&nbsp;&nbsp;ID </h4>
+            </th>*@
             @*<th>*@
             @*<h4> @Html.DisplayNameFor(model => model.Person[0].Nombre)</h4>*@
             @*</th>*@
@@ -169,50 +181,50 @@
             @*</thead>*@
             <tbody>
                 @if (!Model.duplicateITEM)
-                {
-                    @foreach (var item in Model.Person)
-                    {
-                        <tr>
-                            @*<td>
-                                    @Html.DisplayFor(modelItem => item.Id)
-                                </td>*@
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Apellidos)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DNI)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Empresa)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FechaAlta)
-                            </td>
-                            <td width="45" height="45">
-                                @*<a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |*@
-                                @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
-                                @*<a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |*@
-                                @*<a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.Id" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a> |*@
+            {
+                @foreach (var item in Model.Person)
+            {
+                <tr>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellidos)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DNI)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Empresa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaAlta)
+                    </td>
+                    <td width="45" height="45">
+                        @*<a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |*@
+                        @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
+                        @*<a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a> |*@
+                        @*<a asp-page="../EnlaceVisitasPersonas/Create" asp-route-id="@item.Id" asp-route-IdVisita="@Model.Visitita"><span class="glyphicon glyphicon-plus-sign"></span> A&ntilde;adir a la Visita</a> |*@
 
-                                <a href="#my_modal" data-toggle="modal" data-book-id="@item.Id" data-person-id="@item.Nombre" data-apellidos-id="@item.Apellidos">
-                                    @*<span class="glyphicon glyphicon-plus-sign"></span>*@ <img src="~/images/add.png" class="icon" rel="popover" data-txt="AGREGAR / ADD" />
-                                </a>
-                            </td>
-                        </tr>
-                    }
+                        <a href="#my_modal" data-toggle="modal" data-book-id="@item.Id" data-person-id="@item.Nombre" data-apellidos-id="@item.Apellidos">
+                            @*<span class="glyphicon glyphicon-plus-sign"></span>*@ <img src="~/images/add.png" class="icon" rel="popover" data-txt="AGREGAR / ADD" />
+                        </a>
+                    </td>
+                </tr>
+        }
 
-                }
+        }
 
 
 
             </tbody>
         </table>
-    }
+}
 
-    @section Scripts
+        @section Scripts
         {
         <script>
             $('#my_modal').on('show.bs.modal', function (e) {
@@ -244,11 +256,11 @@
                 $(this).popover(popOverSettings);
             });
         </script>
-    }
+        }
 
 
 
-</div>
+    </div>
 
 <div class="col-lg-offset-10">
     <div class="btn btn-primary">

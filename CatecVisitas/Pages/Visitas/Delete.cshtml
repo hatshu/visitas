@@ -7,8 +7,12 @@
     ViewData["Title"] = "Borrar Visita";
     var usuario = @User.Identity.Name;
     var nombre = usuario.Split('\\');
-    var users = @Settings.Value.Users;
+    //USUARIOS ADMIN
+    var users = @Settings.Value.UsersAdmin;
+    //USUARIOS NORMALES
+    var users2 = @Settings.Value.Users;
     var authorized = false;
+    var authorized2 = false;
 }
 
 @foreach (var item in users)
@@ -20,48 +24,56 @@
     }
 
 }
-
-@if (authorized)
+@foreach (var item in users2)
 {
-<br />
-<br />
-<br />
+    if (usuario.Equals(item))
+    {
+        authorized2 = true;
+        break;
+    }
 
-<h2> <img src="~/images/icons8-basura-80.png" /> &nbsp; Borrar / Delete</h2>
-
-<h3>
-    &iquest; Seguro que quieres eliminar el registro? / Are you sure you want to delete the record?
-</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            <h4> ID </h4>
-        </dt>
-        <dd>
-            <h4> @Html.DisplayFor(model => model.Visita.IdVisita)</h4>
-        </dd>
-        <dt>
-            <h4>Fecha</h4>
-        </dt>
-        <dd>
-            <h4> @Html.DisplayFor(model => model.Visita.FechaVisita)</h4>
-        </dd>
-        <dt>
-            <h4> @Html.DisplayNameFor(model => model.Visita.Motivo)</h4>
-        </dt>
-        <dd>
-            <h4> @Html.DisplayFor(model => model.Visita.Motivo)</h4>
-        </dd>
-    </dl>
-
-    <form method="post">
-        <input type="hidden" asp-for="Visita.IdVisita" />
-        <input type="submit" value="Borrar / Delete" class="btn btn-primary" />
-
-    </form>
+}
+@if (authorized || authorized2)
+{
     <br />
-    <a asp-page="./Index"><img src="~/images/back.png" /> Volver a la Lista / Back to list</a>
+    <br />
+    <br />
 
-</div>
+    <h2> <img src="~/images/icons8-basura-80.png" /> &nbsp; Borrar / Delete</h2>
+
+    <h3>
+        &iquest; Seguro que quieres eliminar el registro? / Are you sure you want to delete the record?
+    </h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                <h4> ID </h4>
+            </dt>
+            <dd>
+                <h4> @Html.DisplayFor(model => model.Visita.IdVisita)</h4>
+            </dd>
+            <dt>
+                <h4>Fecha</h4>
+            </dt>
+            <dd>
+                <h4> @Html.DisplayFor(model => model.Visita.FechaVisita)</h4>
+            </dd>
+            <dt>
+                <h4> @Html.DisplayNameFor(model => model.Visita.Motivo)</h4>
+            </dt>
+            <dd>
+                <h4> @Html.DisplayFor(model => model.Visita.Motivo)</h4>
+            </dd>
+        </dl>
+
+        <form method="post">
+            <input type="hidden" asp-for="Visita.IdVisita" />
+            <input type="submit" value="Borrar / Delete" class="btn btn-primary" />
+
+        </form>
+        <br />
+        <a asp-page="./Index"><img src="~/images/back.png" /> Volver a la Lista / Back to list</a>
+
+    </div>
 }

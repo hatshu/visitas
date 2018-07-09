@@ -7,8 +7,12 @@
     ViewData["Title"] = "Editar";
     var usuario = @User.Identity.Name;
     var nombre = usuario.Split('\\');
-    var users = @Settings.Value.Users;
+    //USUARIOS ADMIN
+    var users = @Settings.Value.UsersAdmin;
+    //USUARIOS NORMALES
+    var users2 = @Settings.Value.Users;
     var authorized = false;
+    var authorized2 = false;
 }
 
 
@@ -21,9 +25,17 @@
     }
 
 }
+@foreach (var item in users2)
+{
+    if (usuario.Equals(item))
+    {
+        authorized2 = true;
+        break;
+    }
 
+}
 
-@if (authorized)
+@if (authorized || authorized2)
 {
     <br />
     <br />

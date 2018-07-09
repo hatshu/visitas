@@ -7,8 +7,12 @@
     ViewData["Title"] = "Listado de Visitantes";
     var usuario = @User.Identity.Name;
     var nombre = usuario.Split('\\');
-    var users = @Settings.Value.Users;
+    //USUARIOS ADMIN
+    var users = @Settings.Value.UsersAdmin;
+    //USUARIOS NORMALES
+    var users2 = @Settings.Value.Users;
     var authorized = false;
+    var authorized2 = false;
 }
 <br />
 <br />
@@ -23,22 +27,31 @@
     }
 
 }
+@foreach (var item in users2)
+{
+    if (usuario.Equals(item))
+    {
+        authorized2 = true;
+        break;
+    }
+
+}
 <form>
-    @if (authorized)
+    @if (authorized || authorized2)
     {
 
-    <p>
-        Buscar por DNI o Empresa: &nbsp;
-        <input type="text" name="searchString" />
-        <input type="submit" value="Buscar" />
-    </p>
+        <p>
+            Buscar por DNI o Empresa: &nbsp;
+            <input type="text" name="searchString" />
+            <input type="submit" value="Buscar" />
+        </p>
     }
     @*<a asp-page="./Index2" asp-route-idVisita="@queryStream" asp-route-searchSting=@Model.SearchStream> Buscar</a>*@
 </form>
 
 
 <div class="panel panel-default">
-    @if (authorized)
+    @if (authorized || authorized2)
     {
         <table class="table table-striped">
             <thead>
@@ -91,27 +104,27 @@
             </tbody>
         </table>
     }
-        @section Scripts
-            {
+    @section Scripts
+        {
 
-            <script>
-                $('document').ready(function () {
+        <script>
+            $('document').ready(function () {
 
-                    var popOverSettings = {
-                        placement: 'top',
-                        selector: '.icon',
-                        //title: 'EDITAR',
-                        trigger: "hover",
-                        content: function () { return $(this).data('txt'); }
-                    };
-                    $(this).popover(popOverSettings);
-                });
-            </script>
-        }
+                var popOverSettings = {
+                    placement: 'top',
+                    selector: '.icon',
+                    //title: 'EDITAR',
+                    trigger: "hover",
+                    content: function () { return $(this).data('txt'); }
+                };
+                $(this).popover(popOverSettings);
+            });
+        </script>
+    }
 
 
 
-    </div>
+</div>
 
 @{
     var prevDisabled = !Model.Person.HasPreviousPage ? "disabled" : "";

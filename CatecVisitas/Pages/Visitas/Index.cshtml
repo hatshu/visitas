@@ -7,8 +7,12 @@
     ViewData["Title"] = "Listado de Visitas";
     var usuario = @User.Identity.Name;
     var nombre = usuario.Split('\\');
-    var users = @Settings.Value.Users;
+    //USUARIOS ADMIN
+    var users = @Settings.Value.UsersAdmin;
+    //USUARIOS NORMALES
+    var users2 = @Settings.Value.Users;
     var authorized = false;
+    var authorized2 = false;
 }
 
 <br />
@@ -25,93 +29,101 @@
     }
 
 }
+@foreach (var item in users2)
+{
+    if (usuario.Equals(item))
+    {
+        authorized2 = true;
+        break;
+    }
 
+}
 <p>
     @*<a asp-page="Create">Create New</a>*@
 </p>
 <br />
-@if (authorized)
+@if (authorized || authorized2)
 {
-<form>
+    <form>
 
-    <div class="alert alert-info" style="text-emphasis:inherit">
+        <div class="alert alert-info" style="text-emphasis:inherit">
 
-        <span class="glyphicon glyphicon-search"></span> Localizar Visita por FECHA, MOTIVO o RESPONSABLE:  <input type="text" name="SearchString" />
-        <input type="submit" value="Buscar" class="btn btn-primary" />
-    </div>
+            <span class="glyphicon glyphicon-search"></span> Localizar Visita por FECHA, MOTIVO o RESPONSABLE:  <input type="text" name="SearchString" />
+            <input type="submit" value="Buscar" class="btn btn-primary" />
+        </div>
 
-</form>
+    </form>
 
-<div class="panel panel-default">
+    <div class="panel panel-default">
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-
-                <th>
-                    <h4>ID</h4>
-                </th>
-                <th>
-                    <h4>Motivo</h4>
-                    @*@Html.DisplayNameFor(model => model.Visita[0].Motivo)*@
-                </th>
-                <th>
-                    <h4>Duraci&oacute;n</h4>
-                    @*@Html.DisplayNameFor(model => model.Visita[0].Duracion)*@
-                </th>
-                <th>
-                    <h4>Responsable</h4>
-                    @*@Html.DisplayNameFor(model => model.Visita[0].ResponsableCatec)*@
-                </th>
-
-                <th>
-                    <h4>Fecha</h4>
-                    @*@Html.DisplayNameFor(model => model.Visita[0].FechaVisita)*@
-                </th>
-                <th>
-                    <h4>Hora</h4>
-                    @*@Html.DisplayNameFor(model => model.Visita[0].Hora)*@
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in @Model.Visita)
-            {
+        <table class="table table-striped">
+            <thead>
                 <tr>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IdVisita)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Motivo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Duracion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ResponsableCatec)
-                    </td>
+                    <th>
+                        <h4>ID</h4>
+                    </th>
+                    <th>
+                        <h4>Motivo</h4>
+                        @*@Html.DisplayNameFor(model => model.Visita[0].Motivo)*@
+                    </th>
+                    <th>
+                        <h4>Duraci&oacute;n</h4>
+                        @*@Html.DisplayNameFor(model => model.Visita[0].Duracion)*@
+                    </th>
+                    <th>
+                        <h4>Responsable</h4>
+                        @*@Html.DisplayNameFor(model => model.Visita[0].ResponsableCatec)*@
+                    </th>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaVisita)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Hora)
-                    </td>
-                    <td>
-                        <a asp-page="./Edit" asp-route-idVisita="@item.IdVisita"><img src="~/images/icons8-editar-propiedad-30.png" class="icon" rel="popover" data-txt="EDITAR / EDIT" /></a> |
-                        <a asp-page="./Delete" asp-route-idVisita="@item.IdVisita"><img src="~/images/icons8-basura-30.png" class="icon" rel="popover" data-txt="BORRAR / DEL" /></a> |
-                        <a asp-page="../Visitantes/Index" asp-route-idVisita="@item.IdVisita">
-                            @*<span class="glyphicon glyphicon-plus-sign fa-3x" aria-hidden="true"></span>*@  <img src="~/images/peoplesmall.png" class="icon" rel="popover" data-txt="AGREGAR VISITANTES / ADD" />
-                        </a> |
-                        <a asp-page="../Visitantes/VisitasConPersonas" asp-route-idVisita="@item.IdVisita">@*<span class="glyphicon glyphicon-eye-open fa-3x"></span>*@  <img src="~/images/icons8-ver-detalles-30.png" class="icon" rel="popover" data-txt="VER VISITANTES / VIEW" /></a>
-
-                    </td>
+                    <th>
+                        <h4>Fecha</h4>
+                        @*@Html.DisplayNameFor(model => model.Visita[0].FechaVisita)*@
+                    </th>
+                    <th>
+                        <h4>Hora</h4>
+                        @*@Html.DisplayNameFor(model => model.Visita[0].Hora)*@
+                    </th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.Visita)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdVisita)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Motivo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Duracion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ResponsableCatec)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaVisita)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Hora)
+                        </td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-idVisita="@item.IdVisita"><img src="~/images/icons8-editar-propiedad-30.png" class="icon" rel="popover" data-txt="EDITAR / EDIT" /></a> |
+                            <a asp-page="./Delete" asp-route-idVisita="@item.IdVisita"><img src="~/images/icons8-basura-30.png" class="icon" rel="popover" data-txt="BORRAR / DEL" /></a> |
+                            <a asp-page="../Visitantes/Index" asp-route-idVisita="@item.IdVisita">
+                                @*<span class="glyphicon glyphicon-plus-sign fa-3x" aria-hidden="true"></span>*@  <img src="~/images/peoplesmall.png" class="icon" rel="popover" data-txt="AGREGAR VISITANTES / ADD" />
+                            </a> |
+                            <a asp-page="../Visitantes/VisitasConPersonas" asp-route-idVisita="@item.IdVisita">@*<span class="glyphicon glyphicon-eye-open fa-3x"></span>*@  <img src="~/images/icons8-ver-detalles-30.png" class="icon" rel="popover" data-txt="VER VISITANTES / VIEW" /></a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
 
 
