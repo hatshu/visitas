@@ -11,8 +11,12 @@
     IDVisita = queryPart[1];
     var usuario = @User.Identity.Name;
     var nombre = usuario.Split('\\');
-    var users = @Settings.Value.Users;
+    //USUARIOS ADMIN
+    var users = @Settings.Value.UsersAdmin;
+    //USUARIOS NORMALES
+    var users2 = @Settings.Value.Users;
     var authorized = false;
+    var authorized2 = false;
     var aceptoTratamientoDatos = false;
     var aceptoConfidencialidad = false;
 }
@@ -31,8 +35,16 @@
     }
 
 }
+@foreach (var item in users2)
+{
+    if (usuario.Equals(item))
+    {
+        authorized2 = true;
+        break;
+    }
 
-@if (authorized)
+}
+@if (authorized || authorized2)
 {
     <h2>
         <img src="~/images/icons8-nombre-80.png" /> &nbsp; Nuevo Visitante / New visitor

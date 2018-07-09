@@ -5,15 +5,20 @@
 @{
     var usuario = @User.Identity.Name;
     var nombre = usuario.Split('\\');
-    var users = @Settings.Value.Users;
+    //USUARIOS ADMIN
+    var users = @Settings.Value.UsersAdmin;
+    //USUARIOS NORMALES
+    var users2 = @Settings.Value.Users;
     var authorized = false;
-    //USUARIOS NORMALES QUE NO PUEDEN VER LA LISTA DE VISITANTES EN LA BARRA DE NAVEGACION
-    var usuarioRecepcion1 = "CATEC\\aux_recepcion";
-    var usuarioRecepcion2 = "HWPC0044\\recepcion";
+    var authorized2 = false;
+
+    ////USUARIOS NORMALES QUE NO PUEDEN VER LA LISTA DE VISITANTES EN LA BARRA DE NAVEGACION
+    //var usuarioRecepcion1 = "CATEC\\aux_recepcion";
+    //var usuarioRecepcion2 = "HWPC0044\\recepcion";
 
 }
 
-<!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -62,7 +67,17 @@
                         }
 
                     }
-                    @if (authorized)
+                    @foreach (var item in users2)
+                    {
+                        if (usuario.Equals(item))
+                        {
+                            authorized2 = true;
+                            break;
+                        }
+
+                    }
+
+                    @if (authorized || authorized2)
                     {
                         <li class="dropdown">
 
@@ -75,17 +90,17 @@
                                 <li><a asp-page="/Visitas/Create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir nueva visita</a></li>
                             </ul>
                         </li>
-                        @if (!usuario.Equals(usuarioRecepcion1) && !usuario.Equals(usuarioRecepcion2))
+                        @if (authorized)
                         {
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Visitantes <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a asp-page="/Visitantes/Index2"><span class="glyphicon glyphicon-list"></span>&nbsp;Listado de Visitantes</a></li>
-                                <li class="divider"></li>
-                                <li class="dropdown-header">Alta</li>
-                                <li><a asp-page="/Visitantes/Create2"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir nuevo visitante</a></li>
-                            </ul>
-                        </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Visitantes <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-page="/Visitantes/Index2"><span class="glyphicon glyphicon-list"></span>&nbsp;Listado de Visitantes</a></li>
+                                    <li class="divider"></li>
+                                    <li class="dropdown-header">Alta</li>
+                                    <li><a asp-page="/Visitantes/Create2"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir nuevo visitante</a></li>
+                                </ul>
+                            </li>
 
                         }
                         @*<li><a asp-page="/Visitantes/Index">Listado de Visitantes</a></li>*@
